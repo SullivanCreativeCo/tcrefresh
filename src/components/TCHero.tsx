@@ -5,6 +5,7 @@ import AnimatedShaderBackground from "@/components/ui/animated-shader-background
 import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
 import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
+import webLogo2 from "@/assets/web-logo-2.png";
 
 const stats = [
   { value: "$4.2B+", label: "Risk Quantified" },
@@ -45,11 +46,8 @@ const TCHero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-6">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs text-slate-300 tracking-wide">
-              Quantitative Cyber Risk Analysis
-            </span>
+          <div className="mb-6">
+            <img src={webLogo2} alt="ThreatCaptain" className="h-[75px] w-auto" />
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
