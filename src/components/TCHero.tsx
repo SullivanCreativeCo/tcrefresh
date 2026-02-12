@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
-import RadarCanvas from "@/components/RadarCanvas";
+import { InteractivePieChart } from "@/components/InteractivePieChart";
 
 const stats = [
   { value: "$4.2B+", label: "Risk Quantified" },
@@ -82,7 +82,7 @@ const TCHero = () => (
           transition={{ duration: 0.8, delay: 0.3 }}
           className="hidden lg:block"
         >
-          <RadarCanvas />
+          <InteractivePieChart />
         </motion.div>
       </div>
     </div>
