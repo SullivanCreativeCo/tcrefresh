@@ -11,9 +11,9 @@ const TCFooter = () => (
   <footer className="border-t border-white/5 py-12">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       <a href="#" className="flex items-center gap-2">
-        <Compass className="w-5 h-5 text-cyan-400" />
+        <Compass className="w-5 h-5 text-indigo-400" />
         <span className="font-bold text-sm text-white">
-          Threat<span className="text-cyan-400">Captain</span>
+          Threat<span className="text-indigo-400">Captain</span>
         </span>
       </a>
 

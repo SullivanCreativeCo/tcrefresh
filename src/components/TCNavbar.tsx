@@ -27,9 +27,9 @@ const TCNavbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <a href="#" className="flex items-center gap-2 group">
-          <Compass className="w-6 h-6 text-cyan-400 transition-transform duration-300 group-hover:rotate-45" />
+          <Compass className="w-6 h-6 text-indigo-400 transition-transform duration-300 group-hover:rotate-45" />
           <span className="font-bold text-base tracking-tight text-white">
-            Threat<span className="text-cyan-400">Captain</span>
+            Threat<span className="text-indigo-400">Captain</span>
           </span>
         </a>
 
@@ -45,7 +45,7 @@ const TCNavbar = () => {
           ))}
           <a
             href="#contact"
-            className="text-sm px-4 py-2 rounded-lg border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 transition-colors"
+            className="text-sm px-4 py-2 rounded-lg border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 transition-colors"
           >
             Request Demo
           </a>
@@ -82,7 +82,7 @@ const TCNavbar = () => {
               <a
                 href="#contact"
                 onClick={() => setMobileOpen(false)}
-                className="text-sm px-4 py-2 rounded-lg border border-cyan-500/20 bg-cyan-500/10 text-cyan-400 text-center"
+                className="text-sm px-4 py-2 rounded-lg border border-indigo-500/20 bg-indigo-500/10 text-indigo-400 text-center"
               >
                 Request Demo
               </a>

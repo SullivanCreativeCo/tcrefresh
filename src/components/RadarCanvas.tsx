@@ -50,11 +50,11 @@ const RadarCanvas = () => {
 
       ctx.clearRect(0, 0, w, h);
 
-      // Concentric rings
+      // Concentric rings — indigo blue
       for (let i = 1; i <= 4; i++) {
         ctx.beginPath();
         ctx.arc(cx, cy, maxR * (i / 4), 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(34, 211, 238, ${0.05 + i * 0.02})`;
+        ctx.strokeStyle = `rgba(99, 102, 241, ${0.05 + i * 0.02})`;
         ctx.lineWidth = 1;
         ctx.stroke();
       }
@@ -65,17 +65,17 @@ const RadarCanvas = () => {
         ctx.beginPath();
         ctx.moveTo(cx, cy);
         ctx.lineTo(cx + Math.cos(a) * maxR, cy + Math.sin(a) * maxR);
-        ctx.strokeStyle = "rgba(34, 211, 238, 0.05)";
+        ctx.strokeStyle = "rgba(99, 102, 241, 0.05)";
         ctx.lineWidth = 1;
         ctx.stroke();
       }
 
-      // Sweep gradient
+      // Sweep gradient — indigo
       const grad = ctx.createConicGradient(angle, cx, cy);
-      grad.addColorStop(0, "rgba(34, 211, 238, 0.12)");
-      grad.addColorStop(0.07, "rgba(34, 211, 238, 0.03)");
-      grad.addColorStop(0.12, "rgba(34, 211, 238, 0)");
-      grad.addColorStop(1, "rgba(34, 211, 238, 0)");
+      grad.addColorStop(0, "rgba(99, 102, 241, 0.12)");
+      grad.addColorStop(0.07, "rgba(99, 102, 241, 0.03)");
+      grad.addColorStop(0.12, "rgba(99, 102, 241, 0)");
+      grad.addColorStop(1, "rgba(99, 102, 241, 0)");
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.arc(cx, cy, maxR, angle, angle + Math.PI * 2);
@@ -86,7 +86,7 @@ const RadarCanvas = () => {
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(cx + Math.cos(angle) * maxR, cy + Math.sin(angle) * maxR);
-      ctx.strokeStyle = "rgba(34, 211, 238, 0.35)";
+      ctx.strokeStyle = "rgba(129, 140, 248, 0.35)";
       ctx.lineWidth = 1.5;
       ctx.stroke();
 
@@ -102,7 +102,7 @@ const RadarCanvas = () => {
             ? [248, 113, 113]
             : b.risk > 0.4
             ? [251, 191, 36]
-            : [34, 211, 238];
+            : [129, 140, 248];
 
         // Glow
         ctx.beginPath();
@@ -120,7 +120,7 @@ const RadarCanvas = () => {
       // Center dot
       ctx.beginPath();
       ctx.arc(cx, cy, 3, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(34, 211, 238, 0.5)";
+      ctx.fillStyle = "rgba(99, 102, 241, 0.5)";
       ctx.fill();
 
       angle += 0.01;
@@ -136,7 +136,7 @@ const RadarCanvas = () => {
 
   return (
     <div className="relative w-full aspect-square max-w-lg mx-auto">
-      <div className="absolute inset-0 bg-cyan-500/[0.04] blur-2xl rounded-full" />
+      <div className="absolute inset-0 bg-indigo-500/[0.04] blur-2xl rounded-full" />
       <canvas ref={canvasRef} className="relative w-full h-full" />
     </div>
   );

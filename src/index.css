@@ -8,11 +8,9 @@
     --foreground: 210 40% 98%;
     --card: 217 33% 12%;
     --card-foreground: 210 40% 98%;
-    --popover: 217 33% 12%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 187 92% 53%;
+    --primary: 239 84% 67%;
     --primary-foreground: 222 47% 7%;
-    --secondary: 168 76% 47%;
+    --secondary: 217 91% 60%;
     --secondary-foreground: 222 47% 7%;
     --muted: 217 33% 17%;
     --muted-foreground: 215 20% 75%;
@@ -26,16 +24,16 @@
     --warning-foreground: 222 47% 7%;
     --border: 215 25% 22%;
     --input: 215 25% 22%;
-    --ring: 187 92% 53%;
+    --ring: 239 84% 67%;
     --radius: 0.75rem;
     --sidebar-background: 222 47% 7%;
     --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 187 92% 53%;
+    --sidebar-primary: 239 84% 67%;
     --sidebar-primary-foreground: 222 47% 7%;
     --sidebar-accent: 217 33% 17%;
     --sidebar-accent-foreground: 210 40% 98%;
     --sidebar-border: 215 25% 22%;
-    --sidebar-ring: 187 92% 53%;
+    --sidebar-ring: 239 84% 67%;
   }
 
   * {
@@ -57,7 +55,7 @@
   }
 
   ::selection {
-    background: rgba(34, 211, 238, 0.3);
+    background: rgba(99, 102, 241, 0.3);
     color: #e2e8f0;
   }
 
@@ -70,21 +68,21 @@
   .glass {
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(34, 211, 238, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.1);
   }
 
   .glass-strong {
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(34, 211, 238, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.12);
   }
 
   .glow-cyan {
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.15), 0 0 60px rgba(34, 211, 238, 0.05);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 0 60px rgba(99, 102, 241, 0.05);
   }
 
   .text-gradient-cyan {
-    background: linear-gradient(135deg, #22d3ee, #2dd4bf);
+    background: linear-gradient(135deg, #818cf8, #6366f1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -92,8 +90,8 @@
 
   .bg-grid {
     background-image:
-      linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 }
@@ -137,5 +135,5 @@
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(34, 211, 238, 0.5);
+  background: rgba(99, 102, 241, 0.5);
 }

@@ -5,7 +5,7 @@ const bars = [
   { label: "Ransomware (double extortion)", value: 8.4, max: 12, color: "#f87171" },
   { label: "Business email compromise", value: 4.2, max: 12, color: "#fbbf24" },
   { label: "Cloud misconfiguration breach", value: 6.1, max: 12, color: "#fb923c" },
-  { label: "Insider threat (data exfil)", value: 3.2, max: 12, color: "#22d3ee" },
+  { label: "Insider threat (data exfil)", value: 3.2, max: 12, color: "#818cf8" },
   { label: "Third-party supply chain", value: 5.8, max: 12, color: "#a78bfa" },
 ];
 
@@ -27,7 +27,7 @@ const TCDashboard = () => {
     <section id="insights" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-3">
+          <p className="text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
             Risk Intelligence
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
@@ -80,13 +80,10 @@ const TCDashboard = () => {
             <div>
               {/* Gauge */}
               <div className="flex flex-col items-center mb-6">
-                <svg
-                  viewBox="0 0 120 70"
-                  className="w-40"
-                >
+                <svg viewBox="0 0 120 70" className="w-40">
                   <defs>
                     <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stopColor="#22d3ee" />
+                      <stop offset="0%" stopColor="#818cf8" />
                       <stop offset="50%" stopColor="#fbbf24" />
                       <stop offset="100%" stopColor="#f87171" />
                     </linearGradient>
@@ -94,7 +91,7 @@ const TCDashboard = () => {
                   <path
                     d="M 10 65 A 50 50 0 0 1 110 65"
                     fill="none"
-                    stroke="rgba(34,211,238,0.1)"
+                    stroke="rgba(99,102,241,0.1)"
                     strokeWidth="8"
                     strokeLinecap="round"
                   />
