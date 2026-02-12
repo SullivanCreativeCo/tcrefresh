@@ -20,8 +20,11 @@ const TCMethodology = () => {
             Methodology
           </p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 relative inline-block w-full" style={{textShadow: '0 0 40px rgba(42, 54, 255, 0.3)'}}>
-            From <span className="text-gradient-cyan">tech</span> talk to{" "}
-            <span className="text-gradient-cyan">business</span> conversation
+            <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}>From </span>
+            <span className="text-gradient-cyan">tech</span>
+            <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}> talk to </span>
+            <span className="text-gradient-cyan">business</span>
+            <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}> conversation</span>
           </h2>
         </div>
 
