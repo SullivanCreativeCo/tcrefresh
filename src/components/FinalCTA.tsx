@@ -9,7 +9,7 @@ const FinalCTA = () => (
 
     <div className="section-container relative z-10 text-center">
       <AnimatedSection>
-        <img src={captainBeacon} alt="Captain Beacon" className="w-32 mx-auto mb-8 drop-shadow-2xl animate-float" />
+        <img src={captainBeacon} alt="Captain Beacon" className="w-40 mx-auto mb-8 drop-shadow-2xl animate-float" />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>

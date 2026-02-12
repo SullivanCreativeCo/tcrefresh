@@ -43,8 +43,8 @@ const ProblemSolution = () => {
 
           <AnimatedSection delay={0.2}>
             <div className="glass-card p-8 h-full flex flex-col items-center justify-center text-center">
-              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4">
-                <span className="text-3xl">😕</span>
+              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-4 border-2 border-border/50">
+                <span className="text-lg font-bold text-muted-foreground">?</span>
               </div>
               <p className="text-lg text-muted-foreground italic">
                 "But what does this actually <span className="text-foreground font-semibold">cost us</span>?"
@@ -134,7 +134,7 @@ const ProblemSolution = () => {
             </div>
 
             <div className="text-center py-6 mb-6 bg-muted/40 rounded-xl border border-border/20">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">📊 Estimated Financial Impact</p>
+              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">Estimated Financial Impact</p>
               <CountUpNumber />
             </div>
 
@@ -193,7 +193,7 @@ const ProblemSolution = () => {
                 <p className="font-medium">Security Upgrade Initiative</p>
               </div>
               <span className="px-3 py-1 text-xs font-medium bg-warning/10 text-warning border border-warning/20 rounded-full">
-                ⏳ Pending Review
+                Pending Review
               </span>
             </div>
 
