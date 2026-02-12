@@ -19,7 +19,7 @@ const TCMethodology = () => {
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">
             Methodology
           </p>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 relative inline-block w-full" style={{textShadow: '0 0 40px rgba(42, 54, 255, 0.3)'}}>
             From <span className="text-gradient-cyan">tech</span> talk to{" "}
             <span className="text-gradient-cyan">business</span> conversation
           </h2>
