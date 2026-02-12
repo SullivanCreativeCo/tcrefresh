@@ -38,7 +38,7 @@ export const GlowingStarsDescription = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <p className={cn("text-sm text-muted-foreground max-w-[16rem]", className)}>
+    <p className={cn("text-base text-muted-foreground max-w-[16rem]", className)}>
       {children}
     </p>
   );
@@ -52,7 +52,7 @@ export const GlowingStarsTitle = ({
   children?: React.ReactNode;
 }) => {
   return (
-    <h2 className={cn("font-bold text-base text-foreground", className)}>
+    <h2 className={cn("font-bold text-lg text-foreground", className)}>
       {children}
     </h2>
   );
