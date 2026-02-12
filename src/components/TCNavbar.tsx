@@ -27,11 +27,8 @@ const TCNavbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center gap-2 group">
-          <img src={tcLogo} alt="ThreatCaptain" className="h-8 w-auto" />
-          <span className="font-bold text-base tracking-tight text-white">
-            Threat<span className="text-primary">Captain</span>
-          </span>
+        <a href="#" className="flex items-center">
+          <img src={tcLogo} alt="ThreatCaptain" className="h-[35px] w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">

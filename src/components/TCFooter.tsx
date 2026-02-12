@@ -10,11 +10,8 @@ const links = [
 const TCFooter = () => (
   <footer className="border-t border-white/5 py-12">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <a href="#" className="flex items-center gap-2">
-        <img src={tcLogo} alt="ThreatCaptain" className="h-7 w-auto" />
-        <span className="font-bold text-sm text-white">
-          Threat<span className="text-primary">Captain</span>
-        </span>
+      <a href="#" className="flex items-center">
+        <img src={tcLogo} alt="ThreatCaptain" className="h-[35px] w-auto" />
       </a>
 
       <div className="flex items-center gap-6">
