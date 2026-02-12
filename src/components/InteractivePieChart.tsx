@@ -20,7 +20,7 @@ const phases: PhaseData[] = [
   { id: "closing", name: "Closing", value: 1, color: "#FFC107", description: "Proposals reviewed and signed", category: "mid" },
   { id: "implementation", name: "Implementation", value: 1, color: "#FF9800", description: "Deploy and onboard", category: "post" },
   { id: "touchpoints", name: "Ongoing Support", value: 1, color: "#F44336", description: "Justify the relationship", category: "post" },
-  { id: "reviews", name: "Annual Reviews", value: 1, color: "#E91E9C", description: "Tabletops, scans, and tolerance", category: "post" },
+  { id: "reviews", name: "Annual Reviews", value: 1, color: "#2a36ff", description: "Tabletops, scans, and tolerance", category: "post" },
 ];
 
 const renderActiveShape = (props: {
@@ -117,7 +117,7 @@ export function InteractivePieChart({ onPhaseClick, selectedPhase }: Interactive
     <div className="relative w-full h-full min-h-[500px] flex items-center justify-center">
       {/* Ambient glow effect */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[400px] h-[400px] rounded-full bg-indigo-500/10 blur-[100px] animate-pulse" />
+        <div className="w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px] animate-pulse" />
       </div>
 
       {/* Outer arc labels */}

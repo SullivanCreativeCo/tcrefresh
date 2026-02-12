@@ -55,7 +55,7 @@
   }
 
   ::selection {
-    background: rgba(99, 102, 241, 0.3);
+    background: rgba(42, 54, 255, 0.3);
     color: #e2e8f0;
   }
 
@@ -68,21 +68,21 @@
   .glass {
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(42, 54, 255, 0.1);
   }
 
   .glass-strong {
     background: rgba(15, 23, 42, 0.85);
     backdrop-filter: blur(20px);
-    border: 1px solid rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(42, 54, 255, 0.12);
   }
 
   .glow-cyan {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 0 60px rgba(99, 102, 241, 0.05);
+    box-shadow: 0 0 20px rgba(42, 54, 255, 0.15), 0 0 60px rgba(42, 54, 255, 0.05);
   }
 
   .text-gradient-cyan {
-    background: linear-gradient(135deg, #818cf8, #6366f1);
+    background: linear-gradient(135deg, #5a63ff, #2a36ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -90,8 +90,8 @@
 
   .bg-grid {
     background-image:
-      linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(42, 54, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(42, 54, 255, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 }
@@ -135,5 +135,5 @@
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.5);
+  background: rgba(42, 54, 255, 0.5);
 }
