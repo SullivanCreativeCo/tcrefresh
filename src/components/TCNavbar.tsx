@@ -38,14 +38,14 @@ const TCNavbar = () => {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-slate-400 hover:text-slate-200 transition-colors"
+              className="text-sm text-slate-400 hover:text-slate-200 hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
             >
               {l.label}
             </a>
           ))}
           <a
             href="#contact"
-            className="text-sm px-4 py-2 rounded-lg border border-primary/20 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+            className="text-sm px-4 py-2 rounded-lg border border-primary/20 bg-primary/10 text-white hover:bg-primary/20 hover:shadow-[0_0_16px_hsl(var(--primary)/0.5)] transition-all duration-300"
           >
             Request Demo
           </a>
