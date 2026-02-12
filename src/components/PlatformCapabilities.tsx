@@ -1,6 +1,6 @@
 import AnimatedSection from "./AnimatedSection";
 import { Calculator, Shield, TrendingUp, FileText, BadgeCheck, Database } from "lucide-react";
-import { motion } from "framer-motion";
+import { PinContainer } from "./ui/3d-pin";
 
 const capabilities = [
   {
@@ -53,16 +53,15 @@ const PlatformCapabilities = () => {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {capabilities.map((cap, i) => (
             <AnimatedSection key={cap.title} delay={i * 0.08}>
-              <motion.div
-                className="glass-card-hover p-6 h-full"
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <cap.icon className="text-primary" size={20} />
+              <PinContainer containerClassName="h-full">
+                <div className="glass-card p-6 h-full">
+                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                    <cap.icon className="text-primary" size={20} />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">{cap.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{cap.desc}</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">{cap.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{cap.desc}</p>
-              </motion.div>
+              </PinContainer>
             </AnimatedSection>
           ))}
         </div>
