@@ -1,51 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, Target, Play, Users } from "lucide-react";
 import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
 import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
-
-const phaseDetails: Record<string, { bullets: string[]; insight: string }> = {
-  branding: {
-    bullets: ["Visual identity & messaging", "Market positioning", "Competitive differentiation"],
-    insight: "Your brand is the first signal prospects use to evaluate trust and credibility.",
-  },
-  marketing: {
-    bullets: ["Campaign strategy", "Channel optimization", "ICP targeting"],
-    insight: "Effective marketing aligns messaging with your ideal customer profile across every touchpoint.",
-  },
-  awareness: {
-    bullets: ["Content marketing", "Thought leadership", "Community engagement"],
-    insight: "Stay top of mind so when the need arises, you're the first call.",
-  },
-  leadgen: {
-    bullets: ["Conversion funnels", "Lead scoring", "Meeting optimization"],
-    insight: "Turn passive consumers into active pipeline with measurable conversion rates.",
-  },
-  bdr: {
-    bullets: ["Outbound sequences", "Persona-based outreach", "Multi-channel cadences"],
-    insight: "Proactive outreach to your ICP builds pipeline that inbound alone can't sustain.",
-  },
-  sales: {
-    bullets: ["Discovery & qualification", "Budget & timeline fit", "Stakeholder mapping"],
-    insight: "Qualify urgency and budget early to focus on deals that will actually close.",
-  },
-  closing: {
-    bullets: ["Proposal development", "Negotiation strategy", "Contract execution"],
-    insight: "A structured close process reduces cycle time and increases win rates.",
-  },
-  implementation: {
-    bullets: ["Onboarding plans", "Success milestones", "Technical deployment"],
-    insight: "Smooth implementation sets the foundation for long-term retention.",
-  },
-  touchpoints: {
-    bullets: ["QBRs & check-ins", "Support escalation", "Value reinforcement"],
-    insight: "Ongoing touchpoints justify the relationship and surface expansion opportunities.",
-  },
-  reviews: {
-    bullets: ["Annual risk reviews", "Tabletop exercises", "Tolerance recalibration"],
-    insight: "Periodic reviews ensure alignment as threat landscapes and business priorities evolve.",
-  },
-};
+import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
+import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
 
 const stats = [
   { value: "$4.2B+", label: "Risk Quantified" },
@@ -55,7 +14,7 @@ const stats = [
 
 const TCHero = () => {
   const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
-
+  const [selectedPlayId, setSelectedPlayId] = useState<string | null>(null);
   const handlePhaseClick = (phase: PhaseData) => {
     setSelectedPhase(prev => prev?.id === phase.id ? null : phase);
   };
@@ -192,40 +151,70 @@ const TCHero = () => {
               </span>
             </div>
 
-            {/* Key activities */}
-            {phaseDetails[selectedPhase.id] && (
-              <>
-                <div className="mb-6">
-                  <h3 className="text-sm font-semibold text-slate-300 uppercase tracking-wider mb-3">
-                    Key Activities
-                  </h3>
-                  <ul className="space-y-2">
-                    {phaseDetails[selectedPhase.id].bullets.map((b, i) => (
-                      <motion.li
-                        key={b}
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.1 + i * 0.08 }}
-                        className="flex items-start gap-3 text-sm text-slate-300"
-                      >
-                        <span
-                          className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0"
-                          style={{ backgroundColor: selectedPhase.color }}
-                        />
-                        {b}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
+            {/* Tactical Plays */}
+            {(() => {
+              const plays = getPlaysByPhase(selectedPhase.id as MethodologyPhase);
+              return (
+                <>
+                  <div
+                    className="p-4 rounded-lg border-l-4 mb-6"
+                    style={{
+                      backgroundColor: `${selectedPhase.color}08`,
+                      borderColor: selectedPhase.color,
+                    }}
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <Target className="w-4 h-4" style={{ color: selectedPhase.color }} />
+                      <span className="text-xs font-medium uppercase tracking-wider" style={{ color: selectedPhase.color }}>
+                        Available Plays
+                      </span>
+                    </div>
+                    <p className="text-sm text-slate-300">
+                      {plays.length} tactical {plays.length === 1 ? 'play' : 'plays'} for the {selectedPhase.name} phase
+                    </p>
+                  </div>
 
-                <div className="p-4 rounded-lg border border-slate-700/30" style={{ background: `${selectedPhase.color}08` }}>
-                  <h3 className="text-sm font-semibold text-slate-300 mb-2">💡 Insight</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">
-                    {phaseDetails[selectedPhase.id].insight}
-                  </p>
-                </div>
-              </>
-            )}
+                  {plays.length > 0 ? (
+                    <div className="space-y-3 p-4 rounded-lg border border-slate-700/30 bg-slate-800/30">
+                      <div className="flex items-center gap-2">
+                        <Play className="w-5 h-5" style={{ color: selectedPhase.color }} />
+                        <h3 className="font-semibold text-slate-200 text-sm">Tactical Plays</h3>
+                      </div>
+                      <ul className="space-y-2">
+                        {plays.map((play, i) => (
+                          <motion.li
+                            key={play.id}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 + i * 0.06 }}
+                            onClick={() => setSelectedPlayId(play.id)}
+                            className="text-sm flex items-start gap-3 p-2 rounded-lg hover:bg-slate-700/30 transition-colors cursor-pointer"
+                          >
+                            <span
+                              className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5"
+                              style={{ backgroundColor: selectedPhase.color }}
+                            />
+                            <div className="flex-1 min-w-0">
+                              <p className="text-slate-200 font-medium">{play.title}</p>
+                              <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                                <span className="flex items-center gap-1">
+                                  <Users className="w-3 h-3" />
+                                  {play.targetAudience.roles[0]}
+                                </span>
+                              </div>
+                            </div>
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <div className="text-center p-6 rounded-lg border border-slate-700/30">
+                      <p className="text-sm text-slate-500">No plays available for this phase yet</p>
+                    </div>
+                  )}
+                </>
+              );
+            })()}
 
             <p className="mt-8 text-xs text-slate-600">
               Press <kbd className="px-1.5 py-0.5 rounded border border-slate-700 text-slate-400 font-mono text-[10px]">ESC</kbd> to close
@@ -247,6 +236,9 @@ const TCHero = () => {
         />
       )}
     </AnimatePresence>
+
+    {/* Play Detail Sheet */}
+    <PlayDetailSheet playId={selectedPlayId} onClose={() => setSelectedPlayId(null)} />
   </section>
   );
 };
