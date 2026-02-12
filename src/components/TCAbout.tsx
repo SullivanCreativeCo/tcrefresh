@@ -16,13 +16,12 @@ const TCAbout = () => {
     <section id="about" className="py-24 sm:py-32 bg-grid relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={ref} className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Text */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-cyan-400 text-xs font-semibold uppercase tracking-widest mb-3">
+            <p className="text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
               About ThreatCaptain
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
@@ -44,7 +43,6 @@ const TCAbout = () => {
             </p>
           </motion.div>
 
-          {/* Cards */}
           <div className="grid sm:grid-cols-2 gap-4">
             {cards.map((c, i) => (
               <motion.div
@@ -54,7 +52,7 @@ const TCAbout = () => {
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                 className="glass rounded-xl p-5"
               >
-                <c.icon className="w-5 h-5 text-cyan-400 mb-3" />
+                <c.icon className="w-5 h-5 text-indigo-400 mb-3" />
                 <h3 className="text-white font-semibold text-sm mb-1.5">
                   {c.title}
                 </h3>

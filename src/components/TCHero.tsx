@@ -13,8 +13,8 @@ const TCHero = () => (
     <AnimatedShaderBackground />
 
     {/* Ambient blurs */}
-    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/[0.06] rounded-full blur-3xl" />
-    <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-teal-500/[0.04] rounded-full blur-3xl" />
+    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/[0.06] rounded-full blur-3xl" />
+    <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/[0.04] rounded-full blur-3xl" />
 
     <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -25,7 +25,7 @@ const TCHero = () => (
           transition={{ duration: 0.7 }}
         >
           <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-1.5 mb-6">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
             <span className="text-xs text-slate-300 tracking-wide">
               Quantitative Cyber Risk Analysis
             </span>
@@ -46,13 +46,13 @@ const TCHero = () => (
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold text-sm shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transition-shadow"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-500 to-blue-500 text-white font-semibold text-sm shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30 transition-shadow"
             >
               Request a Demo
             </a>
             <a
               href="#methodology"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-slate-700 text-slate-300 text-sm hover:border-cyan-500/30 transition-colors"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-slate-700 text-slate-300 text-sm hover:border-indigo-500/30 transition-colors"
             >
               Our Methodology
             </a>
