@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
-import { InteractivePieChart } from "@/components/InteractivePieChart";
+import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
 
 const stats = [
   { value: "$4.2B+", label: "Risk Quantified" },
@@ -8,8 +9,25 @@ const stats = [
   { value: "98.6%", label: "Model Accuracy" },
 ];
 
-const TCHero = () => (
-  <section className="relative min-h-screen flex items-center overflow-hidden">
+const TCHero = () => {
+  const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
+
+  const handlePhaseClick = (phase: PhaseData) => {
+    setSelectedPhase(prev => prev?.id === phase.id ? null : phase);
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape" && selectedPhase) {
+        setSelectedPhase(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedPhase]);
+
+  return (
+    <section className="relative min-h-screen flex items-center overflow-hidden">
     <AnimatedShaderBackground />
 
     {/* Ambient blurs */}
@@ -82,7 +100,7 @@ const TCHero = () => (
           transition={{ duration: 0.8, delay: 0.3 }}
           className="hidden lg:block"
         >
-          <InteractivePieChart />
+          <InteractivePieChart onPhaseClick={handlePhaseClick} selectedPhase={selectedPhase?.id} />
         </motion.div>
       </div>
     </div>
@@ -90,6 +108,7 @@ const TCHero = () => (
     {/* Bottom fade */}
     <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e1a] to-transparent z-10" />
   </section>
-);
+  );
+};
 
 export default TCHero;
