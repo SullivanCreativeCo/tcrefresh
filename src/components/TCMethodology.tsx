@@ -16,17 +16,13 @@ const TCMethodology = () => {
     <section id="methodology" className="py-24 sm:py-32 bg-grid relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-3">
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">
             Methodology
           </p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            From threat intel to{" "}
-            <span className="text-gradient-cyan">financial clarity</span>
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4">
+            From <span className="text-gradient-cyan">tech</span> talk to{" "}
+            <span className="text-gradient-cyan">business</span> conversation
           </h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            A rigorous four-phase process grounded in FAIR methodology and
-            actuarial science, adapted for real-time cyber risk analysis.
-          </p>
         </div>
 
         <div ref={ref} className="relative grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -50,14 +46,11 @@ const TCMethodology = () => {
               transition={{ duration: 0.45, delay: 0.15 + i * 0.1 }}
               className="glass rounded-xl p-6 text-center"
             >
-              <span className="font-mono text-primary/40 text-xs mb-3 block">
-                {s.num}
-              </span>
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
                 <s.icon className="w-5 h-5 text-primary" />
               </div>
-              <h3 className="text-white font-semibold text-sm mb-2">{s.title}</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">{s.desc}</p>
+              <h3 className="text-foreground font-semibold text-base mb-2">{s.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
             </motion.div>
           ))}
         </div>
