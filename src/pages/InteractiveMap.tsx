@@ -8,11 +8,15 @@ import { PhaseDetailTakeover } from "@/components/playbook/PhaseDetailTakeover";
 import { PhaseDetailRadial } from "@/components/playbook/PhaseDetailRadial";
 import { TransitionModeToggle } from "@/components/playbook/TransitionModeToggle";
 import { useTransitionMode } from "@/contexts/TransitionModeContext";
+import { usePlays } from "@/hooks/usePlays";
+import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
 
 const InteractiveMap = () => {
   const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
   const [hoveredPhase, setHoveredPhase] = useState<string | null>(null);
+  const [selectedPlayId, setSelectedPlayId] = useState<string | null>(null);
   const { mode, showLegend, setShowLegend } = useTransitionMode();
+  const { getPlaysByPhase } = usePlays();
 
   const handlePhaseClick = (phase: PhaseData) => {
     setSelectedPhase(phase);
@@ -129,11 +133,14 @@ const InteractiveMap = () => {
         </div>
       </main>
 
-      {mode === "morph" && <PhaseDetailMorph phase={selectedPhase} onClose={handleCloseDetail} />}
-      {mode === "takeover" && <PhaseDetailTakeover phase={selectedPhase} onClose={handleCloseDetail} />}
-      {mode === "radial" && <PhaseDetailRadial phase={selectedPhase} onClose={handleCloseDetail} />}
-    </div>
-  );
-};
-
-export default InteractiveMap;
+       {mode === "morph" && <PhaseDetailMorph phase={selectedPhase} onClose={handleCloseDetail} />}
+       {mode === "takeover" && <PhaseDetailTakeover phase={selectedPhase} onClose={handleCloseDetail} />}
+       {mode === "radial" && <PhaseDetailRadial phase={selectedPhase} onClose={handleCloseDetail} />}
+       
+       {/* Play Detail Sheet - Appears when user clicks on a play */}
+       <PlayDetailSheet playId={selectedPlayId} onClose={() => setSelectedPlayId(null)} />
+     </div>
+   );
+ };
+ 
+ export default InteractiveMap;
