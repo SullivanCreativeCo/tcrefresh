@@ -47,7 +47,7 @@ const TCHero = () => {
           transition={{ duration: 0.7 }}
         >
           <div className="mb-6">
-            <img src={webLogo2} alt="ThreatCaptain" className="h-[225px] w-auto" />
+            <img src={webLogo2} alt="ThreatCaptain" className="h-[400px] w-auto" />
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
