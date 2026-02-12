@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Compass, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import tcLogo from "@/assets/tc-logo.png";
 
 const links = [
   { label: "Platform", href: "#platform" },
@@ -27,7 +28,7 @@ const TCNavbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <a href="#" className="flex items-center gap-2 group">
-          <Compass className="w-6 h-6 text-primary transition-transform duration-300 group-hover:rotate-45" />
+          <img src={tcLogo} alt="ThreatCaptain" className="h-8 w-auto" />
           <span className="font-bold text-base tracking-tight text-white">
             Threat<span className="text-primary">Captain</span>
           </span>
