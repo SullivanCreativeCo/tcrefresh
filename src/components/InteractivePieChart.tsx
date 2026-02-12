@@ -20,7 +20,7 @@ const phases: PhaseData[] = [
   { id: "closing", name: "Closing", value: 1, color: "#FFC107", description: "Proposals reviewed and signed", category: "mid" },
   { id: "implementation", name: "Implementation", value: 1, color: "#FF9800", description: "Deploy and onboard", category: "post" },
   { id: "touchpoints", name: "Ongoing Support", value: 1, color: "#F44336", description: "Justify the relationship", category: "post" },
-  { id: "reviews", name: "Annual Reviews", value: 1, color: "#2a36ff", description: "Tabletops, scans, and tolerance", category: "post" },
+  { id: "reviews", name: "Annual Reviews", value: 1, color: "#9632B8", description: "Tabletops, scans, and tolerance", category: "post" },
 ];
 
 const renderActiveShape = (props: {
