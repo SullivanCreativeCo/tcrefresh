@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useInView } from "@/hooks/use-in-view";
+import dashboardImg from "@/assets/dashboard-preview.png";
 
 const TCDashboard = () => {
   const { ref, inView } = useInView(0.1);
@@ -35,7 +36,7 @@ const TCDashboard = () => {
             }}
           />
           <img
-            src="/placeholder.svg"
+            src={dashboardImg}
             alt="ThreatCaptain sales dashboard showing client overview, deal assessments, and risk intelligence"
             className="relative rounded-2xl w-full max-w-5xl shadow-2xl border border-white/5"
           />
