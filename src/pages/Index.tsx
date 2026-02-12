@@ -1,29 +1,25 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import ProblemSolution from "@/components/ProblemSolution";
-import PlatformCapabilities from "@/components/PlatformCapabilities";
-import Testimonials from "@/components/Testimonials";
-import FounderPhilosophy from "@/components/FounderPhilosophy";
-import WhyUs from "@/components/WhyUs";
-import WhoUsesIt from "@/components/WhoUsesIt";
-import FinalCTA from "@/components/FinalCTA";
-import Footer from "@/components/Footer";
+import TCNavbar from "@/components/TCNavbar";
+import TCHero from "@/components/TCHero";
+import TCFeatures from "@/components/TCFeatures";
+import TCMethodology from "@/components/TCMethodology";
+import TCDashboard from "@/components/TCDashboard";
+import TCAbout from "@/components/TCAbout";
+import TCCTA from "@/components/TCCTA";
+import TCFooter from "@/components/TCFooter";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-      <Navbar />
+    <div className="min-h-screen overflow-x-hidden" style={{ background: "#0a0e1a", color: "#e2e8f0" }}>
+      <TCNavbar />
       <main>
-        <HeroSection />
-        <ProblemSolution />
-        <PlatformCapabilities />
-        <Testimonials />
-        <FounderPhilosophy />
-        <WhyUs />
-        <WhoUsesIt />
-        <FinalCTA />
+        <TCHero />
+        <TCFeatures />
+        <TCMethodology />
+        <TCDashboard />
+        <TCAbout />
+        <TCCTA />
       </main>
-      <Footer />
+      <TCFooter />
     </div>
   );
 };
