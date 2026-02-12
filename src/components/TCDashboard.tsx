@@ -38,7 +38,8 @@ const TCDashboard = () => {
           <img
             src={dashboardImg}
             alt="ThreatCaptain sales dashboard showing client overview, deal assessments, and risk intelligence"
-            className="relative rounded-2xl w-full max-w-5xl shadow-2xl border border-white/5"
+            className="relative rounded-2xl w-full max-w-5xl border border-white/5"
+            style={{ boxShadow: "0 0 60px 15px rgba(42, 54, 255, 0.25), 0 0 120px 40px rgba(42, 54, 255, 0.1)" }}
           />
         </motion.div>
       </div>
