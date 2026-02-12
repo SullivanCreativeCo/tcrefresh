@@ -21,7 +21,7 @@ const TCAbout = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
+            <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-3">
               About ThreatCaptain
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
@@ -52,7 +52,7 @@ const TCAbout = () => {
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.08 }}
                 className="glass rounded-xl p-5"
               >
-                <c.icon className="w-5 h-5 text-indigo-400 mb-3" />
+                <c.icon className="w-5 h-5 text-primary mb-3" />
                 <h3 className="text-white font-semibold text-sm mb-1.5">
                   {c.title}
                 </h3>

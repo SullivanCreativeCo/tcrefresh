@@ -21,7 +21,7 @@ const TCFeatures = () => {
     <section id="platform" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-indigo-400 text-xs font-semibold uppercase tracking-widest mb-3">
+          <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-3">
             The Platform
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
@@ -46,10 +46,10 @@ const TCFeatures = () => {
             <motion.div
               key={f.title}
               variants={item}
-              className="glass rounded-xl p-6 hover:border-indigo-500/20 transition-colors group"
+              className="glass rounded-xl p-6 hover:border-primary/20 transition-colors group"
             >
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 group-hover:bg-indigo-500/15 flex items-center justify-center mb-4 transition-colors">
-                <f.icon className="w-5 h-5 text-indigo-400" />
+              <div className="w-10 h-10 rounded-lg bg-primary/10 group-hover:bg-primary/15 flex items-center justify-center mb-4 transition-colors">
+                <f.icon className="w-5 h-5 text-primary" />
               </div>
               <h3 className="text-white font-semibold text-sm mb-2">{f.title}</h3>
               <p className="text-slate-400 text-xs leading-relaxed">{f.desc}</p>
