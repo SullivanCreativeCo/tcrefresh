@@ -44,9 +44,9 @@ const TCHero = () => {
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
             Your Clients Don't Care About<br />
-            <span className="text-gradient-cyan">tech talk</span>.<br />
+            <span className="text-gradient-cyan italic">tech talk</span><br />
             They Care About<br />
-            <span className="text-gradient-cyan">Dollars</span> &amp; <span className="text-gradient-cyan">Down Time</span>.
+            <span className="text-gradient-cyan italic">Dollars</span> &amp; <span className="text-gradient-cyan italic">Down Time</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
