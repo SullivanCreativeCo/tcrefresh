@@ -101,6 +101,19 @@
       linear-gradient(90deg, rgba(42, 54, 255, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
+
+  .bento-item {
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+  }
+
+  .bento-item-glow {
+    background: radial-gradient(
+      400px circle at var(--mouse-x) var(--mouse-y),
+      hsl(var(--primary) / 0.12),
+      transparent 60%
+    );
+  }
 }
 
 @layer utilities {
