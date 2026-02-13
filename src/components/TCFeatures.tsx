@@ -25,17 +25,15 @@ const TCFeatures = () => {
     <section id="platform" className="py-24 sm:py-32 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-primary text-xs font-semibold uppercase tracking-widest mb-3">
+          <p className="text-primary text-sm sm:text-base font-semibold uppercase tracking-widest mb-3">
             The Platform
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Risk analysis that speaks in{" "}
-            <span className="text-gradient-cyan">dollars, not adjectives</span>
+            Why Your Perfect Security Pitch{" "}
+            <span className="text-gradient-cyan">Dies in the C-Suite</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            Move beyond heat maps and color-coded matrices. ThreatCaptain
-            delivers probabilistic risk models that quantify exposure in terms
-            your CFO and board already operate in.
+            You try to explain impact. Attack surfaces. CVSS scores. But they're already thinking about lunch. The problem isn't your expertise. It's translation.
           </p>
         </div>
 
