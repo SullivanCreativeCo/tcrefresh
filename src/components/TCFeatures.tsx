@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Target, Play, Users } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
+import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
 import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
 import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
@@ -24,8 +25,14 @@ const TCFeatures = () => {
   }, [selectedPhase]);
 
   return (
-    <section id="platform" className="py-24 sm:py-32 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="platform" className="py-24 sm:py-32 relative overflow-hidden">
+      <AnimatedShaderBackground />
+
+      {/* Ambient blurs */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/[0.06] rounded-full blur-3xl" />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/[0.04] rounded-full blur-3xl" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-primary text-sm sm:text-base font-semibold uppercase tracking-widest mb-3">
             The Platform
@@ -68,6 +75,9 @@ const TCFeatures = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e1a] to-transparent z-10" />
 
       {/* Slide-out detail panel */}
       <AnimatePresence>
