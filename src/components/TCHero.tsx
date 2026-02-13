@@ -48,7 +48,9 @@ const TCHero = () => {
         >
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-            Your Clients Don't Care About MS-2024-8675. They Care About{" "}
+            Your Clients Don't Care About<br />
+            <span className="text-gradient-cyan">MS-2024-8675</span>.<br />
+            They Care About<br />
             <span className="text-gradient-cyan">$2.3M in Lost Revenue</span>.
           </h1>
 
