@@ -46,8 +46,7 @@ const TCHero = () => {
             Your Clients Don't Care About<br />
             <span className="text-gradient-cyan">tech talk</span>.<br />
             They Care About<br />
-            <span className="text-gradient-cyan">$2.3M</span> in<br />
-            Lost Revenue.
+            <span className="text-gradient-cyan">Dollars</span> &amp; <span className="text-gradient-cyan">Down Time</span>.
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
