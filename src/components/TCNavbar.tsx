@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import tcLogo from "@/assets/tc-logo.png";
+import tcHat from "@/assets/tc-hat.png";
 
 const links = [
   { label: "Platform", href: "#platform" },
@@ -28,7 +28,7 @@ const TCNavbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
         <a href="#" className="flex items-center">
-          <img src={tcLogo} alt="ThreatCaptain" className="h-10 w-auto" />
+          <img src={tcHat} alt="ThreatCaptain" className="h-10 w-auto" />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
