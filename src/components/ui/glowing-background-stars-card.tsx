@@ -18,7 +18,7 @@ export const GlowingStarsBackgroundCard = ({
       onMouseEnter={() => setMouseEnter(true)}
       onMouseLeave={() => setMouseEnter(false)}
       className={cn(
-        "bg-[linear-gradient(110deg,hsl(var(--card)),hsl(var(--background)))] p-4 max-w-md h-full w-full rounded-xl border border-border flex flex-col items-center justify-center",
+        "bg-[linear-gradient(110deg,hsl(var(--card)),hsl(var(--background)))] p-4 max-w-md h-full w-full rounded-xl border border-border",
         className
       )}
     >
