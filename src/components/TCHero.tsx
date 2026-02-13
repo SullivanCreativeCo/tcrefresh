@@ -48,15 +48,12 @@ const TCHero = () => {
         >
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6">
-            Navigate risk with{" "}
-            <span className="text-gradient-cyan">precision</span>, not
-            guesswork
+            Your Clients Don't Care About CVE-2024-1234. They Care About{" "}
+            <span className="text-gradient-cyan">$2.3M in Lost Revenue</span>.
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
-            ThreatCaptain transforms cyber risk into quantifiable financial
-            metrics. Chart your course through the threat landscape with
-            data-driven models that boards and executives actually understand.
+            Translate technical risk into business impact that gets deals approved
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -64,7 +61,7 @@ const TCHero = () => {
               href="#contact"
               className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
             >
-              Request a Demo
+              Show Me How to Quantify Risk
             </a>
             <a
               href="#methodology"
