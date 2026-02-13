@@ -8,7 +8,7 @@ import TCFooter from "@/components/TCFooter";
 
 const Index = () => {
   return (
-    <div className="min-h-screen overflow-x-hidden" style={{ background: "#0a0e1a", color: "#e2e8f0" }}>
+    <div className="min-h-screen overflow-x-hidden">
       <TCNavbar />
       <main>
         <TCHero />

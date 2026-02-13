@@ -7,7 +7,6 @@ const links = [
   { label: "Platform", href: "#platform" },
   { label: "Methodology", href: "#methodology" },
   { label: "Insights", href: "#insights" },
-  { label: "About", href: "#about" },
 ];
 
 const TCNavbar = () => {

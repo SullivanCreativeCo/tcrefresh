@@ -3,7 +3,6 @@ import tcLogo from "@/assets/tc-logo.png";
 const links = [
   { label: "Platform", href: "#platform" },
   { label: "Methodology", href: "#methodology" },
-  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 

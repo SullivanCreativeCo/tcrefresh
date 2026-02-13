@@ -117,7 +117,7 @@ export function InteractivePieChart({ onPhaseClick, selectedPhase }: Interactive
     <div className="relative w-full h-full min-h-[500px] flex items-center justify-center">
       {/* Ambient glow effect */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px] animate-pulse" />
+        <div className="w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px]" />
       </div>
 
       {/* Outer arc labels */}
