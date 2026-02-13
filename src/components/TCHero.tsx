@@ -73,7 +73,7 @@ const TCHero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden lg:block"
+          className="hidden md:block"
         >
           <InteractivePieChart onPhaseClick={handlePhaseClick} selectedPhase={selectedPhase?.id} />
         </motion.div>
@@ -109,12 +109,12 @@ const TCHero = () => {
                 className="inline-block w-3 h-3 rounded-full mb-3"
                 style={{ backgroundColor: selectedPhase.color }}
               />
-              <h2
+              <h3
                 className="text-2xl font-bold mb-2"
                 style={{ color: selectedPhase.color }}
               >
                 {selectedPhase.name}
-              </h2>
+              </h3>
               <p className="text-slate-400 text-sm">
                 {selectedPhase.description}
               </p>
