@@ -7,11 +7,6 @@ import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
 import webLogo2 from "@/assets/web-logo-2.png";
 
-const stats = [
-  { value: "$4.2B+", label: "Risk Quantified" },
-  { value: "10K+", label: "Scenarios Modeled" },
-  { value: "98.6%", label: "Model Accuracy" },
-];
 
 const TCHero = () => {
   const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
@@ -74,21 +69,6 @@ const TCHero = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 + i * 0.15, duration: 0.5 }}
-              >
-                <div className="text-xl sm:text-2xl font-bold font-mono text-white">
-                  {s.value}
-                </div>
-                <div className="text-xs text-slate-500 mt-1">{s.label}</div>
-              </motion.div>
-            ))}
-          </div>
         </motion.div>
 
         {/* Right — Radar */}
