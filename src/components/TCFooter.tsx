@@ -11,7 +11,7 @@ const TCFooter = () => (
   <footer className="border-t border-white/5 py-12">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       <a href="#" className="flex items-center">
-        <img src={tcLogo} alt="ThreatCaptain" className="h-[35px] w-auto" />
+        <img src={tcLogo} alt="ThreatCaptain" className="h-[300px] w-auto" />
       </a>
 
       <div className="flex items-center gap-6">
@@ -27,7 +27,7 @@ const TCFooter = () => (
       </div>
 
       <span className="text-xs text-slate-600">
-        &copy; 2025 ThreatCaptain. All rights reserved.
+        &copy; 2026 ThreatCaptain. All rights reserved.
       </span>
     </div>
   </footer>
