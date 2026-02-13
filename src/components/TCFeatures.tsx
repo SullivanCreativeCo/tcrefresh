@@ -30,7 +30,7 @@ const TCFeatures = () => {
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
             Why Your Perfect Pitch{" "}
-            <span className="text-gradient-cyan">Dies in the C-Suite</span>
+            <span className="text-gradient-cyan">Dies</span> in the <span className="text-gradient-cyan">C-Suite</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
             You try to explain impact. Attack surfaces. CVSS scores. But they're already thinking about lunch. The problem isn't your expertise. It's translation.
