@@ -35,11 +35,8 @@ const TCMethodology = () => {
               transition={{ duration: 0.45, delay: 0.15 + i * 0.1 }}
             >
               <BentoItem className="h-full">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <s.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  <span className="text-xs font-mono text-muted-foreground">{s.num}</span>
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <s.icon className="w-5 h-5 text-primary" />
                 </div>
                 <h3 className="text-foreground font-semibold text-base mb-2">{s.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
