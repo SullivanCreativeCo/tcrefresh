@@ -29,7 +29,7 @@ const TCFeatures = () => {
             The Platform
           </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Why Your Perfect Security Pitch{" "}
+            Why Your Perfect Pitch{" "}
             <span className="text-gradient-cyan">Dies in the C-Suite</span>
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
