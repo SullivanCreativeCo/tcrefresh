@@ -1,4 +1,4 @@
-import tcLogo from "@/assets/tc-logo.png";
+import captainBeacon from "@/assets/captain-beacon.png";
 
 const links = [
   { label: "Platform", href: "#platform" },
@@ -10,10 +10,10 @@ const TCFooter = () => (
   <footer className="border-t border-white/5 py-12">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
       <a href="#" className="flex items-center">
-        <img src={tcLogo} alt="ThreatCaptain" className="h-10 w-auto" />
+        <img src={captainBeacon} alt="ThreatCaptain" className="h-20 w-auto" />
       </a>
 
-      <div className="flex items-center gap-6">
+      <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Footer navigation">
         {links.map((l) => (
           <a
             key={l.href}
@@ -23,7 +23,7 @@ const TCFooter = () => (
             {l.label}
           </a>
         ))}
-      </div>
+      </nav>
 
       <span className="text-xs text-slate-600">
         &copy; 2026 ThreatCaptain. All rights reserved.

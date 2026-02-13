@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Crosshair, Calculator, LineChart, FileText } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
+import { BentoItem } from "@/components/ui/cybernetic-bento-card";
 
 const steps = [
   { num: "01", icon: Crosshair, title: "Threat Identification", desc: "We catalog threat scenarios relevant to your industry, assets, and attack surface using curated threat intelligence feeds and MITRE ATT&CK mappings." },
@@ -25,32 +26,21 @@ const TCMethodology = () => {
           </h2>
         </div>
 
-        <div ref={ref} className="relative grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {[0, 1, 2].map((i) => (
-            <div
-              key={i}
-              className="hidden lg:block absolute top-12 border-t border-dashed border-primary/15"
-              style={{
-                left: `${(i + 1) * 25}%`,
-                width: "calc(25% - 1.5rem)",
-                transform: "translateX(-50%)",
-              }}
-            />
-          ))}
-
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {steps.map((s, i) => (
             <motion.div
               key={s.num}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.45, delay: 0.15 + i * 0.1 }}
-              className="glass rounded-xl p-6 text-center"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <s.icon className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-foreground font-semibold text-base mb-2">{s.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              <BentoItem className="h-full">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                  <s.icon className="w-5 h-5 text-primary" />
+                </div>
+                <h3 className="text-foreground font-semibold text-base mb-2">{s.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              </BentoItem>
             </motion.div>
           ))}
         </div>

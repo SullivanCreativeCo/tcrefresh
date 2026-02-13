@@ -48,7 +48,7 @@ const TCFeatures = () => {
           className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center"
         >
           {/* Left — Pie Chart */}
-          <div className="hidden lg:block">
+          <div className="hidden md:block">
             <InteractivePieChart onPhaseClick={handlePhaseClick} selectedPhase={selectedPhase?.id} />
           </div>
 
@@ -94,9 +94,9 @@ const TCFeatures = () => {
 
               <div className="mt-8 mb-8">
                 <div className="inline-block w-3 h-3 rounded-full mb-3" style={{ backgroundColor: selectedPhase.color }} />
-                <h2 className="text-2xl font-bold mb-2" style={{ color: selectedPhase.color }}>
+                <h3 className="text-2xl font-bold mb-2" style={{ color: selectedPhase.color }}>
                   {selectedPhase.name}
-                </h2>
+                </h3>
                 <p className="text-slate-400 text-sm">{selectedPhase.description}</p>
                 <span className="inline-block mt-3 px-3 py-1 rounded-full text-xs font-medium border border-slate-700/50 text-slate-300 capitalize">
                   {selectedPhase.category === "top" ? "Go to Market" : selectedPhase.category === "mid" ? "Sales" : "Customer Success"}
