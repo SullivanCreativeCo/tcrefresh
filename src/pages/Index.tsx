@@ -3,7 +3,6 @@ import TCHero from "@/components/TCHero";
 import TCFeatures from "@/components/TCFeatures";
 import TCMethodology from "@/components/TCMethodology";
 import TCDashboard from "@/components/TCDashboard";
-import TCAbout from "@/components/TCAbout";
 import TCCTA from "@/components/TCCTA";
 import TCFooter from "@/components/TCFooter";
 

@@ -5,8 +5,6 @@ import AnimatedShaderBackground from "@/components/ui/animated-shader-background
 import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
 import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
-import webLogo2 from "@/assets/web-logo-2.png";
-
 
 const TCHero = () => {
   const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
