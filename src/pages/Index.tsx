@@ -16,7 +16,7 @@ const Index = () => {
         <TCFeatures />
         <TCMethodology />
         <TCDashboard />
-        <TCAbout />
+        
         <TCCTA />
       </main>
       <TCFooter />
