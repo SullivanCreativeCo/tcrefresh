@@ -14,7 +14,7 @@ const TCFooter = () => (
         <img src={tcHat} alt="ThreatCaptain" className="h-10 w-auto" />
       </a>
 
-      <div className="flex items-center gap-6">
+      <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Footer navigation">
         {links.map((l) => (
           <a
             key={l.href}
@@ -24,7 +24,7 @@ const TCFooter = () => (
             {l.label}
           </a>
         ))}
-      </div>
+      </nav>
 
       <span className="text-xs text-slate-600">
         &copy; 2026 ThreatCaptain. All rights reserved.
