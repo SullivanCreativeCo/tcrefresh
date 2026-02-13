@@ -1,32 +1,28 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
-import InteractiveMap from "./pages/InteractiveMap";
 import NotFound from "./pages/NotFound";
 import { TransitionModeProvider } from "./contexts/TransitionModeContext";
 
-const queryClient = new QueryClient();
+const InteractiveMap = lazy(() => import("./pages/InteractiveMap"));
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <TransitionModeProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/interactive-map" element={<InteractiveMap />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TransitionModeProvider>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <TransitionModeProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route
+          path="/interactive-map"
+          element={
+            <Suspense fallback={null}>
+              <InteractiveMap />
+            </Suspense>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
+  </TransitionModeProvider>
 );
 
 export default App;

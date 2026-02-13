@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Target, Play, Users } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
-import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
 import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
 import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
@@ -26,8 +25,6 @@ const TCFeatures = () => {
 
   return (
     <section id="platform" className="py-24 sm:py-32 relative overflow-hidden">
-      <AnimatedShaderBackground />
-
       {/* Ambient blurs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/[0.06] rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-blue-500/[0.04] rounded-full blur-3xl" />
