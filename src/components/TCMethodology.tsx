@@ -17,7 +17,7 @@ const TCMethodology = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">
-            Methodology
+            
           </p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 relative inline-block w-full" style={{textShadow: '0 0 40px rgba(42, 54, 255, 0.3)'}}>
             <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}>From </span>

@@ -13,8 +13,8 @@ const Index = () => {
       <TCNavbar />
       <main>
         <TCHero />
-        <TCFeatures />
         <TCMethodology />
+        <TCFeatures />
         <TCDashboard />
         
         <TCCTA />
