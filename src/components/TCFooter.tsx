@@ -3,7 +3,6 @@ import captainBeacon from "@/assets/captain-beacon.png";
 const links = [
   { label: "Platform", href: "#platform" },
   { label: "Methodology", href: "#methodology" },
-  { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
 

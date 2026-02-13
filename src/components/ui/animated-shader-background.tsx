@@ -10,7 +10,8 @@ const AnimatedShaderBackground = () => {
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
@@ -93,12 +94,20 @@ const AnimatedShaderBackground = () => {
     scene.add(mesh);
 
     let frameId: number;
+    let paused = false;
     const animate = () => {
-      material.uniforms.iTime.value += 0.016;
-      renderer.render(scene, camera);
+      if (!paused) {
+        material.uniforms.iTime.value += 0.016;
+        renderer.render(scene, camera);
+      }
       frameId = requestAnimationFrame(animate);
     };
     animate();
+
+    const handleVisibility = () => {
+      paused = document.hidden;
+    };
+    document.addEventListener('visibilitychange', handleVisibility);
 
     const handleResize = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
@@ -108,6 +117,7 @@ const AnimatedShaderBackground = () => {
 
     return () => {
       cancelAnimationFrame(frameId);
+      document.removeEventListener('visibilitychange', handleVisibility);
       window.removeEventListener('resize', handleResize);
       if (container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
