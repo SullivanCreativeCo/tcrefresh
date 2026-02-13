@@ -18,28 +18,20 @@ const TCCTA = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Ready to quantify your{" "}
-            <span className="text-gradient-cyan">cyber risk</span>?
+            Ready to Stop Explaining and{" "}
+            <span className="text-gradient-cyan">Start Closing</span>?
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
-            Schedule a walkthrough with our team. We'll show you how
-            ThreatCaptain models your specific threat landscape and translates
-            it into financial terms your leadership team can act on.
+            ThreatCaptain users close deals faster because they speak the language CFOs understand: dollars and downtime.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <a
               href="mailto:demo@threatcaptain.com"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
             >
-              Schedule a Demo
+              Learn How Today
               <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="mailto:info@threatcaptain.com"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-slate-700 text-slate-300 text-sm hover:border-primary/30 transition-colors"
-            >
-              Contact Sales
             </a>
           </div>
         </motion.div>
