@@ -18,8 +18,8 @@ const TCCTA = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-            Ready to Stop Explaining<br />
-            and Start Closing?
+            Ready to Stop <span className="text-gradient-cyan">Explaining</span><br />
+            and Start <span className="text-gradient-cyan">Closing</span>?
           </h2>
           <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
             ThreatCaptain users close deals faster because they speak the language CFOs understand: dollars and downtime.
