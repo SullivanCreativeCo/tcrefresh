@@ -56,7 +56,7 @@ const TCHero = () => {
           </h1>
 
           <p className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
-            Translate technical risk into business impact that gets deals approved
+            Learn to translate technical risk into business impact that gets deals approved fast.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
