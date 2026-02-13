@@ -34,9 +34,6 @@ const TCFeatures = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-primary text-sm sm:text-base font-semibold uppercase tracking-widest mb-3">
-            The Platform
-          </p>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
             Why Your Perfect Pitch{" "}
             <span className="text-gradient-cyan">Dies</span> in the <span className="text-gradient-cyan">C-Suite</span>
