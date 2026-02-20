@@ -54,8 +54,11 @@ const TCHero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden md:block"
+          className="hidden md:block relative"
         >
+          {/* Glow layers behind the simulator */}
+          <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
+          <div className="absolute inset-0 -z-10 blur-2xl rounded-3xl bg-blue-500/10 scale-105" />
           <BreachSimulator />
         </motion.div>
       </div>
