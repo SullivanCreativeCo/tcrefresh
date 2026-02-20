@@ -122,7 +122,7 @@ const BreachSimulator = () => {
             <AlertTriangle className="w-4 h-4 text-destructive" />
           </div>
           <div>
-            <p className="text-[10px] text-primary font-semibold uppercase tracking-widest mb-0.5">ThreatCaptain</p>
+            <p className="text-[10px] text-foreground font-semibold uppercase tracking-widest mb-0.5">ThreatCaptain</p>
             <h3 className="text-sm font-semibold text-foreground">Breach Impact Simulator</h3>
             <p className="text-[11px] text-muted-foreground">See what a breach could cost your client</p>
           </div>
@@ -377,8 +377,8 @@ const BreachSimulator = () => {
 
         {/* Footer */}
         <div className="mt-5 pt-4 border-t border-border/50 text-center">
-          <p className="text-[10px] text-muted-foreground">
-            🔒 Powered by <span className="text-primary font-medium">ThreatCaptain</span> — <a href="#contact" className="text-primary hover:underline">Get your free risk report</a>
+          <p className="text-[10px] text-foreground/80">
+            🔒 Powered by <span className="text-foreground font-semibold">ThreatCaptain</span> — <a href="#contact" className="text-foreground hover:text-primary transition-colors underline">Get your free risk report</a>
           </p>
         </div>
       </div>
