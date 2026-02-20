@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
 import BreachSimulator from "@/components/BreachSimulator";
 
@@ -54,12 +55,18 @@ const TCHero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden md:block relative"
+          className="hidden md:flex flex-col items-center gap-3 relative"
         >
           {/* Glow layers behind the simulator */}
           <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
           <div className="absolute inset-0 -z-10 blur-2xl rounded-3xl bg-blue-500/10 scale-105" />
           <BreachSimulator />
+          <Link
+            to="/estimator-for-msps"
+            className="text-[11px] text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+          >
+            Get your own breach cost estimator for your homepage
+          </Link>
         </motion.div>
       </div>
     </div>
