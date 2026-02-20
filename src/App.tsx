@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import { TransitionModeProvider } from "./contexts/TransitionModeContext";
 
 const InteractiveMap = lazy(() => import("./pages/InteractiveMap"));
+const EstimatorForMSPs = lazy(() => import("./pages/EstimatorForMSPs"));
 
 const App = () => (
   <TransitionModeProvider>
@@ -16,6 +17,14 @@ const App = () => (
           element={
             <Suspense fallback={null}>
               <InteractiveMap />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/estimator-for-msps"
+          element={
+            <Suspense fallback={null}>
+              <EstimatorForMSPs />
             </Suspense>
           }
         />
