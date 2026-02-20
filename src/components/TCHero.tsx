@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import AnimatedShaderBackground from "@/components/ui/animated-shader-background";
-import BreachSimulator from "@/components/BreachSimulator";
+
 
 const TCHero = () => {
 
@@ -56,7 +56,14 @@ const TCHero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="hidden md:block"
         >
-          <BreachSimulator />
+          <iframe
+            src="https://beakon.lovable.app/widget/39db70ca222b61963ff6242d?theme=dark"
+            width="100%"
+            height={700}
+            frameBorder="0"
+            style={{ borderRadius: "12px", maxWidth: "480px" }}
+            title="Breach Impact Simulator"
+          />
         </motion.div>
       </div>
     </div>
