@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 
@@ -55,6 +56,14 @@ const categoryColor: Record<string, string> = {
 
 const Insights = () => (
   <div className="min-h-screen bg-background text-foreground">
+    <Helmet>
+      <title>MSP Sales Insights | ThreatCaptain</title>
+      <meta name="description" content="Practical guides, data-driven strategies, and real-world frameworks to help MSP sales leaders close more cybersecurity deals." />
+      <meta property="og:title" content="MSP Sales Insights | ThreatCaptain" />
+      <meta property="og:description" content="Practical guides and strategies for MSP sales leaders to close more cybersecurity deals." />
+      <meta property="og:type" content="website" />
+      <meta property="og:url" content="https://tcnewsite.lovable.app/insights" />
+    </Helmet>
     <TCNavbar />
 
     <section className="pt-28 pb-24 sm:pt-36 sm:pb-32">
