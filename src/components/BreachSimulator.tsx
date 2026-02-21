@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Shield, AlertTriangle, DollarSign, Clock, ChevronRight, RotateCcw, Loader2, User, Mail, Building2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 type SimStep = "industry" | "size" | "contact" | "analyzing" | "result";
 
@@ -43,6 +44,7 @@ const BreachSimulator = () => {
   const [contact, setContact] = useState<ContactForm>({ fullName: "", email: "", companyName: "" });
   const [errors, setErrors] = useState<FormErrors>({});
   const [estimatedCost, setEstimatedCost] = useState(0);
+  
 
   const handleIndustrySelect = (industry: typeof industries[0]) => {
     setSelectedIndustry(industry);
@@ -75,15 +77,48 @@ const BreachSimulator = () => {
     setEstimatedCost(cost);
     setStep("analyzing");
 
-    // Insert lead into Supabase
-    await supabase.from("widget_leads").insert({
-      full_name: contact.fullName.trim(),
-      email: contact.email.trim().toLowerCase(),
-      company_name: contact.companyName.trim(),
-      industry: selectedIndustry.id,
-      company_size: selectedSize.id,
-      estimated_cost: Math.round(cost),
-    });
+    const email = contact.email.trim().toLowerCase();
+    const fullName = contact.fullName.trim();
+    const companyName = contact.companyName.trim();
+    const roundedCost = Math.round(cost);
+
+    try {
+      // Insert into widget_leads
+      const { error: wlError } = await supabase.from("widget_leads").insert({
+        full_name: fullName,
+        email,
+        company_name: companyName,
+        industry: selectedIndustry.id,
+        company_size: selectedSize.id,
+        estimated_cost: roundedCost,
+        source: "breach_simulator_website",
+        metadata: { estimated_breach_cost: roundedCost, industry: selectedIndustry.label, size: selectedSize.label } as any,
+      });
+      if (wlError) throw wlError;
+
+      // Insert into lead_magnet_submissions
+      await supabase.from("lead_magnet_submissions" as any).insert({
+        tool_name: "breach_impact_simulator",
+        email,
+        full_name: fullName,
+        company_name: companyName,
+        metadata: { industry: selectedIndustry.id, company_size: selectedSize.id, estimated_breach_cost: roundedCost },
+      });
+
+      // Insert into contacts
+      await supabase.from("contacts" as any).insert({
+        email,
+        full_name: fullName,
+        company_name: companyName,
+        source: "breach_simulator",
+        lead_score: 30,
+      });
+
+      toast.success("Report ready! Your breach exposure estimate has been generated.");
+    } catch (err) {
+      console.error("BreachSimulator save error:", err);
+      toast.error("Something went wrong. Your results are shown below, but we couldn't save your info.");
+    }
   };
 
   useEffect(() => {

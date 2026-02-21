@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "sonner";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { TransitionModeProvider } from "./contexts/TransitionModeContext";
@@ -48,6 +49,7 @@ const App = () => (
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster theme="dark" position="bottom-right" richColors />
     </BrowserRouter>
   </TransitionModeProvider>
 );
