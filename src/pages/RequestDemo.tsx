@@ -66,7 +66,7 @@ const RequestDemo = () => {
           <div className="w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-3xl" />
         </div>
 
-        <div className="relative max-w-lg mx-auto px-4">
+        <div className="relative max-w-lg mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -55,7 +55,7 @@ const TCHero = () => {
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="hidden md:flex flex-col items-center gap-3 relative"
+          className="flex flex-col items-center gap-3 relative w-full max-w-md mx-auto md:max-w-none"
         >
           {/* Glow layers behind the simulator */}
           <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
