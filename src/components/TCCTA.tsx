@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useInView } from "@/hooks/use-in-view";
 
 const TCCTA = () => {
@@ -26,13 +27,13 @@ const TCCTA = () => {
           </p>
 
           <div className="flex justify-center">
-            <a
-              href="mailto:demo@threatcaptain.com"
+            <Link
+              to="/request-demo"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
             >
               Learn How Today
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </motion.div>
       </div>
