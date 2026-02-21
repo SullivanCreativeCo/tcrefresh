@@ -92,8 +92,8 @@ const BreachSimulator = () => {
         company_size: selectedSize.id,
         estimated_cost: roundedCost,
         source: "breach_simulator_website",
-        metadata: { estimated_breach_cost: roundedCost, industry: selectedIndustry.label, size: selectedSize.label } as any,
-      });
+        metadata: { estimated_breach_cost: roundedCost, industry: selectedIndustry.label, size: selectedSize.label },
+      } as any);
       if (wlError) throw wlError;
 
       // Insert into lead_magnet_submissions
