@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      contacts: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          lead_score: number | null
+          source: string | null
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          lead_score?: number | null
+          source?: string | null
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          lead_score?: number | null
+          source?: string | null
+        }
+        Relationships: []
+      }
       demo_requests: {
         Row: {
           company_name: string
@@ -50,6 +80,36 @@ export type Database = {
         }
         Relationships: []
       }
+      lead_magnet_submissions: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          metadata: Json | null
+          tool_name: string
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          metadata?: Json | null
+          tool_name: string
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          metadata?: Json | null
+          tool_name?: string
+        }
+        Relationships: []
+      }
       widget_leads: {
         Row: {
           company_name: string
@@ -60,6 +120,8 @@ export type Database = {
           full_name: string
           id: string
           industry: string | null
+          metadata: Json | null
+          source: string | null
         }
         Insert: {
           company_name: string
@@ -70,6 +132,8 @@ export type Database = {
           full_name: string
           id?: string
           industry?: string | null
+          metadata?: Json | null
+          source?: string | null
         }
         Update: {
           company_name?: string
@@ -80,6 +144,8 @@ export type Database = {
           full_name?: string
           id?: string
           industry?: string | null
+          metadata?: Json | null
+          source?: string | null
         }
         Relationships: []
       }
