@@ -73,7 +73,7 @@ const Insights = () => (
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {articles.map((a, i) => (
             <motion.article
               key={a.title}

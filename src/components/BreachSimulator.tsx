@@ -146,7 +146,7 @@ const BreachSimulator = () => {
   const currentStepIndex = stepIndex[step];
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="relative w-full max-w-md mx-auto overflow-hidden">
       {/* Glow */}
       <div className="absolute -inset-4 bg-primary/[0.06] rounded-3xl blur-2xl" />
 
