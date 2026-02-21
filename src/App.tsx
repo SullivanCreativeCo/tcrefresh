@@ -7,6 +7,7 @@ import { TransitionModeProvider } from "./contexts/TransitionModeContext";
 const InteractiveMap = lazy(() => import("./pages/InteractiveMap"));
 const EstimatorForMSPs = lazy(() => import("./pages/EstimatorForMSPs"));
 const RequestDemo = lazy(() => import("./pages/RequestDemo"));
+const Insights = lazy(() => import("./pages/Insights"));
 
 const App = () => (
   <TransitionModeProvider>
@@ -34,6 +35,14 @@ const App = () => (
           element={
             <Suspense fallback={null}>
               <RequestDemo />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/insights"
+          element={
+            <Suspense fallback={null}>
+              <Insights />
             </Suspense>
           }
         />
