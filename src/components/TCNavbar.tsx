@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import tcHat from "@/assets/tc-hat.png";
 
 const links = [
@@ -40,12 +41,12 @@ const TCNavbar = () => {
               {l.label}
             </a>
           ))}
-          <a
-            href="#contact"
+          <Link
+            to="/request-demo"
             className="text-sm px-4 py-2 rounded-lg border border-primary/20 bg-primary/10 text-white hover:bg-primary/20 hover:shadow-[0_0_16px_hsl(var(--primary)/0.5)] transition-all duration-300"
           >
             Request Demo
-          </a>
+          </Link>
         </div>
 
         <button
@@ -76,13 +77,13 @@ const TCNavbar = () => {
                   {l.label}
                 </a>
               ))}
-              <a
-                href="#contact"
+              <Link
+                to="/request-demo"
                 onClick={() => setMobileOpen(false)}
                 className="text-sm px-4 py-2 rounded-lg border border-primary/20 bg-primary/10 text-primary text-center"
               >
                 Request Demo
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}
