@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { CheckCircle, Code2, Users, Zap, Smartphone, Database, Shield, ArrowRight } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
@@ -63,6 +64,14 @@ const features = [
 const EstimatorForMSPs = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <Helmet>
+        <title>Breach Cost Estimator | ThreatCaptain</title>
+        <meta name="description" content="Embed a breach cost estimator on your MSP website. Turn anonymous visitors into qualified leads with personalized financial risk data." />
+        <meta property="og:title" content="Breach Cost Estimator | ThreatCaptain" />
+        <meta property="og:description" content="Turn website visitors into qualified leads with a personalized breach cost estimator for MSPs." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tcnewsite.lovable.app/estimator-for-msps" />
+      </Helmet>
       <TCNavbar />
       <main>
         {/* Hero */}

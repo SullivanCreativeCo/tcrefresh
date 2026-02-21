@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import { CheckCircle, Loader2 } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
@@ -59,6 +60,14 @@ const RequestDemo = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <title>Request a Demo | ThreatCaptain</title>
+        <meta name="description" content="Book a 30-minute walkthrough and see how MSPs use ThreatCaptain's financial risk data to close security deals faster." />
+        <meta property="og:title" content="Request a Demo | ThreatCaptain" />
+        <meta property="og:description" content="Book a 30-minute walkthrough and see how MSPs close security deals faster with ThreatCaptain." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tcnewsite.lovable.app/request-demo" />
+      </Helmet>
       <TCNavbar />
 
       <section className="pt-28 pb-24 sm:pt-36 sm:pb-32 relative">
