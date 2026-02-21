@@ -4,10 +4,13 @@ import { Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import tcHat from "@/assets/tc-hat.png";
 
-const links = [
+const hashLinks = [
   { label: "Platform", href: "#platform" },
   { label: "Methodology", href: "#methodology" },
-  { label: "Insights", href: "#insights" },
+];
+
+const routeLinks = [
+  { label: "Insights", to: "/insights" },
 ];
 
 const TCNavbar = () => {
@@ -32,7 +35,7 @@ const TCNavbar = () => {
         </a>
 
         <div className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
+          {hashLinks.map((l) => (
             <a
               key={l.href}
               href={l.href}
@@ -40,6 +43,15 @@ const TCNavbar = () => {
             >
               {l.label}
             </a>
+          ))}
+          {routeLinks.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className="text-sm text-slate-400 hover:text-slate-200 hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
+            >
+              {l.label}
+            </Link>
           ))}
           <Link
             to="/request-demo"
@@ -67,7 +79,7 @@ const TCNavbar = () => {
             className="md:hidden overflow-hidden glass-strong border-t border-white/5"
           >
             <div className="px-4 py-4 flex flex-col gap-3">
-              {links.map((l) => (
+              {hashLinks.map((l) => (
                 <a
                   key={l.href}
                   href={l.href}
@@ -76,6 +88,16 @@ const TCNavbar = () => {
                 >
                   {l.label}
                 </a>
+              ))}
+              {routeLinks.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setMobileOpen(false)}
+                  className="text-sm text-slate-400 hover:text-white transition-colors py-2"
+                >
+                  {l.label}
+                </Link>
               ))}
               <Link
                 to="/request-demo"
