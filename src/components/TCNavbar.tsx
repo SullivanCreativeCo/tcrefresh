@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import tcHat from "@/assets/tc-hat.png";
 
 const hashLinks = [
-  { label: "Platform", href: "#platform" },
-  { label: "Methodology", href: "#methodology" },
+  { label: "Platform", hash: "platform" },
+  { label: "Methodology", hash: "methodology" },
 ];
 
 const routeLinks = [
@@ -16,12 +16,26 @@ const routeLinks = [
 const TCNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleHashClick = useCallback(
+    (hash: string) => {
+      setMobileOpen(false);
+      if (location.pathname === "/") {
+        document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
+      } else {
+        navigate("/#" + hash);
+      }
+    },
+    [location.pathname, navigate]
+  );
 
   return (
     <nav
@@ -30,19 +44,19 @@ const TCNavbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img src={tcHat} alt="ThreatCaptain" className="h-10 w-auto" />
-        </a>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {hashLinks.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
+            <button
+              key={l.hash}
+              onClick={() => handleHashClick(l.hash)}
               className="text-sm text-slate-400 hover:text-slate-200 hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
             >
               {l.label}
-            </a>
+            </button>
           ))}
           {routeLinks.map((l) => (
             <Link
@@ -80,14 +94,13 @@ const TCNavbar = () => {
           >
             <div className="px-4 py-4 flex flex-col gap-3">
               {hashLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm text-slate-400 hover:text-white transition-colors py-2"
+                <button
+                  key={l.hash}
+                  onClick={() => handleHashClick(l.hash)}
+                  className="text-sm text-slate-400 hover:text-white transition-colors py-2 text-left"
                 >
                   {l.label}
-                </a>
+                </button>
               ))}
               {routeLinks.map((l) => (
                 <Link
