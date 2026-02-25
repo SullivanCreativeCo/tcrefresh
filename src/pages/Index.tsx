@@ -8,6 +8,7 @@ import TCMethodology from "@/components/TCMethodology";
 import TCDashboard from "@/components/TCDashboard";
 import TCCTA from "@/components/TCCTA";
 import TCTrialBanner from "@/components/TCTrialBanner";
+import TCSimulatorCTA from "@/components/TCSimulatorCTA";
 import TCFooter from "@/components/TCFooter";
 
 const Index = () => {
@@ -34,6 +35,7 @@ const Index = () => {
       <TCNavbar />
       <main>
         <TCHero />
+        <TCSimulatorCTA />
         <TCMethodology />
         <TCTrialBanner />
         <TCFeatures />

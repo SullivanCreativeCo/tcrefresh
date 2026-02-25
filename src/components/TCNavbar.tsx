@@ -7,6 +7,7 @@ import tcHat from "@/assets/tc-hat.png";
 const hashLinks = [
   { label: "Platform", hash: "platform" },
   { label: "Methodology", hash: "methodology" },
+  { label: "Breach Simulator", hash: "simulator" },
 ];
 
 const routeLinks = [
