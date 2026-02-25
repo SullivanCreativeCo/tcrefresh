@@ -10,6 +10,7 @@ const hashLinks = [
 ];
 
 const routeLinks = [
+  { label: "Squawk Box", to: "/squawk-box" },
   { label: "Insights", to: "/insights" },
 ];
 
