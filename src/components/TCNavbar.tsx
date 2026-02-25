@@ -6,7 +6,6 @@ import tcHat from "@/assets/tc-hat.png";
 
 const hashLinks = [
   { label: "Platform", hash: "platform" },
-  { label: "Methodology", hash: "methodology" },
   { label: "Breach Simulator", hash: "simulator" },
 ];
 
@@ -68,12 +67,7 @@ const TCNavbar = () => {
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/signup"
-            className="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
-          >
-            Try Free
-          </Link>
+          
           <Link
             to="/request-demo"
             className="text-sm px-4 py-2 rounded-lg border border-primary/20 bg-primary/10 text-white hover:bg-primary/20 hover:shadow-[0_0_16px_hsl(var(--primary)/0.5)] transition-all duration-300"
@@ -119,13 +113,7 @@ const TCNavbar = () => {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                to="/signup"
-                onClick={() => setMobileOpen(false)}
-                className="text-sm px-4 py-2 rounded-lg border border-primary/30 text-primary text-center"
-              >
-                Try Free for 14 Days
-              </Link>
+              
               <Link
                 to="/request-demo"
                 onClick={() => setMobileOpen(false)}
