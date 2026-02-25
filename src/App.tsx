@@ -9,6 +9,8 @@ const InteractiveMap = lazy(() => import("./pages/InteractiveMap"));
 const EstimatorForMSPs = lazy(() => import("./pages/EstimatorForMSPs"));
 const RequestDemo = lazy(() => import("./pages/RequestDemo"));
 const Insights = lazy(() => import("./pages/Insights"));
+const SquawkBox = lazy(() => import("./pages/SquawkBox"));
+const SquawkBoxArticle = lazy(() => import("./pages/SquawkBoxArticle"));
 const Testimonials = lazy(() => import("./pages/Testimonials"));
 
 const App = () => (
@@ -45,6 +47,22 @@ const App = () => (
           element={
             <Suspense fallback={null}>
               <Insights />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/squawk-box"
+          element={
+            <Suspense fallback={null}>
+              <SquawkBox />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/squawk-box/:slug"
+          element={
+            <Suspense fallback={null}>
+              <SquawkBoxArticle />
             </Suspense>
           }
         />
