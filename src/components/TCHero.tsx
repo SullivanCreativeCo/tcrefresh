@@ -40,12 +40,12 @@ const TCHero = () => {
             >
               Show Me How to Quantify Risk
             </a>
-            <a
-              href="#methodology"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-slate-700 text-slate-300 text-sm hover:border-primary/30 transition-colors"
+            <Link
+              to="/signup"
+              className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-primary/30 text-primary text-sm font-semibold hover:bg-primary/10 hover:border-primary/50 transition-all"
             >
-              Our Methodology
-            </a>
+              Try Free for 14 Days
+            </Link>
           </div>
 
         </motion.div>

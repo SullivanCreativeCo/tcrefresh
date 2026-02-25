@@ -26,13 +26,19 @@ const TCCTA = () => {
             ThreatCaptain users close deals faster because they speak the language CFOs understand: dollars and downtime.
           </p>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link
-              to="/request-demo"
+              to="/signup"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
             >
-              Learn How Today
+              Start Your Free Trial
               <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/request-demo"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-border text-muted-foreground text-sm hover:border-primary/30 hover:text-foreground transition-colors"
+            >
+              Request a Demo
             </Link>
           </div>
         </motion.div>
