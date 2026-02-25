@@ -58,8 +58,8 @@ const TCSocialProof = () => {
             From the Channel
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-            Built for MSPs.{" "}
-            <span className="text-gradient-cyan">Validated by Leaders.</span>
+            Built for MSPs,{" "}
+            <span className="text-gradient-cyan">by MSPs.</span>
           </h2>
         </motion.div>
 
