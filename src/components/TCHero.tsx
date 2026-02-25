@@ -6,7 +6,7 @@ import BreachSimulator from "@/components/BreachSimulator";
 const TCHero = () => {
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section id="simulator" className="relative min-h-screen flex items-center overflow-hidden">
     <AnimatedShaderBackground />
 
     {/* Ambient blurs */}
@@ -29,7 +29,7 @@ const TCHero = () => {
             <span className="text-gradient-cyan">Dollars &amp; Down Time</span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
+          <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
             Learn to translate technical risk into business impact that gets deals approved fast.
           </p>
 
@@ -57,7 +57,10 @@ const TCHero = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-col items-center gap-3 relative w-full max-w-md mx-auto md:max-w-none"
         >
-          {/* Glow layers behind the simulator */}
+          {/* Animated glow ring */}
+          <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-r from-primary/30 via-blue-500/20 to-primary/30 blur-2xl animate-pulse" />
+          <div className="absolute -inset-2 -z-10 rounded-3xl border border-primary/10" />
+          {/* Inner glow layers */}
           <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
           <div className="absolute inset-0 -z-10 blur-2xl rounded-3xl bg-blue-500/10 scale-105" />
           <BreachSimulator />
@@ -72,7 +75,7 @@ const TCHero = () => {
     </div>
 
     {/* Bottom fade */}
-    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e1a] to-transparent z-10" />
+    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[hsl(var(--background))] to-transparent z-10" />
   </section>
   );
 };
