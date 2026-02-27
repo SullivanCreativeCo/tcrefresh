@@ -5,7 +5,7 @@ import { ArrowLeft, Zap } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 import { Badge } from "@/components/ui/badge";
-import { squawkArticles } from "@/data/squawkBoxArticles";
+import { useSquawkArticles } from "@/hooks/useSquawkArticles";
 
 const categoryStyle: Record<string, string> = {
   Vendors: "bg-cyan-500/15 text-cyan-400 border-cyan-500/20",
@@ -17,7 +17,20 @@ const categoryStyle: Record<string, string> = {
 
 const SquawkBoxArticle = () => {
   const { slug } = useParams<{ slug: string }>();
-  const article = squawkArticles.find((a) => a.slug === slug);
+  const { articles, loading } = useSquawkArticles();
+  const article = articles.find((a) => a.slug === slug);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <TCNavbar />
+        <div className="pt-32 text-center">
+          <p className="text-muted-foreground text-sm animate-pulse">Loading…</p>
+        </div>
+        <TCFooter />
+      </div>
+    );
+  }
 
   if (!article) {
     return (
@@ -34,7 +47,7 @@ const SquawkBoxArticle = () => {
     );
   }
 
-  const related = squawkArticles
+  const related = articles
     .filter((a) => a.slug !== slug && a.category === article.category)
     .slice(0, 3);
 
@@ -91,7 +104,6 @@ const SquawkBoxArticle = () => {
           </div>
         </motion.div>
 
-        {/* Related */}
         {related.length > 0 && (
           <div className="mt-16 pt-10 border-t border-white/5">
             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-6">
