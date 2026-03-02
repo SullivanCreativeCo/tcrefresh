@@ -7,6 +7,7 @@ import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 import MarketingAudit from "@/components/tools/MarketingAudit";
 import CarePlan from "@/components/tools/CarePlan";
+import SalesScript from "@/components/tools/SalesScript";
 
 const categories = ["All", "Marketing", "Strategy", "Sales"] as const;
 
@@ -46,7 +47,7 @@ const tools: {
     description: "Generate a full sales conversation flow customized to your vertical and prospect type.",
     category: "Sales",
     cta: "Generate Script ›",
-    ready: false,
+    ready: true,
   },
 ];
 
@@ -213,6 +214,21 @@ const GrowthLab = () => {
                   <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
                 </div>
                 <CarePlan onBack={() => setActiveTool(null)} />
+              </motion.div>
+            )}
+            {activeTool === "sales-script" && (
+              <motion.div
+                key="sales-script"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.4 }}
+                className="mt-16 overflow-hidden"
+              >
+                <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden">
+                  <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
+                </div>
+                <SalesScript onBack={() => setActiveTool(null)} />
               </motion.div>
             )}
           </AnimatePresence>
