@@ -47,9 +47,9 @@ const GrowthLab = () => (
   <div className="min-h-screen overflow-x-hidden">
     <Helmet>
       <title>MSP Growth Lab | ThreatCaptain</title>
-      <meta name="description" content="Interactive tools and calculators to help MSPs quantify cyber risk, close security deals, and grow recurring revenue." />
-    </Helmet>
-    <TCNavbar />
+        <meta name="description" content="Free interactive tools built by MSPs, for MSPs. Diagnose your marketing, plan your growth, and sharpen your sales conversations." />
+      </Helmet>
+      <TCNavbar />
 
     <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
@@ -60,13 +60,13 @@ const GrowthLab = () => (
         className="text-center max-w-3xl mx-auto mb-4"
       >
         <span className="inline-block text-xs font-mono uppercase tracking-widest text-primary mb-4">
-          Interactive Tools
+          Selling Smarter
         </span>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
           MSP Growth Lab
         </h1>
         <p className="text-muted-foreground text-base sm:text-lg">
-          Hands-on calculators and frameworks that turn cyber risk data into closed deals and higher MRR.
+          Tools built by MSPs, for MSPs. Diagnose your marketing, plan your growth, and sharpen your sales conversations.
         </p>
       </motion.div>
 
