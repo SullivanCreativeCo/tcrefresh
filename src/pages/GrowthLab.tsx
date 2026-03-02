@@ -20,7 +20,6 @@ const tools: {
   description: string;
   category: (typeof categories)[number];
   cta: string;
-  ready: boolean;
 }[] = [
   {
     id: "marketing-audit",
@@ -29,7 +28,6 @@ const tools: {
     description: "Score your marketing maturity and get a custom roadmap to generate more leads.",
     category: "Marketing",
     cta: "Start Your Audit ›",
-    ready: true,
   },
   {
     id: "care-plan",
@@ -38,7 +36,6 @@ const tools: {
     description: "Answer a few questions about your MSP and get a tailored plan to grow your security practice.",
     category: "Strategy",
     cta: "Build Your Plan ›",
-    ready: true,
   },
   {
     id: "sales-script",
@@ -47,9 +44,19 @@ const tools: {
     description: "Generate a full sales conversation flow customized to your vertical and prospect type.",
     category: "Sales",
     cta: "Generate Script ›",
-    ready: true,
   },
 ];
+
+const ToolComponent = ({ id, onBack }: { id: ToolId; onBack: () => void }) => {
+  switch (id) {
+    case "marketing-audit":
+      return <MarketingAudit onBack={onBack} />;
+    case "care-plan":
+      return <CarePlan onBack={onBack} />;
+    case "sales-script":
+      return <SalesScript onBack={onBack} />;
+  }
+};
 
 const GrowthLab = () => {
   const [activeCategory, setActiveCategory] = useState<(typeof categories)[number]>("All");
@@ -58,178 +65,161 @@ const GrowthLab = () => {
 
   const filtered = activeCategory === "All" ? tools : tools.filter((t) => t.category === activeCategory);
 
-  const handleToolLaunch = (id: ToolId, ready: boolean) => {
-    if (!ready) return;
+  const handleToolLaunch = (id: ToolId) => {
     setActiveTool(id);
-    setTimeout(() => toolSectionRef.current?.scrollIntoView({ behavior: "smooth" }), 50);
+    setTimeout(() => toolSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+  };
+
+  const handleBack = () => {
+    setActiveTool(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Helmet>
-        <title>MSP Growth Lab | ThreatCaptain</title>
-        <meta name="description" content="Free interactive tools built by MSPs, for MSPs. Diagnose your marketing, plan your growth, and sharpen your sales conversations." />
+        <title>MSP Growth Lab - Free Tools for MSP Growth | ThreatCaptain</title>
+        <meta name="description" content="Free interactive tools to audit your marketing, plan your growth, and sharpen your sales conversations. Built by MSPs, for MSPs." />
+        <meta property="og:title" content="MSP Growth Lab - Free Tools for MSP Growth | ThreatCaptain" />
+        <meta property="og:description" content="Free interactive tools to audit your marketing, plan your growth, and sharpen your sales conversations. Built by MSPs, for MSPs." />
       </Helmet>
       <TCNavbar />
 
       <main className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-3xl mx-auto mb-4"
-        >
-          <span className="inline-block text-xs font-mono uppercase tracking-widest text-primary mb-4">
-            MSP Growth Lab
-          </span>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Your Toolkit for Selling Smarter
-          </h1>
-          <p className="text-muted-foreground text-base sm:text-lg">
-            Tools built by MSPs, for MSPs. Diagnose your marketing, plan your growth, and sharpen your sales conversations.
-          </p>
-        </motion.div>
-
-        {/* Animated gradient divider */}
-        <div className="relative h-px w-full max-w-2xl mx-auto my-10 overflow-hidden">
-          <motion.div
-            className="absolute inset-0 h-full"
-            style={{
-              background: "linear-gradient(90deg, transparent, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)), transparent)",
-              backgroundSize: "200% 100%",
-            }}
-            animate={{ backgroundPosition: ["0% 0%", "200% 0%"] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          />
-        </div>
-
-        {/* Category filters */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              aria-pressed={activeCategory === cat}
-              className={`text-xs font-mono uppercase tracking-wider px-4 py-1.5 rounded-full border transition-all duration-200 ${
-                activeCategory === cat
-                  ? "border-primary/50 bg-primary/15 text-primary"
-                  : "border-border/50 bg-card/50 text-muted-foreground hover:text-foreground hover:border-primary/30"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Tool grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((tool, i) => (
+        <AnimatePresence mode="wait">
+          {!activeTool && (
             <motion.div
-              key={tool.title}
-              initial={{ opacity: 0, y: 24 }}
+              key="header"
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 * i }}
-              className={`group relative overflow-hidden rounded-xl border bg-card/50 backdrop-blur-sm p-6 transition-all duration-300 ${
-                activeTool === tool.id
-                  ? "border-primary/50 shadow-[0_0_24px_hsl(var(--primary)/0.15)]"
-                  : "border-border/50 hover:border-primary/30 hover:shadow-[0_0_24px_hsl(var(--primary)/0.12)]"
-              }`}
+              exit={{ opacity: 0, y: -10, transition: { duration: 0.2 } }}
+              transition={{ duration: 0.5 }}
             >
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                  <tool.icon className="w-5 h-5" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-2">
-                    <h2 className="text-base font-semibold text-foreground truncate">{tool.title}</h2>
-                    <span className="flex-shrink-0 text-[0.65rem] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
-                      {tool.category}
-                    </span>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{tool.description}</p>
-                </div>
-              </div>
-              <button
-                onClick={() => handleToolLaunch(tool.id, tool.ready)}
-                disabled={!tool.ready}
-                className={`mt-5 w-full text-sm py-2 rounded-lg border transition-colors duration-200 ${
-                  tool.ready
-                    ? "border-primary/20 bg-primary/5 text-primary hover:bg-primary/15"
-                    : "border-border/30 bg-muted/10 text-muted-foreground cursor-not-allowed"
-                }`}
-              >
-                {tool.ready ? tool.cta : "Coming Soon"}
-              </button>
-            </motion.div>
-          ))}
+              <section className="text-center max-w-3xl mx-auto mb-4" aria-label="Growth Lab introduction">
+                <span className="inline-block text-xs font-mono uppercase tracking-widest text-primary mb-4" aria-hidden="true">
+                  MSP Growth Lab
+                </span>
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                  Your Toolkit for Selling Smarter
+                </h1>
+                <p className="text-muted-foreground text-base sm:text-lg">
+                  Tools built by MSPs, for MSPs. Diagnose your marketing, plan your growth, and sharpen your sales conversations.
+                </p>
+              </section>
 
-          {/* Coming Soon placeholder */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 * filtered.length }}
-            className="relative overflow-hidden rounded-xl border border-border/30 bg-card/30 backdrop-blur-sm p-6 opacity-60"
-          >
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted/30 flex items-center justify-center text-muted-foreground">
-                <Lock className="w-5 h-5" />
+              {/* Animated gradient divider */}
+              <div className="relative h-px w-full max-w-2xl mx-auto my-10 overflow-hidden" aria-hidden="true">
+                <motion.div
+                  className="absolute inset-0 h-full"
+                  style={{
+                    background: "linear-gradient(90deg, transparent, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)), transparent)",
+                    backgroundSize: "200% 100%",
+                  }}
+                  animate={{ backgroundPosition: ["0% 0%", "200% 0%"] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                />
               </div>
-              <div className="flex-1 min-w-0">
-                <h2 className="text-base font-semibold text-muted-foreground mb-2">Coming Soon</h2>
-                <p className="text-sm text-muted-foreground/70 leading-relaxed">New tools added regularly. Stay tuned.</p>
-              </div>
-            </div>
-          </motion.div>
-        </div>
+
+              {/* Category filters */}
+              <nav className="flex flex-wrap justify-center gap-2 mb-10" aria-label="Filter tools by category" role="tablist">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    role="tab"
+                    onClick={() => setActiveCategory(cat)}
+                    aria-selected={activeCategory === cat}
+                    aria-pressed={activeCategory === cat}
+                    className={`text-xs font-mono uppercase tracking-wider px-4 py-2 sm:py-1.5 rounded-full border transition-all duration-200 min-h-[44px] sm:min-h-0 ${
+                      activeCategory === cat
+                        ? "border-primary/50 bg-primary/15 text-primary"
+                        : "border-border/50 bg-card/50 text-muted-foreground hover:text-foreground hover:border-primary/30"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </nav>
+
+              {/* Tool grid */}
+              <section aria-label="Available tools">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  {filtered.map((tool, i) => (
+                    <motion.article
+                      key={tool.title}
+                      initial={{ opacity: 0, y: 24 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 * i }}
+                      className={`group relative overflow-hidden rounded-xl border bg-card/50 backdrop-blur-sm p-5 sm:p-6 transition-all duration-300 ${
+                        activeTool === tool.id
+                          ? "border-primary/50 shadow-[0_0_24px_hsl(var(--primary)/0.15)]"
+                          : "border-border/50 hover:border-primary/30 hover:shadow-[0_0_24px_hsl(var(--primary)/0.12)]"
+                      }`}
+                    >
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                          <tool.icon className="w-5 h-5" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-2">
+                            <h2 className="text-base font-semibold text-foreground truncate">{tool.title}</h2>
+                            <span className="flex-shrink-0 text-[0.65rem] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 group-hover:shadow-[0_0_8px_hsl(var(--primary)/0.3)] transition-shadow duration-300">
+                              {tool.category}
+                            </span>
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{tool.description}</p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => handleToolLaunch(tool.id)}
+                        className="mt-4 sm:mt-5 w-full text-sm py-2.5 sm:py-2 rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary/15 transition-colors duration-200 min-h-[44px] sm:min-h-0"
+                      >
+                        {tool.cta}
+                      </button>
+                    </motion.article>
+                  ))}
+
+                  {/* Coming Soon placeholder */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.1 * filtered.length }}
+                    className="relative overflow-hidden rounded-xl border border-border/30 bg-card/30 backdrop-blur-sm p-5 sm:p-6 opacity-60"
+                    aria-label="More tools coming soon"
+                  >
+                    <div className="flex items-start gap-3 sm:gap-4">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-muted/30 flex items-center justify-center text-muted-foreground">
+                        <Lock className="w-5 h-5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h2 className="text-base font-semibold text-muted-foreground mb-2">Coming Soon</h2>
+                        <p className="text-sm text-muted-foreground/70 leading-relaxed">New tools added regularly. Stay tuned.</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              </section>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Active tool section */}
         <div ref={toolSectionRef}>
           <AnimatePresence mode="wait">
-            {activeTool === "marketing-audit" && (
-              <motion.div
-                key="marketing-audit"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mt-16 overflow-hidden"
+            {activeTool && (
+              <motion.section
+                key={activeTool}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20, transition: { duration: 0.25 } }}
+                transition={{ duration: 0.4, delay: 0.15 }}
+                aria-label={`${tools.find((t) => t.id === activeTool)?.title} tool`}
               >
-                <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden">
+                <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden" aria-hidden="true">
                   <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
                 </div>
-                <MarketingAudit onBack={() => setActiveTool(null)} />
-              </motion.div>
-            )}
-            {activeTool === "care-plan" && (
-              <motion.div
-                key="care-plan"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mt-16 overflow-hidden"
-              >
-                <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden">
-                  <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
-                </div>
-                <CarePlan onBack={() => setActiveTool(null)} />
-              </motion.div>
-            )}
-            {activeTool === "sales-script" && (
-              <motion.div
-                key="sales-script"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mt-16 overflow-hidden"
-              >
-                <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden">
-                  <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
-                </div>
-                <SalesScript onBack={() => setActiveTool(null)} />
-              </motion.div>
+                <ToolComponent id={activeTool} onBack={handleBack} />
+              </motion.section>
             )}
           </AnimatePresence>
         </div>
@@ -242,6 +232,7 @@ const GrowthLab = () => {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5 }}
             className="mt-24 text-center max-w-2xl mx-auto"
+            aria-label="Call to action"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-3">Want the Full Picture?</h2>
             <p className="text-muted-foreground text-base sm:text-lg mb-8">
@@ -250,13 +241,13 @@ const GrowthLab = () => {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 to="/signup"
-                className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all duration-300"
+                className="w-full sm:w-auto px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold text-sm hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all duration-300 text-center min-h-[44px] flex items-center justify-center"
               >
                 Try Free for 14 Days
               </Link>
               <Link
                 to="/request-demo"
-                className="px-6 py-3 rounded-lg border border-primary/20 bg-primary/5 text-primary font-semibold text-sm hover:bg-primary/10 transition-all duration-200"
+                className="w-full sm:w-auto px-6 py-3 rounded-lg border border-primary/20 bg-primary/5 text-primary font-semibold text-sm hover:bg-primary/10 transition-all duration-200 text-center min-h-[44px] flex items-center justify-center"
               >
                 Request Demo
               </Link>
