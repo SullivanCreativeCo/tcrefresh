@@ -1,49 +1,56 @@
+import { useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
-import { TrendingUp, Target, Calculator, BarChart3, Shield, Users } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ClipboardCheck, Target, TrendingUp, Calculator, Shield, Users } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 
+const categories = ["All", "Marketing", "Strategy", "Sales"] as const;
+
 const tools = [
+  {
+    icon: ClipboardCheck,
+    title: "MSP Marketing Audit",
+    description: "Score your marketing maturity and get a custom roadmap to generate more leads.",
+    category: "Marketing",
+  },
+  {
+    icon: TrendingUp,
+    title: "Growth Strategy Planner",
+    description: "Answer a few questions about your MSP and get a tailored plan to grow your security practice.",
+    category: "Strategy",
+  },
   {
     icon: Calculator,
     title: "Breach Cost Estimator",
     description: "Quantify potential breach costs by industry, company size, and attack vector to build compelling security proposals.",
-    tag: "Lead Gen",
+    category: "Sales",
   },
   {
     icon: Target,
-    title: "Security Stack Scorer",
-    description: "Evaluate a prospect's current security posture and identify upsell opportunities with a gap analysis framework.",
-    tag: "Sales Tool",
-  },
-  {
-    icon: TrendingUp,
-    title: "MRR Growth Planner",
-    description: "Model recurring revenue scenarios by adding security tiers, managed detection, and compliance packages to your stack.",
-    tag: "Revenue",
-  },
-  {
-    icon: BarChart3,
-    title: "Competitive Benchmarker",
-    description: "See how your service offerings compare against regional MSP competitors on pricing, scope, and coverage.",
-    tag: "Strategy",
+    title: "Security Sales Battlecard",
+    description: "Build objection-handling scripts for the most common security sales conversations.",
+    category: "Sales",
   },
   {
     icon: Shield,
     title: "Compliance Readiness Checker",
     description: "Map client environments against CMMC, HIPAA, and SOC 2 controls to surface compliance-driven deal opportunities.",
-    tag: "Compliance",
+    category: "Strategy",
   },
   {
     icon: Users,
     title: "Client Risk Report Builder",
     description: "Generate branded, board-ready risk reports that translate technical findings into business-impact language.",
-    tag: "Deliverable",
+    category: "Marketing",
   },
 ];
 
-const GrowthLab = () => (
+const GrowthLab = () => {
+  const [activeCategory, setActiveCategory] = useState<typeof categories[number]>("All");
+  const filtered = activeCategory === "All" ? tools : tools.filter(t => t.category === activeCategory);
+
+  return (
   <div className="min-h-screen overflow-x-hidden">
     <Helmet>
       <title>MSP Growth Lab | ThreatCaptain</title>
@@ -83,9 +90,27 @@ const GrowthLab = () => (
         />
       </div>
 
+      {/* Category filters */}
+      <div className="flex flex-wrap justify-center gap-2 mb-10">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            aria-pressed={activeCategory === cat}
+            className={`text-xs font-mono uppercase tracking-wider px-4 py-1.5 rounded-full border transition-all duration-200 ${
+              activeCategory === cat
+                ? "border-primary/50 bg-primary/15 text-primary"
+                : "border-border/50 bg-card/50 text-muted-foreground hover:text-foreground hover:border-primary/30"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
       {/* Tool grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {tools.map((tool, i) => (
+        {filtered.map((tool, i) => (
           <motion.div
             key={tool.title}
             initial={{ opacity: 0, y: 24 }}
@@ -101,7 +126,7 @@ const GrowthLab = () => (
                 <div className="flex items-center gap-2 mb-2">
                   <h2 className="text-base font-semibold text-foreground truncate">{tool.title}</h2>
                   <span className="flex-shrink-0 text-[0.65rem] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
-                    {tool.tag}
+                    {tool.category}
                   </span>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">{tool.description}</p>
@@ -117,6 +142,7 @@ const GrowthLab = () => (
 
     <TCFooter />
   </div>
-);
+  );
+};
 
 export default GrowthLab;
