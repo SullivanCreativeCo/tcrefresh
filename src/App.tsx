@@ -12,6 +12,7 @@ const Insights = lazy(() => import("./pages/Insights"));
 const SquawkBox = lazy(() => import("./pages/SquawkBox"));
 const SquawkBoxArticle = lazy(() => import("./pages/SquawkBoxArticle"));
 const Testimonials = lazy(() => import("./pages/Testimonials"));
+const GrowthLab = lazy(() => import("./pages/GrowthLab"));
 
 const App = () => (
   <TransitionModeProvider>
@@ -71,6 +72,14 @@ const App = () => (
           element={
             <Suspense fallback={null}>
               <Testimonials />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/growth-lab"
+          element={
+            <Suspense fallback={null}>
+              <GrowthLab />
             </Suspense>
           }
         />
