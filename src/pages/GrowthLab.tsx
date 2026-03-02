@@ -6,6 +6,7 @@ import { ClipboardCheck, Compass, MessageSquare, Lock } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 import MarketingAudit from "@/components/tools/MarketingAudit";
+import CarePlan from "@/components/tools/CarePlan";
 
 const categories = ["All", "Marketing", "Strategy", "Sales"] as const;
 
@@ -36,7 +37,7 @@ const tools: {
     description: "Answer a few questions about your MSP and get a tailored plan to grow your security practice.",
     category: "Strategy",
     cta: "Build Your Plan ›",
-    ready: false,
+    ready: true,
   },
   {
     id: "sales-script",
@@ -194,14 +195,24 @@ const GrowthLab = () => {
                 className="mt-16 overflow-hidden"
               >
                 <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden">
-                  <div
-                    className="absolute inset-0 h-full"
-                    style={{
-                      background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)",
-                    }}
-                  />
+                  <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
                 </div>
                 <MarketingAudit onBack={() => setActiveTool(null)} />
+              </motion.div>
+            )}
+            {activeTool === "care-plan" && (
+              <motion.div
+                key="care-plan"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.4 }}
+                className="mt-16 overflow-hidden"
+              >
+                <div className="relative h-px w-full max-w-2xl mx-auto mb-12 overflow-hidden">
+                  <div className="absolute inset-0 h-full" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--primary) / 0.3), transparent)" }} />
+                </div>
+                <CarePlan onBack={() => setActiveTool(null)} />
               </motion.div>
             )}
           </AnimatePresence>
