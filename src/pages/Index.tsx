@@ -11,7 +11,7 @@ import TCTrialBanner from "@/components/TCTrialBanner";
 import TCSimulatorCTA from "@/components/TCSimulatorCTA";
 import TCSocialProof from "@/components/TCSocialProof";
 import TCWhyUs from "@/components/TCWhyUs";
-import TCPricing from "@/components/TCPricing";
+
 import TCFooter from "@/components/TCFooter";
 
 const Index = () => {
@@ -45,7 +45,7 @@ const Index = () => {
         <TCFeatures />
         <TCDashboard />
         <TCWhyUs />
-        <TCPricing />
+        
         <TCCTA />
       </main>
       <TCFooter />
