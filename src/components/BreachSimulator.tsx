@@ -164,7 +164,7 @@ const BreachSimulator = () => {
         </div>
 
         {/* Progress */}
-        <div className="flex gap-1 mb-6">
+        <div className="flex gap-1 mb-6" role="progressbar" aria-valuenow={currentStepIndex + 1} aria-valuemin={1} aria-valuemax={4} aria-label={`Step ${currentStepIndex + 1} of 4`}>
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
@@ -251,8 +251,10 @@ const BreachSimulator = () => {
                 {/* Full Name */}
                 <div>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" aria-hidden="true" />
+                    <label htmlFor="breach-sim-name" className="sr-only">Full Name</label>
                     <input
+                      id="breach-sim-name"
                       type="text"
                       placeholder="Full Name"
                       value={contact.fullName}
@@ -269,8 +271,10 @@ const BreachSimulator = () => {
                 {/* Business Email */}
                 <div>
                   <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" aria-hidden="true" />
+                    <label htmlFor="breach-sim-email" className="sr-only">Business Email</label>
                     <input
+                      id="breach-sim-email"
                       type="email"
                       placeholder="Business Email"
                       value={contact.email}
@@ -287,8 +291,10 @@ const BreachSimulator = () => {
                 {/* Company Name */}
                 <div>
                   <div className="relative">
-                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" aria-hidden="true" />
+                    <label htmlFor="breach-sim-company" className="sr-only">Company Name</label>
                     <input
+                      id="breach-sim-company"
                       type="text"
                       placeholder="Company Name"
                       value={contact.companyName}

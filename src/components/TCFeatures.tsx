@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Target, Play, Users } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
@@ -6,11 +6,52 @@ import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart
 import { getPlaysByPhase, MethodologyPhase } from "@/data/newPlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
 
+const useFocusTrap = (isActive: boolean) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isActive || !containerRef.current) return;
+
+    const container = containerRef.current;
+    const focusableSelector = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const focusableElements = container.querySelectorAll<HTMLElement>(focusableSelector);
+    const firstEl = focusableElements[0];
+    const lastEl = focusableElements[focusableElements.length - 1];
+
+    // Store previously focused element
+    const previouslyFocused = document.activeElement as HTMLElement;
+    firstEl?.focus();
+
+    const handleTab = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      if (e.shiftKey) {
+        if (document.activeElement === firstEl) {
+          e.preventDefault();
+          lastEl?.focus();
+        }
+      } else {
+        if (document.activeElement === lastEl) {
+          e.preventDefault();
+          firstEl?.focus();
+        }
+      }
+    };
+
+    container.addEventListener("keydown", handleTab);
+    return () => {
+      container.removeEventListener("keydown", handleTab);
+      previouslyFocused?.focus();
+    };
+  }, [isActive]);
+
+  return containerRef;
+};
+
 const TCFeatures = () => {
   const { ref, inView } = useInView(0.1);
   const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
   const [selectedPlayId, setSelectedPlayId] = useState<string | null>(null);
-
+  const panelRef = useFocusTrap(!!selectedPhase);
   const handlePhaseClick = (phase: PhaseData) => {
     setSelectedPhase(prev => prev?.id === phase.id ? null : phase);
   };
@@ -54,16 +95,16 @@ const TCFeatures = () => {
 
           {/* Right — Body Text */}
           <div className="space-y-6">
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
               Traditional security sales start at the bottom—technical teams, IT managers, then eventually (maybe) the CFO. By then, your message is diluted and your deal is stalled.
             </p>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-              <span className="text-white font-semibold">The Anchor Point Methodology flips the script.</span> You start at the top, with the decision-makers who control the budget, using financial anchors that reframe the entire conversation.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+              <span className="text-foreground font-semibold">The Anchor Point Methodology flips the script.</span> You start at the top, with the decision-makers who control the budget, using financial anchors that reframe the entire conversation.
             </p>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-              Instead of <span className="text-slate-400 italic">"You have 47 vulnerabilities,"</span> you lead with <span className="text-gradient-cyan font-semibold">"You have $2.3M in breach exposure."</span> Instead of technical jargon, you present insurance gaps, downtime costs, and ROI—backed by data from IBM, Verizon, and MITRE.
+            <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+              Instead of <span className="text-muted-foreground italic">"You have 47 vulnerabilities,"</span> you lead with <span className="text-gradient-cyan font-semibold">"You have $2.3M in breach exposure."</span> Instead of technical jargon, you present insurance gaps, downtime costs, and ROI—backed by data from IBM, Verizon, and MITRE.
             </p>
-            <p className="text-white text-base sm:text-lg leading-relaxed font-semibold">
+            <p className="text-foreground text-base sm:text-lg leading-relaxed font-semibold">
               The result? Budget approval in weeks, not quarters. Strategic partnerships, not vendor relationships.
             </p>
           </div>
@@ -71,7 +112,7 @@ const TCFeatures = () => {
       </div>
 
       {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e1a] to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
 
       {/* Slide-out detail panel */}
       <AnimatePresence>
@@ -81,13 +122,17 @@ const TCFeatures = () => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: "100%", opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full sm:w-[400px] z-50 backdrop-blur-xl border-l border-slate-700/50"
+            ref={panelRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${selectedPhase.name} phase details`}
+            className="fixed top-0 right-0 h-full w-full sm:w-[400px] z-50 backdrop-blur-xl border-l border-muted/50"
             style={{ background: "rgba(10, 14, 26, 0.95)" }}
           >
             <div className="h-full overflow-y-auto p-8">
               <button
                 onClick={() => setSelectedPhase(null)}
-                className="absolute top-6 right-6 p-2 rounded-lg border border-slate-700/50 text-slate-400 hover:text-white hover:border-slate-500 transition-colors"
+                className="absolute top-6 right-6 p-2 rounded-lg border border-muted/50 text-muted-foreground hover:text-foreground hover:border-muted transition-colors"
               >
                 <X size={18} />
               </button>
@@ -97,8 +142,8 @@ const TCFeatures = () => {
                 <h3 className="text-2xl font-bold mb-2" style={{ color: selectedPhase.color }}>
                   {selectedPhase.name}
                 </h3>
-                <p className="text-slate-400 text-sm">{selectedPhase.description}</p>
-                <span className="inline-block mt-3 px-3 py-1 rounded-full text-xs font-medium border border-slate-700/50 text-slate-300 capitalize">
+                <p className="text-muted-foreground text-sm">{selectedPhase.description}</p>
+                <span className="inline-block mt-3 px-3 py-1 rounded-full text-xs font-medium border border-muted/50 text-muted-foreground capitalize">
                   {selectedPhase.category === "top" ? "Go to Market" : selectedPhase.category === "mid" ? "Sales" : "Customer Success"}
                 </span>
               </div>
@@ -115,16 +160,16 @@ const TCFeatures = () => {
                         <Target className="w-4 h-4" style={{ color: selectedPhase.color }} />
                         <span className="text-xs font-medium uppercase tracking-wider" style={{ color: selectedPhase.color }}>Available Plays</span>
                       </div>
-                      <p className="text-sm text-slate-300">
+                      <p className="text-sm text-muted-foreground">
                         {plays.length} tactical {plays.length === 1 ? "play" : "plays"} for the {selectedPhase.name} phase
                       </p>
                     </div>
 
                     {plays.length > 0 ? (
-                      <div className="space-y-3 p-4 rounded-lg border border-slate-700/30 bg-slate-800/30">
+                      <div className="space-y-3 p-4 rounded-lg border border-muted/30 bg-card/30">
                         <div className="flex items-center gap-2">
                           <Play className="w-5 h-5" style={{ color: selectedPhase.color }} />
-                          <h3 className="font-semibold text-slate-200 text-sm">Tactical Plays</h3>
+                          <h3 className="font-semibold text-foreground text-sm">Tactical Plays</h3>
                         </div>
                         <ul className="space-y-2">
                           {plays.map((play, i) => (
@@ -134,12 +179,12 @@ const TCFeatures = () => {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.1 + i * 0.06 }}
                               onClick={() => setSelectedPlayId(play.id)}
-                              className="text-sm flex items-start gap-3 p-2 rounded-lg hover:bg-slate-700/30 transition-colors cursor-pointer"
+                              className="text-sm flex items-start gap-3 p-2 rounded-lg hover:bg-muted/30 transition-colors cursor-pointer"
                             >
                               <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ backgroundColor: selectedPhase.color }} />
                               <div className="flex-1 min-w-0">
-                                <p className="text-slate-200 font-medium">{play.title}</p>
-                                <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                                <p className="text-foreground font-medium">{play.title}</p>
+                                <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
                                   <span className="flex items-center gap-1">
                                     <Users className="w-3 h-3" />
                                     {play.targetAudience.roles[0]}
@@ -151,16 +196,16 @@ const TCFeatures = () => {
                         </ul>
                       </div>
                     ) : (
-                      <div className="text-center p-6 rounded-lg border border-slate-700/30">
-                        <p className="text-sm text-slate-500">No plays available for this phase yet</p>
+                      <div className="text-center p-6 rounded-lg border border-muted/30">
+                        <p className="text-sm text-muted-foreground">No plays available for this phase yet</p>
                       </div>
                     )}
                   </>
                 );
               })()}
 
-              <p className="mt-8 text-xs text-slate-600">
-                Press <kbd className="px-1.5 py-0.5 rounded border border-slate-700 text-slate-400 font-mono text-[10px]">ESC</kbd> to close
+              <p className="mt-8 text-xs text-muted-foreground">
+                Press <kbd className="px-1.5 py-0.5 rounded border border-muted text-muted-foreground font-mono text-[11px]">ESC</kbd> to close
               </p>
             </div>
           </motion.div>

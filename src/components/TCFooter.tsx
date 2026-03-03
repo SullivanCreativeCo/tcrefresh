@@ -9,8 +9,8 @@ const links = [
 const TCFooter = () => (
   <footer className="border-t border-white/5 py-12">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6 sm:flex-row sm:justify-between">
-      <a href="#" className="flex items-center">
-        <img src={captainBeacon} alt="ThreatCaptain" className="h-20 w-auto" />
+      <a href="#" aria-label="ThreatCaptain — back to top" className="flex items-center">
+        <img src={captainBeacon} alt="" className="h-20 w-auto" />
       </a>
 
       <nav className="flex flex-wrap items-center justify-center gap-4 sm:gap-6" aria-label="Footer navigation">
@@ -18,14 +18,14 @@ const TCFooter = () => (
           <a
             key={l.href}
             href={l.href}
-            className="text-xs text-slate-500 hover:text-slate-300 transition-colors"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors"
           >
             {l.label}
           </a>
         ))}
       </nav>
 
-      <span className="text-xs text-slate-600 text-center">
+      <span className="text-xs text-muted-foreground text-center">
         &copy; 2026 ThreatCaptain. All rights reserved.
       </span>
     </div>
