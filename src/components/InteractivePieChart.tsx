@@ -204,23 +204,23 @@ export function InteractivePieChart({ onPhaseClick, selectedPhase }: Interactive
 
       {/* Dynamic center text */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="text-center transition-all duration-300">
+        <div className="text-center transition-all duration-300 flex flex-col items-center justify-center w-[160px]">
           {activePhase ? (
             <>
               <h2
-                className="text-xl font-bold transition-colors duration-300"
+                className="text-lg sm:text-xl font-bold transition-colors duration-300 leading-tight text-center"
                 style={{ color: activePhase.color }}
               >
                 {activePhase.name}
               </h2>
-              <p className="text-sm text-muted-foreground max-w-[150px] mt-1">
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-snug text-center">
                 {activePhase.description}
               </p>
             </>
           ) : (
             <>
-              <h2 className="text-xl font-bold text-foreground">Anchor Point</h2>
-              <p className="text-sm text-muted-foreground">Methodology</p>
+              <h2 className="text-lg sm:text-xl font-bold text-foreground leading-tight text-center">Anchor Point</h2>
+              <p className="text-xs sm:text-sm text-muted-foreground mt-1 text-center">Methodology</p>
             </>
           )}
         </div>
