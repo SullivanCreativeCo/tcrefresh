@@ -84,7 +84,7 @@ const TCSocialProof = () => {
                   key={name}
                   className="flex-shrink-0 group cursor-default"
                 >
-                  <div className="flex items-center justify-center h-10 px-4 rounded-lg border border-border/50 bg-card/30 grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
+                  <div className="flex items-center justify-center h-10 px-4 rounded-lg border border-border/50 bg-card/30 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
                     <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground whitespace-nowrap transition-colors duration-300">
                       {name}
                     </span>

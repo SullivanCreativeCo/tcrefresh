@@ -27,6 +27,12 @@ const Index = () => {
   }, [location.hash]);
   return (
     <div className="min-h-screen overflow-x-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:text-sm focus:font-semibold"
+      >
+        Skip to main content
+      </a>
       <Helmet>
         <title>ThreatCaptain | Turn Cyber Risk Into Revenue for MSPs</title>
         <meta name="description" content="Translate technical cyber risk into financial impact that gets MSP security deals approved. Quantify breach costs, shorten sales cycles, and close more contracts." />
@@ -36,7 +42,7 @@ const Index = () => {
         <meta property="og:url" content="https://tcnewsite.lovable.app/" />
       </Helmet>
       <TCNavbar />
-      <main>
+      <main id="main-content">
         <TCHero />
         <TCSimulatorCTA />
         <TCSocialProof />

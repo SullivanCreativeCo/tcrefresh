@@ -114,7 +114,7 @@ export function InteractivePieChart({ onPhaseClick, selectedPhase }: Interactive
   const centerY = 300;
 
   return (
-    <div className="relative w-full h-full min-h-[500px] flex items-center justify-center">
+    <div className="relative w-full h-full min-h-[500px] flex items-center justify-center" role="img" aria-label="Interactive pie chart showing the Anchor Point Methodology phases: Go to Market, Sales, and Customer Success">
       {/* Ambient glow effect */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[400px] h-[400px] rounded-full bg-blue-600/10 blur-[100px]" />
@@ -213,14 +213,14 @@ export function InteractivePieChart({ onPhaseClick, selectedPhase }: Interactive
               >
                 {activePhase.name}
               </h2>
-              <p className="text-sm text-slate-400 max-w-[150px] mt-1">
+              <p className="text-sm text-muted-foreground max-w-[150px] mt-1">
                 {activePhase.description}
               </p>
             </>
           ) : (
             <>
-              <h2 className="text-xl font-bold text-white">Anchor Point</h2>
-              <p className="text-sm text-slate-400">Methodology</p>
+              <h2 className="text-xl font-bold text-foreground">Anchor Point</h2>
+              <p className="text-sm text-muted-foreground">Methodology</p>
             </>
           )}
         </div>

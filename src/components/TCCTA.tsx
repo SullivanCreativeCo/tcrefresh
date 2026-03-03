@@ -22,7 +22,7 @@ const TCCTA = () => {
             Ready to Stop <span className="text-gradient-cyan">Explaining</span><br />
             and Start <span className="text-gradient-cyan">Closing</span>?
           </h2>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-8">
+          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-8">
             ThreatCaptain users close deals faster because they speak the language CFOs understand: dollars and downtime.
           </p>
 
