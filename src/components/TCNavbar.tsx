@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import tcHat from "@/assets/tc-hat.png";
 
 const hashLinks = [
-  { label: "Platform", hash: "platform" },
+  { label: "Home", hash: "" },
 ];
 
 const routeLinks = [
@@ -29,6 +29,11 @@ const TCNavbar = () => {
   const handleHashClick = useCallback(
     (hash: string) => {
       setMobileOpen(false);
+      if (!hash) {
+        navigate("/");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
       if (location.pathname === "/") {
         document.getElementById(hash)?.scrollIntoView({ behavior: "smooth" });
       } else {
