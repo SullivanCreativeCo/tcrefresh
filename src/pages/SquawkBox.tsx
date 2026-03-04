@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Newspaper, Mail, ArrowRight, Zap } from "lucide-react";
+import { Newspaper, Mail, ArrowRight, Zap, Clock, ChevronRight } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 import { Badge } from "@/components/ui/badge";
@@ -26,18 +26,23 @@ const categoryStyle: Record<SquawkCategory, string> = {
 function ScoreBadge({ score }: { score: number }) {
   const color =
     score >= 8
-      ? "bg-red-500/20 text-red-400 border-red-500/30"
+      ? "text-red-400"
       : score >= 6
-        ? "bg-amber-500/20 text-amber-400 border-amber-500/30"
-        : "bg-slate-500/20 text-slate-400 border-slate-500/30";
+        ? "text-amber-400"
+        : "text-slate-400";
   return (
-    <span
-      className={`inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider border rounded px-1.5 py-0.5 ${color}`}
-      aria-label={`Relevance score: ${score} out of 10`}
-    >
-      <Zap className="w-3 h-3" aria-hidden="true" />
-      {score}/10
+    <span className={`inline-flex items-center gap-0.5 text-[10px] font-bold ${color}`}>
+      <Zap className="w-2.5 h-2.5" />
+      {score}
     </span>
+  );
+}
+
+function formatDate(date: string, style: "full" | "short" = "short") {
+  return new Date(date).toLocaleDateString("en-US", 
+    style === "full" 
+      ? { month: "long", day: "numeric", year: "numeric" }
+      : { month: "short", day: "numeric" }
   );
 }
 
@@ -46,13 +51,17 @@ const SquawkBox = () => {
   const { articles, loading, error } = useSquawkArticles();
 
   const featured = articles.find((a) => a.featured);
-  const filtered = useMemo(
+  const nonFeatured = useMemo(
     () =>
       activeFilter === "All"
         ? articles.filter((a) => !a.featured)
         : articles.filter((a) => a.category === activeFilter && !a.featured),
     [activeFilter, articles]
   );
+
+  // Split into lead stories (first 2) and the rest for the feed
+  const leadStories = nonFeatured.slice(0, 2);
+  const feedStories = nonFeatured.slice(2);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -74,40 +83,48 @@ const SquawkBox = () => {
       <TCNavbar />
 
       <main id="squawk-main">
-        {/* ── Hero ── */}
-        <section className="relative pt-24 pb-12 sm:pt-32 sm:pb-16 overflow-hidden">
+        {/* ── Masthead ── */}
+        <section className="relative pt-24 pb-6 sm:pt-32 sm:pb-8 overflow-hidden">
           <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
-          <div className="absolute top-20 right-[10%] w-72 h-72 bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-          <div className="max-w-6xl mx-auto px-4 relative z-10 flex flex-col sm:flex-row items-center gap-6">
-            <img
-              src={captainBeacon}
-              alt="Captain Beakon mascot"
-              className="h-28 sm:h-36 w-auto drop-shadow-[0_0_30px_hsl(var(--primary)/0.35)]"
-            />
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <Newspaper className="w-4 h-4 text-primary" aria-hidden="true" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-primary">
-                  ThreatCaptain Intelligence
-                </span>
+          <div className="max-w-6xl mx-auto px-4 relative z-10">
+            <div className="flex items-center gap-4 mb-3">
+              <img
+                src={captainBeacon}
+                alt="Captain Beakon mascot"
+                className="h-12 sm:h-14 w-auto drop-shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
+              />
+              <div>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <Newspaper className="w-3.5 h-3.5 text-primary" aria-hidden="true" />
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-primary">
+                    ThreatCaptain Intelligence
+                  </span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-black tracking-tight leading-none">
+                  Squawk Box
+                </h1>
               </div>
-              <h1 className="text-3xl sm:text-5xl font-black tracking-tight leading-[1.1]">
-                Squawk Box
-              </h1>
-              <p className="text-muted-foreground text-sm sm:text-base mt-2 max-w-lg">
-                MSP Intelligence, Delivered Weekly.
-              </p>
+            </div>
+            {/* Ticker bar */}
+            <div className="flex items-center gap-3 border-t border-b border-white/5 py-2 mt-2">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded shrink-0">
+                Live Feed
+              </span>
+              <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
+                <Clock className="w-3 h-3" />
+                <span>Updated {articles.length > 0 ? formatDate(articles[0]?.date, "full") : "—"}</span>
+              </div>
+              <span className="text-[10px] text-muted-foreground ml-auto">{articles.length} stories</span>
             </div>
           </div>
         </section>
 
-        {/* Loading / Error states */}
+        {/* Loading / Error */}
         {loading && (
           <div className="max-w-6xl mx-auto px-4 py-20 text-center">
             <p className="text-muted-foreground text-sm animate-pulse">Loading intelligence feed…</p>
           </div>
         )}
-
         {error && (
           <div className="max-w-6xl mx-auto px-4 py-20 text-center">
             <p className="text-red-400 text-sm">Failed to load articles. Please try again later.</p>
@@ -116,59 +133,19 @@ const SquawkBox = () => {
 
         {!loading && !error && (
           <>
-            {/* ── Featured Spotlight ── */}
-            {featured && (
-              <section className="max-w-6xl mx-auto px-4 mb-12" aria-label="Featured story">
-                <Link to={`/squawk-box/${featured.slug}`} className="block group">
-                  <motion.article
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="relative rounded-2xl border border-primary/20 bg-card/60 backdrop-blur-lg overflow-hidden hover:border-primary/40 hover:shadow-[0_0_40px_hsl(var(--primary)/0.15)] transition-all duration-500"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/8 to-transparent pointer-events-none" />
-                    <div className="relative p-6 sm:p-10">
-                      <div className="flex flex-wrap items-center gap-3 mb-4">
-                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary bg-primary/10 px-2 py-1 rounded">
-                          Featured
-                        </span>
-                        <Badge className={`text-[10px] border ${categoryStyle[featured.category]}`}>
-                          {featured.category}
-                        </Badge>
-                        <ScoreBadge score={featured.impactScore} />
-                      </div>
-                      <h2 className="text-xl sm:text-2xl font-bold leading-snug mb-3 group-hover:text-primary transition-colors">
-                        {featured.headline}
-                      </h2>
-                      <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl mb-4">
-                        {featured.preview}
-                      </p>
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                        <span>{featured.source}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>{new Date(featured.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</span>
-                        <ArrowRight className="w-4 h-4 text-primary ml-auto group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                      </div>
-                    </div>
-                  </motion.article>
-                </Link>
-              </section>
-            )}
-
-            {/* ── Filter Tabs ── */}
-            <section className="max-w-6xl mx-auto px-4 mb-8" aria-label="Category filters">
-              <div className="flex flex-wrap gap-2" role="tablist" aria-label="Filter articles by category">
+            {/* ── Category Filter Bar ── */}
+            <section className="max-w-6xl mx-auto px-4 pt-5 pb-6">
+              <div className="flex flex-wrap gap-1.5" role="tablist" aria-label="Filter by category">
                 {["All", ...categories].map((cat) => (
                   <button
                     key={cat}
                     role="tab"
                     aria-selected={activeFilter === cat}
-                    aria-pressed={activeFilter === cat}
                     onClick={() => setActiveFilter(cat as any)}
-                    className={`text-xs font-semibold px-3.5 py-1.5 rounded-lg border transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                    className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded border transition-all duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary ${
                       activeFilter === cat
                         ? "bg-primary/15 border-primary/30 text-primary"
-                        : "bg-card/40 border-white/5 text-muted-foreground hover:border-white/15 hover:text-foreground"
+                        : "bg-transparent border-white/5 text-muted-foreground hover:border-white/15 hover:text-foreground"
                     }`}
                   >
                     {cat}
@@ -177,87 +154,190 @@ const SquawkBox = () => {
               </div>
             </section>
 
-            {/* ── News Grid ── */}
-            <section className="max-w-6xl mx-auto px-4 mb-16" aria-label="News articles">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" role="feed">
-                {filtered.map((article, i) => (
-                  <motion.div
-                    key={article.slug}
-                    initial={{ opacity: 0, y: 16 }}
+            {/* ── Featured / Lead Story ── */}
+            {featured && activeFilter === "All" && (
+              <section className="max-w-6xl mx-auto px-4 mb-8">
+                <Link to={`/squawk-box/${featured.slug}`} className="block group">
+                  <motion.article
+                    initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: i * 0.05 }}
+                    transition={{ duration: 0.4 }}
+                    className="relative border-l-4 border-primary pl-5 sm:pl-8 py-4"
                   >
-                    <Link
-                      to={`/squawk-box/${article.slug}`}
-                      className="group block h-full rounded-xl border border-white/5 bg-card/40 backdrop-blur-sm p-5 hover:border-primary/25 hover:shadow-[0_0_20px_hsl(var(--primary)/0.08)] transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                      role="article"
-                    >
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge className={`text-[9px] border ${categoryStyle[article.category]}`}>
-                          {article.category}
-                        </Badge>
-                        <ScoreBadge score={article.impactScore} />
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em] text-primary">
+                        Breaking
+                      </span>
+                      <Badge className={`text-[9px] border ${categoryStyle[featured.category]}`}>
+                        {featured.category}
+                      </Badge>
+                      <ScoreBadge score={featured.impactScore} />
+                    </div>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl font-black leading-tight mb-2 group-hover:text-primary transition-colors">
+                      {featured.headline}
+                    </h2>
+                    <p className="text-sm text-muted-foreground leading-relaxed max-w-3xl mb-3">
+                      {featured.preview}
+                    </p>
+                    <div className="flex items-center gap-3 text-[10px] text-muted-foreground">
+                      <span className="font-semibold">{featured.source}</span>
+                      <span>·</span>
+                      <span>{formatDate(featured.date, "full")}</span>
+                      <ChevronRight className="w-3.5 h-3.5 text-primary ml-2 group-hover:translate-x-0.5 transition-transform" />
+                    </div>
+                  </motion.article>
+                </Link>
+              </section>
+            )}
+
+            {/* ── Two-Column Layout: Lead + Sidebar ── */}
+            <section className="max-w-6xl mx-auto px-4 mb-12">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                
+                {/* Main Column — Lead Stories */}
+                <div className="lg:col-span-8">
+                  {leadStories.length > 0 && (
+                    <div className="space-y-0 divide-y divide-white/5">
+                      {leadStories.map((article, i) => (
+                        <motion.div
+                          key={article.slug}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3, delay: i * 0.08 }}
+                        >
+                          <Link
+                            to={`/squawk-box/${article.slug}`}
+                            className="group block py-5 first:pt-0"
+                            role="article"
+                          >
+                            <div className="flex items-center gap-2 mb-2">
+                              <Badge className={`text-[9px] border ${categoryStyle[article.category]}`}>
+                                {article.category}
+                              </Badge>
+                              <ScoreBadge score={article.impactScore} />
+                              <span className="text-[10px] text-muted-foreground ml-auto">
+                                {formatDate(article.date)}
+                              </span>
+                            </div>
+                            <h3 className="text-base sm:text-lg font-bold leading-snug mb-1.5 group-hover:text-primary transition-colors">
+                              {article.headline}
+                            </h3>
+                            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                              {article.preview}
+                            </p>
+                            <span className="text-[10px] font-semibold text-muted-foreground mt-2 block">
+                              {article.source}
+                            </span>
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Remaining feed — dense list */}
+                  {feedStories.length > 0 && (
+                    <div className="mt-6 pt-6 border-t border-white/5">
+                      <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                        More Stories
+                      </h2>
+                      <div className="space-y-0 divide-y divide-white/[0.03]">
+                        {feedStories.map((article, i) => (
+                          <motion.div
+                            key={article.slug}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.25, delay: i * 0.03 }}
+                          >
+                            <Link
+                              to={`/squawk-box/${article.slug}`}
+                              className="group flex items-start gap-3 py-3.5"
+                              role="article"
+                            >
+                              <ScoreBadge score={article.impactScore} />
+                              <div className="flex-1 min-w-0">
+                                <h3 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                                  {article.headline}
+                                </h3>
+                                <div className="flex items-center gap-2 mt-1 text-[10px] text-muted-foreground">
+                                  <Badge className={`text-[8px] border py-0 px-1.5 ${categoryStyle[article.category]}`}>
+                                    {article.category}
+                                  </Badge>
+                                  <span>{article.source}</span>
+                                  <span>·</span>
+                                  <span>{formatDate(article.date)}</span>
+                                </div>
+                              </div>
+                              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground/40 group-hover:text-primary shrink-0 mt-1 transition-colors" />
+                            </Link>
+                          </motion.div>
+                        ))}
                       </div>
-                      <h3 className="text-sm font-semibold leading-snug mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                        {article.headline}
-                      </h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3 mb-4">
-                        {article.preview}
-                      </p>
-                      <div className="flex items-center gap-3 text-[10px] text-muted-foreground mt-auto">
-                        <span className="font-medium">{article.source}</span>
-                        <span aria-hidden="true">·</span>
-                        <span>
-                          {new Date(article.date).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                          })}
-                        </span>
-                      </div>
-                    </Link>
-                  </motion.div>
-                ))}
+                    </div>
+                  )}
+
+                  {nonFeatured.length === 0 && (
+                    <p className="text-center text-muted-foreground text-sm py-12">No stories in this category yet.</p>
+                  )}
+                </div>
+
+                {/* Sidebar */}
+                <aside className="lg:col-span-4">
+                  {/* Category Quick Links */}
+                  <div className="rounded-xl border border-white/5 bg-card/30 p-4 mb-5">
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-3">
+                      Sections
+                    </h3>
+                    <div className="space-y-1">
+                      {categories.map((cat) => {
+                        const count = articles.filter((a) => a.category === cat).length;
+                        if (count === 0) return null;
+                        return (
+                          <button
+                            key={cat}
+                            onClick={() => setActiveFilter(cat)}
+                            className={`w-full flex items-center justify-between text-xs py-1.5 px-2 rounded hover:bg-white/5 transition-colors ${
+                              activeFilter === cat ? "text-primary bg-primary/5" : "text-muted-foreground"
+                            }`}
+                          >
+                            <span className="font-medium">{cat}</span>
+                            <span className="text-[10px] opacity-50">{count}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Newsletter Signup — Compact */}
+                  <div className="rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 to-transparent p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Mail className="w-4 h-4 text-primary" />
+                      <h3 className="text-xs font-bold">Weekly Squawk</h3>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground mb-3 leading-relaxed">
+                      Get the MSP stories that matter every Monday.
+                    </p>
+                    <form onSubmit={(e) => e.preventDefault()} className="space-y-2">
+                      <label htmlFor="squawk-email" className="sr-only">Email</label>
+                      <input
+                        id="squawk-email"
+                        type="email"
+                        required
+                        placeholder="you@yourmsp.com"
+                        className="w-full px-3 py-2 rounded-lg bg-card/60 border border-white/10 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/40"
+                      />
+                      <button
+                        type="submit"
+                        className="w-full px-4 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-colors"
+                      >
+                        Subscribe
+                      </button>
+                    </form>
+                  </div>
+                </aside>
               </div>
-              {filtered.length === 0 && (
-                <p className="text-center text-muted-foreground text-sm py-12">No stories in this category yet.</p>
-              )}
             </section>
           </>
         )}
-
-
-        {/* ── Newsletter Signup ── */}
-        <section className="max-w-6xl mx-auto px-4 mb-20" aria-label="Newsletter signup">
-          <div className="rounded-2xl border border-primary/15 bg-gradient-to-br from-primary/5 to-transparent p-8 sm:p-12 text-center">
-            <Mail className="w-8 h-8 text-primary mx-auto mb-4" aria-hidden="true" />
-            <h2 className="text-xl sm:text-2xl font-bold mb-2">Get the Squawk Every Week</h2>
-            <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6">
-              Captain Beakon delivers the MSP stories that matter — vendor moves, compliance shifts, and market data — straight to your inbox every Monday.
-            </p>
-            <form
-              onSubmit={(e) => { e.preventDefault(); }}
-              className="flex flex-col sm:flex-row items-center gap-3 max-w-md mx-auto"
-            >
-              <label htmlFor="squawk-email" className="sr-only">
-                Email address for newsletter signup
-              </label>
-              <input
-                id="squawk-email"
-                type="email"
-                required
-                placeholder="you@yourmsp.com"
-                aria-label="Email address for newsletter signup"
-                className="w-full sm:flex-1 px-4 py-2.5 rounded-lg bg-card/60 border border-white/10 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              />
-              <button
-                type="submit"
-                className="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-              >
-                Subscribe
-              </button>
-            </form>
-          </div>
-        </section>
       </main>
 
       <TCFooter />
