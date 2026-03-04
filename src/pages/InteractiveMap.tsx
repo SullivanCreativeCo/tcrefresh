@@ -6,8 +6,6 @@ import { PhaseDetailInline } from "@/components/playbook/PhaseDetailInline";
 import { PhaseDetailMorph } from "@/components/playbook/PhaseDetailMorph";
 import { PhaseDetailTakeover } from "@/components/playbook/PhaseDetailTakeover";
 import { PhaseDetailRadial } from "@/components/playbook/PhaseDetailRadial";
-import { TransitionModeToggle } from "@/components/playbook/TransitionModeToggle";
-import { useTransitionMode } from "@/contexts/TransitionModeContext";
 import { usePlays } from "@/hooks/usePlays";
 import { PlayDetailSheet } from "@/components/playbook/PlayDetailSheet";
 
@@ -15,7 +13,7 @@ const InteractiveMap = () => {
   const [selectedPhase, setSelectedPhase] = useState<PhaseData | null>(null);
   const [hoveredPhase, setHoveredPhase] = useState<string | null>(null);
   const [selectedPlayId, setSelectedPlayId] = useState<string | null>(null);
-  const { mode, showLegend, setShowLegend } = useTransitionMode();
+  const [showLegend, setShowLegend] = useState(false);
   const { getPlaysByPhase } = usePlays();
 
   const handlePhaseClick = (phase: PhaseData) => {
@@ -38,7 +36,7 @@ const InteractiveMap = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [selectedPhase]);
 
-  const showPieChart = mode === "inline" || !selectedPhase;
+  const showPieChart = true;
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -59,9 +57,6 @@ const InteractiveMap = () => {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
               Explore plays and strategies for every stage—from first impression to annual review.
             </p>
-            <div className="flex justify-center">
-              <TransitionModeToggle />
-            </div>
           </div>
 
           {/* Interactive section */}
@@ -81,11 +76,11 @@ const InteractiveMap = () => {
               {/* Pie Chart - Center */}
               <div
                 className={`transition-all duration-500 ease-out animate-fade-in ${
-                  mode === "inline" && selectedPhase ? "w-full lg:w-[400px] lg:flex-shrink-0" : "flex-1 max-w-3xl w-full"
+                  selectedPhase ? "w-full lg:w-[400px] lg:flex-shrink-0" : "flex-1 max-w-3xl w-full"
                 }`}
                 style={{ animationDelay: "0.2s" }}
               >
-                <div className={`transition-all duration-500 ${mode === "inline" && selectedPhase ? "scale-90 lg:scale-100" : ""}`}>
+                <div className={`transition-all duration-500 ${selectedPhase ? "scale-90 lg:scale-100" : ""}`}>
                   <InteractivePieChart onPhaseClick={handlePhaseClick} selectedPhase={hoveredPhase || selectedPhase?.id} />
                 </div>
 
@@ -109,7 +104,7 @@ const InteractiveMap = () => {
               </div>
 
               {/* Inline Detail Panel */}
-              {mode === "inline" && selectedPhase && (
+              {selectedPhase && (
                 <div
                   className="flex-1 min-w-0 lg:max-w-lg rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm animate-fade-in"
                   style={{ boxShadow: `0 0 40px ${selectedPhase.color}15` }}
@@ -133,9 +128,6 @@ const InteractiveMap = () => {
         </div>
       </main>
 
-       {mode === "morph" && <PhaseDetailMorph phase={selectedPhase} onClose={handleCloseDetail} />}
-       {mode === "takeover" && <PhaseDetailTakeover phase={selectedPhase} onClose={handleCloseDetail} />}
-       {mode === "radial" && <PhaseDetailRadial phase={selectedPhase} onClose={handleCloseDetail} />}
        
        {/* Play Detail Sheet - Appears when user clicks on a play */}
        <PlayDetailSheet playId={selectedPlayId} onClose={() => setSelectedPlayId(null)} />
