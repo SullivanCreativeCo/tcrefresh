@@ -72,8 +72,11 @@ const EstimatorForMSPs = () => {
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://tcnewsite.lovable.app/estimator-for-msps" />
       </Helmet>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold">
+        Skip to main content
+      </a>
       <TCNavbar />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section className="relative min-h-screen flex items-center overflow-hidden">
           <AnimatedShaderBackground />
@@ -111,7 +114,7 @@ const EstimatorForMSPs = () => {
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border text-muted-foreground text-sm hover:border-primary/30 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border text-muted-foreground text-sm hover:border-primary/30 focus:ring-2 focus:ring-primary/40 transition-colors"
                   >
                     See How It Works
                   </a>
@@ -127,7 +130,7 @@ const EstimatorForMSPs = () => {
               >
                 <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
                 <div className="absolute inset-0 -z-10 blur-2xl rounded-3xl bg-blue-500/10 scale-105" />
-                <BreachSimulator />
+                <BreachSimulator ariaLabel="Breach Impact Simulator — hero preview" />
               </motion.div>
             </div>
           </div>
@@ -242,7 +245,7 @@ const EstimatorForMSPs = () => {
             >
               <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
               <div className="absolute inset-0 -z-10 blur-2xl rounded-3xl bg-blue-500/10 scale-105" />
-              <BreachSimulator />
+              <BreachSimulator ariaLabel="Breach Impact Simulator — live demo" />
             </motion.div>
           </div>
         </section>
