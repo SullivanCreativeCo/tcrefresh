@@ -14,9 +14,6 @@ const TCTrialBanner = () => {
         transition={{ duration: 0.5 }}
         className="relative max-w-4xl mx-auto px-4 text-center"
       >
-        <p className="text-lg sm:text-xl text-muted-foreground mb-2">
-          See it in action.
-        </p>
         <h3 className="text-2xl sm:text-3xl font-bold tracking-tight mb-6">
           Try ThreatCaptain free for <span className="text-gradient-cyan">14 days</span>.
         </h3>
