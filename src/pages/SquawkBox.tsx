@@ -192,7 +192,7 @@ const SquawkBox = () => {
 
             {/* ── Main Layout: Top Story + Grid ── */}
             {topStory && (
-              <div className="grid grid-cols-1 lg:grid-cols-5 gap-5 mb-8">
+              <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-8 items-start">
                 {/* Top Story — Large Card */}
                 <motion.div
                   className="lg:col-span-3"
@@ -202,7 +202,7 @@ const SquawkBox = () => {
                 >
                   <Link
                     to={`/squawk-box/${topStory.slug}`}
-                    className="group block h-full rounded-xl border border-border/30 bg-card/50 p-6 hover:border-primary/25 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="group block rounded-xl border border-border/30 bg-card/50 p-5 hover:border-primary/25 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                     aria-label={`Read: ${topStory.headline}`}
                   >
                     <div className="flex items-center gap-2 mb-3">
@@ -226,7 +226,7 @@ const SquawkBox = () => {
                 </motion.div>
 
                 {/* Right Column — Stacked Small Cards */}
-                <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+                <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2">
                   {gridStories.map((article, i) => (
                     <motion.div
                       key={article.slug}
