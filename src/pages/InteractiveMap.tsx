@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { List } from "lucide-react";
+import TCNavbar from "@/components/TCNavbar";
+import TCFooter from "@/components/TCFooter";
 import { InteractivePieChart, PhaseData } from "@/components/InteractivePieChart";
 import { PhaseLegend } from "@/components/playbook/PhaseLegend";
 import { PhaseDetailInline } from "@/components/playbook/PhaseDetailInline";
@@ -40,6 +42,7 @@ const InteractiveMap = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <TCNavbar />
       {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[120px]" />
@@ -47,7 +50,7 @@ const InteractiveMap = () => {
       </div>
 
       {/* Main content */}
-      <main className="relative pt-8">
+      <main className="relative pt-24">
         <div className="container mx-auto px-6 py-12">
           {/* Hero section */}
           <div className="text-center mb-8 animate-fade-in">
@@ -131,6 +134,7 @@ const InteractiveMap = () => {
        
        {/* Play Detail Sheet - Appears when user clicks on a play */}
        <PlayDetailSheet playId={selectedPlayId} onClose={() => setSelectedPlayId(null)} />
+       <TCFooter />
      </div>
    );
  };
