@@ -188,8 +188,7 @@ const GrowthLab = () => {
                   Your Toolkit for Selling Smarter
                 </h1>
                 <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-                  Free tools built by MSPs, for MSPs. Pick a tool, get
-                  instant results, and level up your security sales game.
+                  Equip the right tools. Make the right moves. Level up your security sales game.
                 </p>
               </section>
 
