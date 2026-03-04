@@ -97,7 +97,7 @@ const EstimatorForMSPs = () => {
                   <span className="text-gradient-cyan">Qualified Leads</span>
                 </h1>
 
-                <p className="text-base sm:text-lg text-slate-400 leading-relaxed mb-8 max-w-xl">
+                <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 max-w-xl">
                   Give prospects a personalized breach cost estimate. In exchange, they give you their contact details — pre-qualified and ready to close.
                 </p>
 
@@ -107,11 +107,11 @@ const EstimatorForMSPs = () => {
                     className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
                   >
                     Request Demo
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-4 h-4" aria-hidden="true" />
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-slate-700 text-slate-300 text-sm hover:border-primary/30 transition-colors"
+                    className="inline-flex items-center justify-center px-6 py-3 rounded-lg border border-border text-muted-foreground text-sm hover:border-primary/30 transition-colors"
                   >
                     See How It Works
                   </a>
@@ -132,11 +132,11 @@ const EstimatorForMSPs = () => {
             </div>
           </div>
 
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0e1a] to-transparent z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[hsl(var(--background))] to-transparent z-10" />
         </section>
 
         {/* How It Works */}
-        <section id="how-it-works" className="py-24 bg-[#0a0e1a]">
+        <section id="how-it-works" className="py-24 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -147,7 +147,7 @@ const EstimatorForMSPs = () => {
             >
               <p className="text-xs text-primary font-semibold uppercase tracking-widest mb-3">Simple Setup</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">How It Works</h2>
-              <p className="text-slate-400 max-w-xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto">
                 From installation to your first lead in under an hour.
               </p>
             </motion.div>
@@ -163,13 +163,13 @@ const EstimatorForMSPs = () => {
                   className="relative glass-strong rounded-2xl p-8 border border-border/50"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <span className="text-4xl font-black text-primary/20 leading-none select-none">{step.number}</span>
+                    <span className="text-4xl font-black text-primary/20 leading-none select-none" aria-hidden="true">{step.number}</span>
                     <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-1">
-                      <step.icon className="w-5 h-5 text-primary" />
+                      <step.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                     </div>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                  <p className="text-sm text-slate-400 leading-relaxed">{step.description}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -177,7 +177,7 @@ const EstimatorForMSPs = () => {
         </section>
 
         {/* Features */}
-        <section className="py-24 bg-[#080b16]">
+        <section className="py-24 bg-card">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -188,7 +188,7 @@ const EstimatorForMSPs = () => {
             >
               <p className="text-xs text-primary font-semibold uppercase tracking-widest mb-3">Everything You Need</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Built for MSPs</h2>
-              <p className="text-slate-400 max-w-xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto">
                 No fluff. Every feature exists to help you capture and convert more leads.
               </p>
             </motion.div>
@@ -204,11 +204,11 @@ const EstimatorForMSPs = () => {
                   className="glass-strong rounded-xl p-6 border border-border/50 flex gap-4 items-start"
                 >
                   <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <feature.icon className="w-4 h-4 text-primary" />
+                    <feature.icon className="w-4 h-4 text-primary" aria-hidden="true" />
                   </div>
                   <div>
                     <h3 className="text-sm font-bold text-foreground mb-1">{feature.title}</h3>
-                    <p className="text-xs text-slate-400 leading-relaxed">{feature.description}</p>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{feature.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -217,7 +217,7 @@ const EstimatorForMSPs = () => {
         </section>
 
         {/* Live Demo Section */}
-        <section className="py-24 bg-[#0a0e1a]">
+        <section className="py-24 bg-background">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -228,7 +228,7 @@ const EstimatorForMSPs = () => {
             >
               <p className="text-xs text-primary font-semibold uppercase tracking-widest mb-3">Try It Now</p>
               <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Live Demo</h2>
-              <p className="text-slate-400 max-w-xl mx-auto">
+              <p className="text-muted-foreground max-w-xl mx-auto">
                 This is exactly what your prospects will see on your website. Go ahead — run it yourself.
               </p>
             </motion.div>
@@ -248,7 +248,7 @@ const EstimatorForMSPs = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-24 bg-[#080b16]">
+        <section className="py-24 bg-card">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -263,7 +263,7 @@ const EstimatorForMSPs = () => {
                 Ready to Turn Visitors<br />
                 Into <span className="text-gradient-cyan">Qualified Leads?</span>
               </h2>
-              <p className="text-slate-400 text-lg mb-10 max-w-xl mx-auto">
+              <p className="text-muted-foreground text-lg mb-10 max-w-xl mx-auto">
                 See the estimator running on your site in under a day. Book a demo and we'll handle the setup.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -272,11 +272,11 @@ const EstimatorForMSPs = () => {
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
                 >
                   Request Demo
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </Link>
                 <Link
                   to="/"
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg border border-slate-700 text-slate-300 hover:border-primary/30 transition-colors"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-lg border border-border text-muted-foreground hover:border-primary/30 transition-colors"
                 >
                   Back to Home
                 </Link>

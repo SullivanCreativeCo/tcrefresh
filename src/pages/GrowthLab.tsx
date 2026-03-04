@@ -163,7 +163,7 @@ const GrowthLab = () => {
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-2">
                             <h2 className="text-base font-semibold text-foreground truncate">{tool.title}</h2>
-                            <span className="flex-shrink-0 text-[0.65rem] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 group-hover:shadow-[0_0_8px_hsl(var(--primary)/0.3)] transition-shadow duration-300">
+                            <span className="flex-shrink-0 text-xs font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20 group-hover:shadow-[0_0_8px_hsl(var(--primary)/0.3)] transition-shadow duration-300">
                               {tool.category}
                             </span>
                           </div>

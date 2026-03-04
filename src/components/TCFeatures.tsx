@@ -134,7 +134,7 @@ const TCFeatures = () => {
                 onClick={() => setSelectedPhase(null)}
                 className="absolute top-6 right-6 p-2 rounded-lg border border-muted/50 text-muted-foreground hover:text-foreground hover:border-muted transition-colors"
               >
-                <X size={18} />
+                <X size={18} aria-hidden="true" /><span className="sr-only">Close panel</span>
               </button>
 
               <div className="mt-8 mb-8">
@@ -157,7 +157,7 @@ const TCFeatures = () => {
                       style={{ backgroundColor: `${selectedPhase.color}08`, borderColor: selectedPhase.color }}
                     >
                       <div className="flex items-center gap-2 mb-1">
-                        <Target className="w-4 h-4" style={{ color: selectedPhase.color }} />
+                        <Target className="w-4 h-4" style={{ color: selectedPhase.color }} aria-hidden="true" />
                         <span className="text-xs font-medium uppercase tracking-wider" style={{ color: selectedPhase.color }}>Available Plays</span>
                       </div>
                       <p className="text-sm text-muted-foreground">
@@ -168,7 +168,7 @@ const TCFeatures = () => {
                     {plays.length > 0 ? (
                       <div className="space-y-3 p-4 rounded-lg border border-muted/30 bg-card/30">
                         <div className="flex items-center gap-2">
-                          <Play className="w-5 h-5" style={{ color: selectedPhase.color }} />
+                          <Play className="w-5 h-5" style={{ color: selectedPhase.color }} aria-hidden="true" />
                           <h3 className="font-semibold text-foreground text-sm">Tactical Plays</h3>
                         </div>
                         <ul className="space-y-2">
@@ -179,14 +179,17 @@ const TCFeatures = () => {
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.1 + i * 0.06 }}
                               onClick={() => setSelectedPlayId(play.id)}
-                              className="text-sm flex items-start gap-3 p-2 rounded-lg hover:bg-muted/30 transition-colors cursor-pointer"
+                              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelectedPlayId(play.id); } }}
+                              tabIndex={0}
+                              role="button"
+                              className="text-sm flex items-start gap-3 p-2 rounded-lg hover:bg-muted/30 transition-colors cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary"
                             >
                               <span className="w-2 h-2 rounded-full flex-shrink-0 mt-1.5" style={{ backgroundColor: selectedPhase.color }} />
                               <div className="flex-1 min-w-0">
                                 <p className="text-foreground font-medium">{play.title}</p>
                                 <div className="flex items-center gap-3 mt-1 text-xs text-muted-foreground">
                                   <span className="flex items-center gap-1">
-                                    <Users className="w-3 h-3" />
+                                    <Users className="w-3 h-3" aria-hidden="true" />
                                     {play.targetAudience.roles[0]}
                                   </span>
                                 </div>
@@ -205,7 +208,7 @@ const TCFeatures = () => {
               })()}
 
               <p className="mt-8 text-xs text-muted-foreground">
-                Press <kbd className="px-1.5 py-0.5 rounded border border-muted text-muted-foreground font-mono text-[11px]">ESC</kbd> to close
+                Press <kbd className="px-1.5 py-0.5 rounded border border-muted text-muted-foreground font-mono text-xs">ESC</kbd> to close
               </p>
             </div>
           </motion.div>

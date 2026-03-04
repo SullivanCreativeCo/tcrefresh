@@ -18,11 +18,11 @@ const TCMethodology = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 relative inline-block w-full" style={{textShadow: '0 0 40px rgba(42, 54, 255, 0.3)'}}>
-            <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}>From </span>
+            <span className="text-muted-foreground">From </span>
             <span className="text-gradient-cyan">tech</span>
-            <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}> talk to </span>
+            <span className="text-muted-foreground"> talk to </span>
             <span className="text-gradient-cyan">business</span>
-            <span style={{ WebkitTextStroke: '1px rgba(226, 232, 240, 0.7)', color: 'transparent' }}> conversation</span>
+            <span className="text-muted-foreground"> conversation</span>
           </h2>
         </div>
 
@@ -36,7 +36,7 @@ const TCMethodology = () => {
             >
               <BentoItem className="h-full">
                 <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                  <s.icon className="w-5 h-5 text-primary" />
+                  <s.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                 </div>
                 <h3 className="text-foreground font-semibold text-base mb-2">{s.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>

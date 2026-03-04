@@ -41,7 +41,7 @@ const InteractiveMap = () => {
   const showPieChart = mode === "inline" || !selectedPhase;
 
   return (
-    <div className="min-h-screen" style={{ background: "#0a0e1a", color: "#e2e8f0" }}>
+    <div className="min-h-screen bg-background text-foreground">
       {/* Background effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] rounded-full bg-blue-500/5 blur-[120px]" />
@@ -54,9 +54,9 @@ const InteractiveMap = () => {
           {/* Hero section */}
           <div className="text-center mb-8 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Your <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Customer Journey</span> Playbook
+              Your <span className="text-gradient-cyan">Customer Journey</span> Playbook
             </h1>
-            <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-4">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
               Explore plays and strategies for every stage—from first impression to annual review.
             </p>
             <div className="flex justify-center">
@@ -91,17 +91,17 @@ const InteractiveMap = () => {
 
                 {!selectedPhase && (
                   <div className="flex items-center justify-center gap-4 mt-4">
-                    <p className="text-sm text-slate-400">Click on any segment to explore phase details</p>
+                    <p className="text-sm text-muted-foreground">Click on any segment to explore phase details</p>
                     <button
                       onClick={() => setShowLegend(!showLegend)}
                       className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all duration-200 ${
                         showLegend
-                          ? "bg-slate-800/80 border-slate-600 text-slate-200"
-                          : "bg-transparent border-slate-700/50 text-slate-400 hover:text-slate-200 hover:border-slate-600"
+                          ? "bg-muted border-border text-foreground"
+                          : "bg-transparent border-border/50 text-muted-foreground hover:text-foreground hover:border-border"
                       }`}
                       title={showLegend ? "Hide legend" : "Show legend"}
                     >
-                      <List className="w-3.5 h-3.5" />
+                      <List className="w-3.5 h-3.5" aria-hidden="true" />
                       <span>Legend</span>
                     </button>
                   </div>
@@ -111,7 +111,7 @@ const InteractiveMap = () => {
               {/* Inline Detail Panel */}
               {mode === "inline" && selectedPhase && (
                 <div
-                  className="flex-1 min-w-0 lg:max-w-lg rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-sm animate-fade-in"
+                  className="flex-1 min-w-0 lg:max-w-lg rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm animate-fade-in"
                   style={{ boxShadow: `0 0 40px ${selectedPhase.color}15` }}
                 >
                   <PhaseDetailInline phase={selectedPhase} onClose={handleCloseDetail} />

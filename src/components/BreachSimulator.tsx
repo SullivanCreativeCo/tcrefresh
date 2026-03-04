@@ -154,12 +154,12 @@ const BreachSimulator = () => {
         {/* Header */}
         <div className="flex items-center gap-2 mb-5">
           <div className="w-8 h-8 rounded-lg bg-destructive/10 flex items-center justify-center">
-            <AlertTriangle className="w-4 h-4 text-destructive" />
+            <AlertTriangle className="w-4 h-4 text-destructive" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-[10px] text-foreground font-semibold uppercase tracking-widest mb-0.5">ThreatCaptain</p>
+            <p className="text-xs text-foreground font-semibold uppercase tracking-widest mb-0.5">ThreatCaptain</p>
             <h3 className="text-sm font-semibold text-foreground">Breach Impact Simulator</h3>
-            <p className="text-[11px] text-muted-foreground">See what a breach could cost your client</p>
+            <p className="text-xs text-muted-foreground">See what a breach could cost your client</p>
           </div>
         </div>
 
@@ -225,7 +225,7 @@ const BreachSimulator = () => {
                     className="w-full text-left p-3 rounded-xl border border-border hover:border-primary/40 hover:bg-primary/5 transition-all text-sm text-foreground flex items-center justify-between group"
                   >
                     <span className="group-hover:text-primary transition-colors">{size.label}</span>
-                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" aria-hidden="true" />
                   </button>
                 ))}
               </div>
@@ -265,7 +265,7 @@ const BreachSimulator = () => {
                       }`}
                     />
                   </div>
-                  {errors.fullName && <p className="text-[10px] text-destructive mt-1 ml-1">{errors.fullName}</p>}
+                  {errors.fullName && <p className="text-xs text-destructive mt-1 ml-1" role="alert">{errors.fullName}</p>}
                 </div>
 
                 {/* Business Email */}
@@ -285,7 +285,7 @@ const BreachSimulator = () => {
                       }`}
                     />
                   </div>
-                  {errors.email && <p className="text-[10px] text-destructive mt-1 ml-1">{errors.email}</p>}
+                  {errors.email && <p className="text-xs text-destructive mt-1 ml-1" role="alert">{errors.email}</p>}
                 </div>
 
                 {/* Company Name */}
@@ -305,7 +305,7 @@ const BreachSimulator = () => {
                       }`}
                     />
                   </div>
-                  {errors.companyName && <p className="text-[10px] text-destructive mt-1 ml-1">{errors.companyName}</p>}
+                  {errors.companyName && <p className="text-xs text-destructive mt-1 ml-1" role="alert">{errors.companyName}</p>}
                 </div>
 
                 <button
@@ -313,7 +313,7 @@ const BreachSimulator = () => {
                   className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-blue-500 text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow mt-1"
                 >
                   Calculate My Risk Exposure
-                  <ChevronRight className="w-4 h-4" />
+                  <ChevronRight className="w-4 h-4" aria-hidden="true" />
                 </button>
               </div>
             </motion.div>
@@ -331,13 +331,13 @@ const BreachSimulator = () => {
             >
               <div className="relative">
                 <div className="w-16 h-16 rounded-full border-2 border-primary/20 flex items-center justify-center">
-                  <Loader2 className="w-8 h-8 text-primary animate-spin" />
+                  <Loader2 className="w-8 h-8 text-primary motion-safe:animate-spin" aria-hidden="true" />
                 </div>
-                <div className="absolute inset-0 rounded-full bg-primary/10 animate-ping" />
+                <div className="absolute inset-0 rounded-full bg-primary/10 motion-safe:animate-ping" />
               </div>
               <div className="text-center">
-                <p className="text-sm font-semibold text-foreground mb-1">Calculating your breach exposure...</p>
-                <p className="text-[11px] text-muted-foreground">Analyzing industry data &amp; threat vectors</p>
+                <p className="text-sm font-semibold text-foreground mb-1" role="status">Calculating your breach exposure...</p>
+                <p className="text-xs text-muted-foreground">Analyzing industry data &amp; threat vectors</p>
               </div>
               <div className="w-full bg-muted/30 rounded-full h-1 overflow-hidden">
                 <motion.div
@@ -377,23 +377,23 @@ const BreachSimulator = () => {
 
               <div className="grid grid-cols-3 gap-3 mb-5">
                 <div className="text-center p-3 rounded-xl bg-muted/30 border border-border">
-                  <DollarSign className="w-4 h-4 text-accent mx-auto mb-1" />
+                  <DollarSign className="w-4 h-4 text-accent mx-auto mb-1" aria-hidden="true" />
                   <p className="text-xs font-bold text-foreground">{formatCurrency(p95Cost)}</p>
-                  <p className="text-[10px] text-muted-foreground">95th %ile</p>
+                  <p className="text-xs text-muted-foreground">95th %ile</p>
                 </div>
                 <div className="text-center p-3 rounded-xl bg-muted/30 border border-border">
-                  <Clock className="w-4 h-4 text-accent mx-auto mb-1" />
+                  <Clock className="w-4 h-4 text-accent mx-auto mb-1" aria-hidden="true" />
                   <p className="text-xs font-bold text-foreground">{selectedSize.downtime} days</p>
-                  <p className="text-[10px] text-muted-foreground">Avg downtime</p>
+                  <p className="text-xs text-muted-foreground">Avg downtime</p>
                 </div>
                 <div className="text-center p-3 rounded-xl bg-muted/30 border border-border">
-                  <Shield className="w-4 h-4 text-accent mx-auto mb-1" />
+                  <Shield className="w-4 h-4 text-accent mx-auto mb-1" aria-hidden="true" />
                   <p className="text-xs font-bold text-foreground">{(selectedIndustry.riskMultiplier * 100).toFixed(0)}%</p>
-                  <p className="text-[10px] text-muted-foreground">Risk index</p>
+                  <p className="text-xs text-muted-foreground">Risk index</p>
                 </div>
               </div>
 
-              <p className="text-[11px] text-muted-foreground text-center mb-4 italic">
+              <p className="text-xs text-muted-foreground text-center mb-4 italic">
                 Based on IBM Cost of a Data Breach 2024 &amp; FAIR methodology
               </p>
 
@@ -402,7 +402,7 @@ const BreachSimulator = () => {
                   onClick={reset}
                   className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-border text-sm text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
                 >
-                  <RotateCcw className="w-3.5 h-3.5" />
+                  <RotateCcw className="w-3.5 h-3.5" aria-hidden="true" />
                   Run Again
                 </button>
                 <a
@@ -418,7 +418,7 @@ const BreachSimulator = () => {
 
         {/* Footer */}
         <div className="mt-5 pt-4 border-t border-border/50 text-center">
-          <p className="text-[10px] text-foreground/80">
+          <p className="text-xs text-foreground">
             🔒 Powered by <span className="text-foreground font-semibold">ThreatCaptain</span> — <a href="#contact" className="text-foreground hover:text-primary transition-colors underline">Get your free risk report</a>
           </p>
         </div>
