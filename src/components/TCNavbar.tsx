@@ -11,7 +11,7 @@ const hashLinks = [
 const routeLinks = [
   { label: "Squawk Box", to: "/squawk-box" },
   { label: "Tools", to: "/growth-lab" },
-  { label: "Insights", to: "/insights" },
+  
 ];
 
 const TCNavbar = () => {
