@@ -37,7 +37,7 @@ interface FormErrors {
 const validateEmail = (email: string) =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-const BreachSimulator = () => {
+const BreachSimulator = ({ ariaLabel = "Breach Impact Simulator" }: { ariaLabel?: string }) => {
   const [step, setStep] = useState<SimStep>("industry");
   const [selectedIndustry, setSelectedIndustry] = useState<typeof industries[0] | null>(null);
   const [selectedSize, setSelectedSize] = useState<typeof sizes[0] | null>(null);
@@ -146,7 +146,7 @@ const BreachSimulator = () => {
   const currentStepIndex = stepIndex[step];
 
   return (
-    <div className="relative w-full max-w-md mx-auto overflow-hidden">
+    <div className="relative w-full max-w-md mx-auto overflow-hidden" role="region" aria-label={ariaLabel}>
       {/* Glow */}
       <div className="absolute -inset-4 bg-primary/[0.06] rounded-3xl blur-2xl" />
 
@@ -260,7 +260,7 @@ const BreachSimulator = () => {
                       value={contact.fullName}
                       onChange={(e) => setContact((c) => ({ ...c, fullName: e.target.value }))}
                       maxLength={100}
-                      className={`w-full pl-9 pr-3 py-2.5 rounded-xl bg-muted/30 border text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 transition-colors ${
+                      className={`w-full pl-9 pr-3 py-2.5 rounded-xl bg-muted/30 border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/40 transition-colors ${
                         errors.fullName ? "border-destructive/60" : "border-border"
                       }`}
                     />
@@ -280,7 +280,7 @@ const BreachSimulator = () => {
                       value={contact.email}
                       onChange={(e) => setContact((c) => ({ ...c, email: e.target.value }))}
                       maxLength={255}
-                      className={`w-full pl-9 pr-3 py-2.5 rounded-xl bg-muted/30 border text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 transition-colors ${
+                      className={`w-full pl-9 pr-3 py-2.5 rounded-xl bg-muted/30 border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/40 transition-colors ${
                         errors.email ? "border-destructive/60" : "border-border"
                       }`}
                     />
@@ -300,7 +300,7 @@ const BreachSimulator = () => {
                       value={contact.companyName}
                       onChange={(e) => setContact((c) => ({ ...c, companyName: e.target.value }))}
                       maxLength={100}
-                      className={`w-full pl-9 pr-3 py-2.5 rounded-xl bg-muted/30 border text-sm text-foreground placeholder:text-muted-foreground/50 outline-none focus:border-primary/50 transition-colors ${
+                      className={`w-full pl-9 pr-3 py-2.5 rounded-xl bg-muted/30 border text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/40 transition-colors ${
                         errors.companyName ? "border-destructive/60" : "border-border"
                       }`}
                     />
@@ -419,7 +419,7 @@ const BreachSimulator = () => {
         {/* Footer */}
         <div className="mt-5 pt-4 border-t border-border/50 text-center">
           <p className="text-xs text-foreground">
-            🔒 Powered by <span className="text-foreground font-semibold">ThreatCaptain</span> — <a href="#contact" className="text-foreground hover:text-primary transition-colors underline">Get your free risk report</a>
+            <span aria-hidden="true">🔒</span><span className="sr-only">Secure.</span> Powered by <span className="text-foreground font-semibold">ThreatCaptain</span> — <a href="#contact" className="text-foreground hover:text-primary transition-colors underline focus:ring-2 focus:ring-primary/40 rounded">Get your free risk report</a>
           </p>
         </div>
       </div>

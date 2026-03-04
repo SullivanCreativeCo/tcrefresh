@@ -63,7 +63,7 @@ const TCHero = () => {
           {/* Inner glow layers */}
           <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
           <div className="absolute inset-0 -z-10 blur-2xl rounded-3xl bg-blue-500/10 scale-105" />
-          <BreachSimulator />
+          <BreachSimulator ariaLabel="Breach Impact Simulator — homepage" />
           <Link
             to="/estimator-for-msps"
             className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
