@@ -165,11 +165,8 @@ const EstimatorForMSPs = () => {
                   transition={{ duration: 0.5, delay: i * 0.15 }}
                   className="relative glass-strong rounded-2xl p-8 border border-border/50"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <span className="text-4xl font-black text-primary/20 leading-none select-none" aria-hidden="true">{step.number}</span>
-                    <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mt-1">
-                      <step.icon className="w-5 h-5 text-primary" aria-hidden="true" />
-                    </div>
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 mb-4">
+                    <step.icon className="w-5 h-5 text-primary" aria-hidden="true" />
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.description}</p>
