@@ -70,29 +70,9 @@ const TCSocialProof = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mb-16"
         >
-          <p className="text-xs text-muted-foreground text-center uppercase tracking-[0.2em] mb-6">
+          <p className="text-xs text-muted-foreground text-center uppercase tracking-[0.2em]">
             Trusted by leaders in the channel
           </p>
-          <div className="relative">
-            {/* Fade edges on mobile scroll */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none sm:hidden" />
-            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none sm:hidden" />
-
-            <div className="flex gap-8 sm:gap-10 items-center justify-start sm:justify-center overflow-x-auto sm:overflow-visible px-4 sm:px-0 scrollbar-none">
-              {partners.map((name, i) => (
-                <div
-                  key={name}
-                  className="flex-shrink-0 group cursor-default"
-                >
-                  <div className="flex items-center justify-center h-10 px-4 rounded-lg border border-border/50 bg-card/30 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300">
-                    <span className="text-xs font-medium text-muted-foreground group-hover:text-foreground whitespace-nowrap transition-colors duration-300">
-                      {name}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </motion.div>
 
         {/* Testimonials */}
