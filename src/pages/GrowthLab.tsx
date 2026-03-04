@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import beakonLab from "@/assets/beakon-lab.png";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -192,24 +193,8 @@ const GrowthLab = () => {
                 </p>
               </section>
 
-              {/* Stats bar */}
-              <div className="flex items-center justify-center gap-6 sm:gap-10 mb-8 text-xs text-muted-foreground/60">
-                <span className="flex items-center gap-1.5">
-                  <span className="text-foreground font-bold text-sm">3</span>{" "}
-                  Tools
-                </span>
-                <span className="w-px h-4 bg-border/50" aria-hidden="true" />
-                <span className="flex items-center gap-1.5">
-                  <span className="text-foreground font-bold text-sm">
-                    5.4k+
-                  </span>{" "}
-                  Uses
-                </span>
-                <span className="w-px h-4 bg-border/50" aria-hidden="true" />
-                <span className="flex items-center gap-1.5">
-                  <span className="text-success font-bold text-sm">100%</span>{" "}
-                  Free
-                </span>
+              <div className="flex justify-center mb-8">
+                <img src={beakonLab} alt="Captain Beakon with lab equipment" className="h-28 sm:h-36 object-contain" />
               </div>
 
               {/* Divider */}
