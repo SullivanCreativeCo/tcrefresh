@@ -7,7 +7,7 @@ import TCFeatures from "@/components/TCFeatures";
 import TCMethodology from "@/components/TCMethodology";
 import TCDashboard from "@/components/TCDashboard";
 import TCCTA from "@/components/TCCTA";
-import TCTrialBanner from "@/components/TCTrialBanner";
+
 import TCSimulatorCTA from "@/components/TCSimulatorCTA";
 import TCSocialProof from "@/components/TCSocialProof";
 import TCWhyUs from "@/components/TCWhyUs";
@@ -47,7 +47,7 @@ const Index = () => {
         <TCSimulatorCTA />
         <TCMethodology />
         <TCSocialProof />
-        <TCTrialBanner />
+        
         <TCFeatures />
         <TCDashboard />
         <TCWhyUs />
