@@ -31,8 +31,12 @@ function ScoreBadge({ score }: { score: number }) {
         ? "text-amber-400"
         : "text-slate-400";
   return (
-    <span className={`inline-flex items-center gap-0.5 text-[10px] font-bold ${color}`}>
-      <Zap className="w-2.5 h-2.5" />
+    <span
+      className={`inline-flex items-center gap-0.5 text-xs font-bold ${color}`}
+      aria-label={`Impact score: ${score} out of 10`}
+      role="img"
+    >
+      <Zap className="w-3 h-3" aria-hidden="true" />
       {score}
     </span>
   );
@@ -84,8 +88,8 @@ const SquawkBox = () => {
 
       <main id="squawk-main">
         {/* ── Masthead ── */}
-        <section className="relative pt-24 pb-4 sm:pt-32 sm:pb-6 overflow-hidden">
-          <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" />
+        <section className="relative pt-24 pb-4 sm:pt-32 sm:pb-6 overflow-hidden" aria-label="Squawk Box masthead">
+          <div className="absolute inset-0 bg-grid opacity-40 pointer-events-none" aria-hidden="true" />
           <div className="max-w-6xl mx-auto px-4 relative z-10">
             <div className="flex items-center gap-4">
               <img
@@ -95,8 +99,8 @@ const SquawkBox = () => {
               />
               <div>
                 <div className="flex items-center gap-1.5 mb-0.5">
-                  <Newspaper className="w-3 h-3 text-primary" />
-                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-primary">
+                  <Newspaper className="w-3 h-3 text-primary" aria-hidden="true" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-primary">
                     ThreatCaptain Intelligence
                   </span>
                 </div>
@@ -104,43 +108,45 @@ const SquawkBox = () => {
                   Squawk Box
                 </h1>
               </div>
-              <div className="ml-auto hidden sm:flex items-center gap-1.5 text-[10px] text-muted-foreground">
-                <Clock className="w-3 h-3" />
+              <div className="ml-auto hidden sm:flex items-center gap-1.5 text-xs text-muted-foreground">
+                <Clock className="w-3 h-3" aria-hidden="true" />
                 <span>{articles.length > 0 ? formatDate(articles[0]?.date, "full") : "—"}</span>
               </div>
             </div>
             {/* Divider with category filters */}
-            <div className="border-t border-white/10 mt-4 pt-3">
-              <div className="flex flex-wrap gap-1.5" role="tablist">
-                {["All", ...categories].map((cat) => (
-                  <button
-                    key={cat}
-                    role="tab"
-                    aria-selected={activeFilter === cat}
-                    onClick={() => setActiveFilter(cat as any)}
-                    className={`text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border transition-all ${
-                      activeFilter === cat
-                        ? "bg-primary/15 border-primary/30 text-primary"
-                        : "bg-transparent border-white/5 text-muted-foreground hover:border-white/15 hover:text-foreground"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
+            <div className="border-t border-border/50 mt-4 pt-3">
+              <nav aria-label="Filter articles by category">
+                <div className="flex flex-wrap gap-1.5" role="tablist" aria-label="Category filters">
+                  {["All", ...categories].map((cat) => (
+                    <button
+                      key={cat}
+                      role="tab"
+                      aria-selected={activeFilter === cat}
+                      onClick={() => setActiveFilter(cat as any)}
+                      className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary ${
+                        activeFilter === cat
+                          ? "bg-primary/15 border-primary/30 text-primary"
+                          : "bg-transparent border-border/30 text-muted-foreground hover:border-border hover:text-foreground"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
+              </nav>
             </div>
           </div>
         </section>
 
         {/* Loading / Error */}
         {loading && (
-          <div className="max-w-6xl mx-auto px-4 py-20 text-center">
-            <p className="text-muted-foreground text-sm animate-pulse">Loading intelligence feed…</p>
+          <div className="max-w-6xl mx-auto px-4 py-20 text-center" role="status" aria-live="polite">
+            <p className="text-muted-foreground text-sm motion-safe:animate-pulse">Loading intelligence feed…</p>
           </div>
         )}
         {error && (
-          <div className="max-w-6xl mx-auto px-4 py-20 text-center">
-            <p className="text-red-400 text-sm">Failed to load articles. Please try again later.</p>
+          <div className="max-w-6xl mx-auto px-4 py-20 text-center" role="alert">
+            <p className="text-destructive text-sm">Failed to load articles. Please try again later.</p>
           </div>
         )}
 
@@ -149,7 +155,11 @@ const SquawkBox = () => {
 
             {/* ── Featured Banner ── */}
             {featured && activeFilter === "All" && (
-              <Link to={`/squawk-box/${featured.slug}`} className="block group mb-8">
+              <Link
+                to={`/squawk-box/${featured.slug}`}
+                className="block group mb-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded-xl"
+                aria-label={`Top story: ${featured.headline}`}
+              >
                 <motion.div
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -157,24 +167,24 @@ const SquawkBox = () => {
                   className="relative rounded-xl overflow-hidden border border-primary/20 bg-gradient-to-r from-primary/10 via-card/80 to-card/60 p-6 sm:p-8 hover:border-primary/40 transition-all"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-[9px] font-black uppercase tracking-[0.15em] text-primary bg-primary/15 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-black uppercase tracking-[0.15em] text-primary bg-primary/15 px-2 py-0.5 rounded-full" aria-hidden="true">
                       ⚡ Top Story
                     </span>
-                    <Badge className={`text-[9px] border ${categoryStyle[featured.category]}`}>
+                    <Badge className={`text-xs border ${categoryStyle[featured.category]}`}>
                       {featured.category}
                     </Badge>
                   </div>
                   <h2 className="text-lg sm:text-2xl font-black leading-tight mb-2 group-hover:text-primary transition-colors max-w-3xl">
                     {featured.headline}
                   </h2>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-2xl line-clamp-2">
+                  <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl line-clamp-2">
                     {featured.preview}
                   </p>
-                  <div className="flex items-center gap-2 mt-3 text-[10px] text-muted-foreground">
+                  <div className="flex items-center gap-2 mt-3 text-xs text-muted-foreground">
                     <span className="font-semibold">{featured.source}</span>
-                    <span>·</span>
+                    <span aria-hidden="true">·</span>
                     <span>{formatDate(featured.date, "full")}</span>
-                    <ChevronRight className="w-3.5 h-3.5 text-primary ml-1 group-hover:translate-x-0.5 transition-transform" />
+                    <ChevronRight className="w-3.5 h-3.5 text-primary ml-1 group-hover:translate-x-0.5 transition-transform" aria-hidden="true" />
                   </div>
                 </motion.div>
               </Link>
@@ -192,10 +202,11 @@ const SquawkBox = () => {
                 >
                   <Link
                     to={`/squawk-box/${topStory.slug}`}
-                    className="group block h-full rounded-xl border border-white/5 bg-card/50 p-6 hover:border-primary/25 transition-all"
+                    className="group block h-full rounded-xl border border-border/30 bg-card/50 p-6 hover:border-primary/25 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    aria-label={`Read: ${topStory.headline}`}
                   >
                     <div className="flex items-center gap-2 mb-3">
-                      <Badge className={`text-[9px] border ${categoryStyle[topStory.category]}`}>
+                      <Badge className={`text-xs border ${categoryStyle[topStory.category]}`}>
                         {topStory.category}
                       </Badge>
                       <ScoreBadge score={topStory.impactScore} />
@@ -203,12 +214,12 @@ const SquawkBox = () => {
                     <h3 className="text-base sm:text-xl font-bold leading-snug mb-3 group-hover:text-primary transition-colors">
                       {topStory.headline}
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3 mb-4">
                       {topStory.preview}
                     </p>
-                    <div className="flex items-center gap-2 text-[10px] text-muted-foreground mt-auto">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground mt-auto">
                       <span className="font-semibold">{topStory.source}</span>
-                      <span>·</span>
+                      <span aria-hidden="true">·</span>
                       <span>{formatDate(topStory.date)}</span>
                     </div>
                   </Link>
@@ -225,10 +236,11 @@ const SquawkBox = () => {
                     >
                       <Link
                         to={`/squawk-box/${article.slug}`}
-                        className="group block rounded-lg border border-white/5 bg-card/40 p-4 hover:border-primary/20 transition-all h-full"
+                        className="group block rounded-lg border border-border/30 bg-card/40 p-4 hover:border-primary/20 transition-all h-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        aria-label={`Read: ${article.headline}`}
                       >
                         <div className="flex items-center gap-1.5 mb-2">
-                          <Badge className={`text-[8px] border py-0 px-1.5 ${categoryStyle[article.category]}`}>
+                          <Badge className={`text-xs border ${categoryStyle[article.category]}`}>
                             {article.category}
                           </Badge>
                           <ScoreBadge score={article.impactScore} />
@@ -236,8 +248,8 @@ const SquawkBox = () => {
                         <h4 className="text-sm font-semibold leading-snug group-hover:text-primary transition-colors line-clamp-2 mb-1.5">
                           {article.headline}
                         </h4>
-                        <div className="text-[10px] text-muted-foreground">
-                          {article.source} · {formatDate(article.date)}
+                        <div className="text-xs text-muted-foreground">
+                          {article.source} <span aria-hidden="true">·</span> {formatDate(article.date)}
                         </div>
                       </Link>
                     </motion.div>
@@ -248,11 +260,11 @@ const SquawkBox = () => {
 
             {/* ── Remaining Stories — Clean List ── */}
             {remainingStories.length > 0 && (
-              <div className="mb-12">
-                <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4 border-b border-white/5 pb-2">
+              <div className="mb-12" role="feed" aria-label="More headlines">
+                <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground mb-4 border-b border-border/30 pb-2">
                   More Headlines
                 </h2>
-                <div className="divide-y divide-white/[0.04]">
+                <div className="divide-y divide-border/20">
                   {remainingStories.map((article, i) => (
                     <motion.div
                       key={article.slug}
@@ -262,15 +274,17 @@ const SquawkBox = () => {
                     >
                       <Link
                         to={`/squawk-box/${article.slug}`}
-                        className="group flex items-center gap-4 py-4 hover:bg-white/[0.02] -mx-2 px-2 rounded-lg transition-colors"
+                        className="group flex items-center gap-4 py-4 hover:bg-accent/5 -mx-2 px-2 rounded-lg transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        aria-label={`Read: ${article.headline}`}
+                        role="article"
                       >
-                        <Badge className={`text-[8px] border py-0 px-1.5 shrink-0 ${categoryStyle[article.category]}`}>
+                        <Badge className={`text-xs border shrink-0 ${categoryStyle[article.category]}`}>
                           {article.category}
                         </Badge>
                         <h4 className="text-sm font-semibold group-hover:text-primary transition-colors flex-1 line-clamp-1">
                           {article.headline}
                         </h4>
-                        <span className="text-[10px] text-muted-foreground shrink-0 hidden sm:block">
+                        <span className="text-xs text-muted-foreground shrink-0 hidden sm:block">
                           {formatDate(article.date)}
                         </span>
                         <ScoreBadge score={article.impactScore} />
@@ -282,28 +296,28 @@ const SquawkBox = () => {
             )}
 
             {nonFeatured.length === 0 && (
-              <p className="text-center text-muted-foreground text-sm py-12">No stories in this category yet.</p>
+              <p className="text-center text-muted-foreground text-sm py-12" role="status">No stories in this category yet.</p>
             )}
 
             {/* ── Newsletter Signup ── */}
-            <section className="rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 to-transparent p-6 sm:p-8 text-center">
-              <Mail className="w-6 h-6 text-primary mx-auto mb-3" />
+            <section className="rounded-xl border border-primary/15 bg-gradient-to-br from-primary/5 to-transparent p-6 sm:p-8 text-center" aria-label="Newsletter signup">
+              <Mail className="w-6 h-6 text-primary mx-auto mb-3" aria-hidden="true" />
               <h2 className="text-lg font-bold mb-1">Get the Squawk Every Week</h2>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto mb-4">
+              <p className="text-sm text-muted-foreground max-w-sm mx-auto mb-4">
                 MSP stories that matter — vendor moves, compliance shifts, and market data — every Monday.
               </p>
               <form onSubmit={(e) => e.preventDefault()} className="flex flex-col sm:flex-row items-center gap-2 max-w-sm mx-auto">
-                <label htmlFor="squawk-email" className="sr-only">Email</label>
+                <label htmlFor="squawk-email" className="sr-only">Email address</label>
                 <input
                   id="squawk-email"
                   type="email"
                   required
                   placeholder="you@yourmsp.com"
-                  className="w-full sm:flex-1 px-3 py-2 rounded-lg bg-card/60 border border-white/10 text-xs text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/40"
+                  className="w-full sm:flex-1 px-3 py-2 rounded-lg bg-card/60 border border-border/50 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 />
                 <button
                   type="submit"
-                  className="w-full sm:w-auto px-5 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-bold hover:bg-primary/90 transition-colors"
+                  className="w-full sm:w-auto px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-bold hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   Subscribe
                 </button>

@@ -26,8 +26,8 @@ const SquawkBoxArticle = () => {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <TCNavbar />
-        <div className="pt-32 text-center">
-          <p className="text-muted-foreground text-sm animate-pulse">Loading…</p>
+        <div className="pt-32 text-center" role="status" aria-live="polite">
+          <p className="text-muted-foreground text-sm motion-safe:animate-pulse">Loading…</p>
         </div>
         <TCFooter />
       </div>
@@ -40,7 +40,10 @@ const SquawkBoxArticle = () => {
         <TCNavbar />
         <div className="pt-32 text-center">
           <h1 className="text-2xl font-bold mb-4">Story Not Found</h1>
-          <Link to="/squawk-box" className="text-primary hover:underline text-sm">
+          <Link
+            to="/squawk-box"
+            className="text-primary hover:underline text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
             ← Back to Squawk Box
           </Link>
         </div>
@@ -59,24 +62,37 @@ const SquawkBoxArticle = () => {
         <title>{article.headline} | Squawk Box — ThreatCaptain</title>
         <meta name="description" content={article.preview} />
       </Helmet>
+
+      <a
+        href="#article-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:text-sm focus:font-semibold"
+      >
+        Skip to article
+      </a>
+
       <TCNavbar />
 
-      <article className="max-w-3xl mx-auto px-4 pt-28 pb-20 sm:pt-36">
+      <article id="article-content" className="max-w-3xl mx-auto px-4 pt-28 pb-20 sm:pt-36">
         <Link
           to="/squawk-box"
-          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors mb-8"
+          className="inline-flex items-center gap-1.5 text-xs text-muted-foreground hover:text-primary transition-colors mb-8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
+          aria-label="Back to Squawk Box feed"
         >
-          <ArrowLeft className="w-3.5 h-3.5" />
+          <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
           Back to Squawk Box
         </Link>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <Badge className={`text-[10px] border ${categoryStyle[article.category] ?? "bg-muted/15 text-muted-foreground border-muted/20"}`}>
+            <Badge className={`text-xs border ${categoryStyle[article.category] ?? "bg-muted/15 text-muted-foreground border-muted/20"}`}>
               {article.category}
             </Badge>
-            <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-400">
-              <Zap className="w-3 h-3" />
+            <span
+              className="inline-flex items-center gap-1 text-xs font-bold text-amber-400"
+              aria-label={`Impact score: ${article.impactScore} out of 10`}
+              role="img"
+            >
+              <Zap className="w-3 h-3" aria-hidden="true" />
               Impact {article.impactScore}/10
             </span>
           </div>
@@ -85,21 +101,21 @@ const SquawkBoxArticle = () => {
 
           <div className="flex items-center gap-3 text-xs text-muted-foreground mb-10">
             <span className="font-medium">{article.source}</span>
-            <span>·</span>
-            <span>
+            <span aria-hidden="true">·</span>
+            <time dateTime={article.date}>
               {new Date(article.date).toLocaleDateString("en-US", {
                 month: "long",
                 day: "numeric",
                 year: "numeric",
               })}
-            </span>
+            </time>
           </div>
 
           {/* Summary */}
           {article.preview && (
-            <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic border-l-2 border-primary/30 pl-4">
+            <blockquote className="text-sm text-foreground leading-relaxed mb-6 italic border-l-2 border-primary/30 pl-4">
               {article.preview}
-            </p>
+            </blockquote>
           )}
 
           {/* Video hook */}
@@ -112,7 +128,15 @@ const SquawkBoxArticle = () => {
           {/* Video embed */}
           {article.videoPublicUrl && (
             <div className="mb-6">
-              <video src={article.videoPublicUrl} controls className="w-full rounded-lg" />
+              <video
+                src={article.videoPublicUrl}
+                controls
+                className="w-full rounded-lg"
+                aria-label={`Video: ${article.headline}`}
+              >
+                <track kind="captions" label="English" />
+                Your browser does not support the video element.
+              </video>
             </div>
           )}
 
@@ -129,25 +153,25 @@ const SquawkBoxArticle = () => {
 
           {/* Answer points */}
           {article.answerPoints.length > 0 && (
-            <div className="mt-8">
+            <section className="mt-8" aria-label="Key points">
               <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Key Points</h2>
-              <ul className="space-y-2">
+              <ul className="space-y-2" role="list">
                 {article.answerPoints.map((point, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
-                    <span className="text-primary font-bold mt-0.5">→</span>
+                  <li key={i} className="flex items-start gap-2 text-sm text-foreground">
+                    <span className="text-primary font-bold mt-0.5" aria-hidden="true">→</span>
                     {point}
                   </li>
                 ))}
               </ul>
-            </div>
+            </section>
           )}
 
           {/* Takeaway */}
           {article.takeaway && (
-            <div className="mt-8 rounded-lg bg-card/60 border border-white/10 p-5">
+            <section className="mt-8 rounded-lg bg-card/60 border border-border/50 p-5" aria-label="Takeaway">
               <h2 className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Takeaway</h2>
-              <p className="text-sm text-foreground/80 leading-relaxed">{article.takeaway}</p>
-            </div>
+              <p className="text-sm text-foreground leading-relaxed">{article.takeaway}</p>
+            </section>
           )}
 
           {/* Source link */}
@@ -156,15 +180,15 @@ const SquawkBoxArticle = () => {
               href={article.articleUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 mt-6 text-xs text-primary hover:underline"
+              className="inline-flex items-center gap-1.5 mt-6 text-xs text-primary hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary rounded"
             >
-              Read original source <ExternalLink className="w-3 h-3" />
+              Read original source <ExternalLink className="w-3 h-3" aria-hidden="true" />
             </a>
           )}
         </motion.div>
 
         {related.length > 0 && (
-          <div className="mt-16 pt-10 border-t border-white/5">
+          <nav className="mt-16 pt-10 border-t border-border/30" aria-label="Related stories">
             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-6">
               Related Stories
             </h2>
@@ -173,23 +197,30 @@ const SquawkBoxArticle = () => {
                 <Link
                   key={r.slug}
                   to={`/squawk-box/${r.slug}`}
-                  className="group flex items-start gap-4 rounded-xl border border-white/5 bg-card/30 p-4 hover:border-primary/20 transition-all"
+                  className="group flex items-start gap-4 rounded-xl border border-border/30 bg-card/30 p-4 hover:border-primary/20 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  aria-label={`Related: ${r.headline}`}
                 >
                   <div className="flex-1">
                     <h3 className="text-sm font-semibold group-hover:text-primary transition-colors line-clamp-2">
                       {r.headline}
                     </h3>
-                    <p className="text-[10px] text-muted-foreground mt-1">
-                      {r.source} · {new Date(r.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {r.source} <span aria-hidden="true">·</span>{" "}
+                      <time dateTime={r.date}>
+                        {new Date(r.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                      </time>
                     </p>
                   </div>
-                  <span className="text-[10px] font-bold text-amber-400 whitespace-nowrap">
+                  <span
+                    className="text-xs font-bold text-amber-400 whitespace-nowrap"
+                    aria-label={`Impact: ${r.impactScore} out of 10`}
+                  >
                     {r.impactScore}/10
                   </span>
                 </Link>
               ))}
             </div>
-          </div>
+          </nav>
         )}
       </article>
 
