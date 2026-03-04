@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+} from "@/components/ui/sheet";
 
 const articles = [
   {
@@ -43,72 +51,107 @@ const articles = [
 
 const categoryColor: Record<string, string> = {
   "Sales Strategy": "bg-primary/20 text-primary",
-  "Risk Communication": "bg-cyan-500/20 text-cyan-400",
-  "Case Study": "bg-violet-500/20 text-violet-400",
+  "Risk Communication": "bg-accent/20 text-accent",
+  "Case Study": "bg-success/20 text-success",
 };
 
-const Insights = () => (
-  <div className="min-h-screen bg-background text-foreground">
-    <Helmet>
-      <title>MSP Sales Insights | ThreatCaptain</title>
-      <meta name="description" content="Practical guides, data-driven strategies, and real-world frameworks to help MSP sales leaders close more cybersecurity deals." />
-      <meta property="og:title" content="MSP Sales Insights | ThreatCaptain" />
-      <meta property="og:description" content="Practical guides and strategies for MSP sales leaders to close more cybersecurity deals." />
-      <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://tcnewsite.lovable.app/insights" />
-    </Helmet>
-    <TCNavbar />
+const Insights = () => {
+  const [selectedArticle, setSelectedArticle] = useState<typeof articles[number] | null>(null);
 
-    <main>
-      <section className="pt-28 pb-24 sm:pt-36 sm:pb-32">
-        <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-14"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-              Insights for <span className="text-gradient-cyan">MSP Sales Leaders</span>
-            </h1>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
-              Practical guides, data-driven strategies, and real-world frameworks to help you close more security deals.
-            </p>
-          </motion.div>
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <Helmet>
+        <title>MSP Sales Insights | ThreatCaptain</title>
+        <meta name="description" content="Practical guides, data-driven strategies, and real-world frameworks to help MSP sales leaders close more cybersecurity deals." />
+        <meta property="og:title" content="MSP Sales Insights | ThreatCaptain" />
+        <meta property="og:description" content="Practical guides and strategies for MSP sales leaders to close more cybersecurity deals." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://tcnewsite.lovable.app/insights" />
+      </Helmet>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {articles.map((a, i) => (
-              <motion.article
-                key={a.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
-                className="group glass-strong rounded-2xl border border-border/50 overflow-hidden hover:border-primary/30 hover:scale-[1.02] hover:shadow-[0_0_20px_hsl(var(--primary)/0.15)] transition-all duration-300"
-                tabIndex={0}
-              >
-                <div className="p-5">
-                  <span className={`inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-2.5 py-1 mb-3 ${categoryColor[a.category] ?? "bg-muted text-muted-foreground"}`}>
-                    {a.category}
-                  </span>
-                  <h2 className="text-base font-semibold leading-snug mb-2 group-hover:text-primary transition-colors">
-                    {a.title}
-                  </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
-                    {a.description}
-                  </p>
-                  <span className="text-xs text-primary font-medium cursor-default" aria-hidden="true">
-                    Read More →
-                  </span>
-                </div>
-              </motion.article>
-            ))}
+      <a
+        href="#insights-main"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-lg focus:outline-none focus:ring-2 focus:ring-ring"
+      >
+        Skip to main content
+      </a>
+
+      <TCNavbar />
+
+      <main id="insights-main">
+        <section className="pt-28 pb-24 sm:pt-36 sm:pb-32" aria-label="Insights articles">
+          <div className="max-w-5xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center mb-14"
+            >
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+                Insights for <span className="text-gradient-cyan">MSP Sales Leaders</span>
+              </h1>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-xl mx-auto">
+                Practical guides, data-driven strategies, and real-world frameworks to help you close more security deals.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" role="list">
+              {articles.map((a, i) => (
+                <motion.article
+                  key={a.title}
+                  role="listitem"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  className="group glass-strong rounded-2xl border border-border/50 overflow-hidden cursor-pointer hover:border-primary/30 hover:scale-[1.02] hover:shadow-[0_0_20px_hsl(var(--primary)/0.15)] focus-within:ring-2 focus-within:ring-primary/40 transition-all duration-300"
+                >
+                  <button
+                    type="button"
+                    className="w-full text-left p-5 focus:outline-none"
+                    onClick={() => setSelectedArticle(a)}
+                    aria-label={`Read article: ${a.title}`}
+                  >
+                    <span className={`inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-2.5 py-1 mb-3 ${categoryColor[a.category] ?? "bg-muted text-muted-foreground"}`}>
+                      {a.category}
+                    </span>
+                    <h2 className="text-base font-semibold leading-snug mb-2 group-hover:text-primary transition-colors">
+                      {a.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-4">
+                      {a.description}
+                    </p>
+                    <span className="text-xs text-primary font-medium" aria-hidden="true">
+                      Read More →
+                    </span>
+                  </button>
+                </motion.article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
 
-    <TCFooter />
-  </div>
-);
+      <Sheet open={!!selectedArticle} onOpenChange={(open) => !open && setSelectedArticle(null)}>
+        <SheetContent side="right" className="w-full sm:max-w-lg overflow-y-auto">
+          {selectedArticle && (
+            <SheetHeader className="mb-6">
+              <span className={`inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-2.5 py-1 mb-2 w-fit ${categoryColor[selectedArticle.category] ?? "bg-muted text-muted-foreground"}`}>
+                {selectedArticle.category}
+              </span>
+              <SheetTitle className="text-xl font-bold leading-snug">
+                {selectedArticle.title}
+              </SheetTitle>
+              <SheetDescription className="text-sm text-muted-foreground leading-relaxed mt-4">
+                {selectedArticle.description}
+              </SheetDescription>
+            </SheetHeader>
+          )}
+        </SheetContent>
+      </Sheet>
+
+      <TCFooter />
+    </div>
+  );
+};
 
 export default Insights;
