@@ -2,7 +2,7 @@ import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Newspaper, TrendingUp, Mail, ArrowRight, Zap } from "lucide-react";
+import { Newspaper, Mail, ArrowRight, Zap } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 import { Badge } from "@/components/ui/badge";
@@ -10,7 +10,6 @@ import captainBeacon from "@/assets/captain-beacon.png";
 import { useSquawkArticles } from "@/hooks/useSquawkArticles";
 import {
   categories,
-  marketPulseStats,
   type SquawkCategory,
 } from "@/data/squawkBoxArticles";
 
@@ -226,27 +225,6 @@ const SquawkBox = () => {
           </>
         )}
 
-        {/* ── Market Pulse ── */}
-        <section className="max-w-6xl mx-auto px-4 mb-16" aria-label="Market Pulse statistics">
-          <div className="flex items-center gap-2 mb-6">
-            <TrendingUp className="w-4 h-4 text-primary" aria-hidden="true" />
-            <h2 className="text-lg font-bold">Market Pulse</h2>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {marketPulseStats.map((s) => (
-              <div
-                key={s.label}
-                className="rounded-xl border border-white/5 bg-card/40 backdrop-blur-sm p-4"
-                role="group"
-                aria-label={`${s.label}: ${s.value}, ${s.change}`}
-              >
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-1">{s.label}</p>
-                <p className="text-xl font-black text-foreground" aria-hidden="true">{s.value}</p>
-                <p className="text-[10px] text-primary font-semibold mt-1" aria-hidden="true">{s.change}</p>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* ── Newsletter Signup ── */}
         <section className="max-w-6xl mx-auto px-4 mb-20" aria-label="Newsletter signup">
