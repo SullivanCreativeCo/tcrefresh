@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { ArrowLeft, Zap } from "lucide-react";
+import { ArrowLeft, Zap, ExternalLink } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
 import TCFooter from "@/components/TCFooter";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,8 @@ const categoryStyle: Record<string, string> = {
   Security: "bg-red-500/15 text-red-400 border-red-500/20",
   "M&A": "bg-amber-500/15 text-amber-400 border-amber-500/20",
   Compliance: "bg-emerald-500/15 text-emerald-400 border-emerald-500/20",
+  Channel: "bg-violet-500/15 text-violet-400 border-violet-500/20",
+  "AI & Automation": "bg-blue-500/15 text-blue-400 border-blue-500/20",
 };
 
 const SquawkBoxArticle = () => {
@@ -70,7 +72,7 @@ const SquawkBoxArticle = () => {
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
           <div className="flex flex-wrap items-center gap-3 mb-4">
-            <Badge className={`text-[10px] border ${categoryStyle[article.category] ?? ""}`}>
+            <Badge className={`text-[10px] border ${categoryStyle[article.category] ?? "bg-muted/15 text-muted-foreground border-muted/20"}`}>
               {article.category}
             </Badge>
             <span className="inline-flex items-center gap-1 text-[10px] font-bold text-amber-400">
@@ -93,6 +95,28 @@ const SquawkBoxArticle = () => {
             </span>
           </div>
 
+          {/* Summary */}
+          {article.preview && (
+            <p className="text-sm text-foreground/80 leading-relaxed mb-6 italic border-l-2 border-primary/30 pl-4">
+              {article.preview}
+            </p>
+          )}
+
+          {/* Video hook */}
+          {article.videoHook && (
+            <div className="rounded-lg bg-primary/5 border border-primary/15 p-4 mb-6">
+              <p className="text-sm font-semibold text-primary">{article.videoHook}</p>
+            </div>
+          )}
+
+          {/* Video embed */}
+          {article.videoPublicUrl && (
+            <div className="mb-6">
+              <video src={article.videoPublicUrl} controls className="w-full rounded-lg" />
+            </div>
+          )}
+
+          {/* Body / LinkedIn post copy */}
           <div className="prose prose-invert prose-sm max-w-none text-muted-foreground leading-relaxed">
             {article.body.split("\n").map((para, i) =>
               para.trim() ? (
@@ -102,6 +126,41 @@ const SquawkBoxArticle = () => {
               ) : null
             )}
           </div>
+
+          {/* Answer points */}
+          {article.answerPoints.length > 0 && (
+            <div className="mt-8">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-4">Key Points</h2>
+              <ul className="space-y-2">
+                {article.answerPoints.map((point, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-foreground/80">
+                    <span className="text-primary font-bold mt-0.5">→</span>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Takeaway */}
+          {article.takeaway && (
+            <div className="mt-8 rounded-lg bg-card/60 border border-white/10 p-5">
+              <h2 className="text-xs font-bold uppercase tracking-wider text-primary mb-2">Takeaway</h2>
+              <p className="text-sm text-foreground/80 leading-relaxed">{article.takeaway}</p>
+            </div>
+          )}
+
+          {/* Source link */}
+          {article.articleUrl && (
+            <a
+              href={article.articleUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 mt-6 text-xs text-primary hover:underline"
+            >
+              Read original source <ExternalLink className="w-3 h-3" />
+            </a>
+          )}
         </motion.div>
 
         {related.length > 0 && (
