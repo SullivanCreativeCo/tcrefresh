@@ -99,14 +99,14 @@ const ToolCard = ({
     {/* Content */}
     <div className="flex flex-1 flex-col px-5 pb-5 sm:px-6 sm:pb-6">
       {/* Category pill */}
-      <span className="mb-2 self-start text-[10px] font-mono uppercase tracking-widest text-primary/80">
+      <span className="mb-2 self-start text-[10px] font-mono uppercase tracking-widest text-primary">
         {tool.category}
       </span>
 
       <h2 className="text-lg font-bold text-foreground mb-1 leading-tight">
         {tool.title}
       </h2>
-      <p className="text-xs text-muted-foreground/70 mb-3">{tool.subtitle}</p>
+      <p className="text-xs text-muted-foreground mb-3">{tool.subtitle}</p>
       <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
         {tool.description}
       </p>
@@ -128,11 +128,13 @@ const GrowthLab = () => {
     useState<(typeof categories)[number]>("All");
   const [activeTool, setActiveTool] = useState<ToolId | null>(null);
   const toolSectionRef = useRef<HTMLDivElement>(null);
+  const filteredCount = useRef(0);
 
   const filtered =
     activeCategory === "All"
       ? tools
       : tools.filter((t) => t.category === activeCategory);
+  filteredCount.current = filtered.length;
 
   const handleToolLaunch = (id: ToolId) => {
     setActiveTool(id);
@@ -219,17 +221,16 @@ const GrowthLab = () => {
               </div>
 
               {/* Category filters */}
-              <nav
+              <div
                 className="flex flex-wrap justify-center gap-2 mb-10"
+                role="group"
                 aria-label="Filter tools by category"
-                role="tablist"
               >
                 {categories.map((cat) => (
                   <button
                     key={cat}
-                    role="tab"
                     onClick={() => setActiveCategory(cat)}
-                    aria-selected={activeCategory === cat}
+                    aria-pressed={activeCategory === cat}
                     className={`text-xs font-mono uppercase tracking-wider px-4 py-2 sm:py-1.5 rounded-full border transition-all duration-200 min-h-[44px] sm:min-h-0 ${
                       activeCategory === cat
                         ? "border-primary/50 bg-primary/15 text-primary shadow-[0_0_12px_hsl(var(--primary)/0.15)]"
@@ -239,10 +240,13 @@ const GrowthLab = () => {
                     {cat}
                   </button>
                 ))}
-              </nav>
+              </div>
 
               {/* Tool grid — marketplace style */}
               <section aria-label="Available tools">
+                <div aria-live="polite" className="sr-only">
+                  Showing {filtered.length} {filtered.length === 1 ? "tool" : "tools"}
+                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                   {filtered.map((tool, i) => (
                     <ToolCard
@@ -261,16 +265,16 @@ const GrowthLab = () => {
                       duration: 0.4,
                       delay: 0.08 * filtered.length,
                     }}
-                    className="relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-border/40 bg-card/20 backdrop-blur-sm p-8 sm:p-10 opacity-50"
+                    className="relative flex flex-col items-center justify-center overflow-hidden rounded-2xl border border-dashed border-border/40 bg-card/20 backdrop-blur-sm p-8 sm:p-10"
                     aria-label="More tools coming soon"
                   >
-                    <div className="w-14 h-14 rounded-2xl bg-muted/20 flex items-center justify-center text-muted-foreground/50 mb-4">
+                    <div className="w-14 h-14 rounded-2xl bg-muted/20 flex items-center justify-center text-muted-foreground mb-4">
                       <Lock className="w-7 h-7" />
                     </div>
                     <h2 className="text-base font-semibold text-muted-foreground mb-1">
                       Coming Soon
                     </h2>
-                    <p className="text-xs text-muted-foreground/50 text-center">
+                    <p className="text-xs text-muted-foreground text-center">
                       New tools added regularly.
                     </p>
                   </motion.div>
