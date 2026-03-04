@@ -1,4 +1,4 @@
-export type SquawkCategory = "Vendors" | "MSP News" | "Security" | "M&A" | "Compliance";
+export type SquawkCategory = "Vendors" | "MSP News" | "Security" | "M&A" | "Compliance" | "Channel" | "AI & Automation";
 
 export interface SquawkArticle {
   slug: string;
@@ -116,7 +116,7 @@ export const squawkArticles: SquawkArticle[] = [
   },
 ];
 
-export const categories: SquawkCategory[] = ["Vendors", "MSP News", "Security", "M&A", "Compliance"];
+export const categories: SquawkCategory[] = ["Vendors", "MSP News", "Security", "M&A", "Compliance", "Channel", "AI & Automation"];
 
 export const marketPulseStats = [
   { label: "Avg. Ransomware Payout (SMB)", value: "$280K", change: "+42% YoY" },
