@@ -46,9 +46,9 @@ const Index = () => {
         <TCHero />
         <TCSimulatorCTA />
         <TCMethodology />
+        <TCFeatures />
         <TCSocialProof />
         
-        <TCFeatures />
         <TCDashboard />
         <TCWhyUs />
         
