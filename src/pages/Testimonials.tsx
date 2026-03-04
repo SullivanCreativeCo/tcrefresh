@@ -89,7 +89,7 @@ const TestimonialCard = ({
       className="glass rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-primary/20 transition-colors duration-300"
     >
       <div>
-        <Quote className="w-5 h-5 text-primary/40 mb-4" />
+        <Quote className="w-5 h-5 text-primary/40 mb-4" aria-hidden="true" />
         <p className="text-sm leading-relaxed text-muted-foreground mb-6">
           "{t.quote}"
         </p>
@@ -143,7 +143,7 @@ const Testimonials = () => {
       <main className="pt-28 pb-20">
         {/* Header */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-16">
-          <span className="inline-block text-[10px] uppercase tracking-[0.25em] text-primary font-semibold mb-3">
+          <span className="inline-block text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3">
             Testimonials
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
@@ -186,7 +186,7 @@ const Testimonials = () => {
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
               >
                 Try Free for 14 Days
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
               </Link>
               <Link
                 to="/request-demo"

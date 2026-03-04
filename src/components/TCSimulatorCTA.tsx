@@ -22,7 +22,7 @@ const TCSimulatorCTA = () => {
         className="relative max-w-3xl mx-auto px-4 text-center"
       >
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/5 text-primary text-xs font-medium mb-6">
-          <Zap className="w-3 h-3" />
+          <Zap className="w-3 h-3" aria-hidden="true" />
           Interactive Demo
         </div>
 
@@ -44,7 +44,7 @@ const TCSimulatorCTA = () => {
           onClick={scrollToSimulator}
           className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all duration-200"
         >
-          <ArrowUp className="w-4 h-4" />
+          <ArrowUp className="w-4 h-4" aria-hidden="true" />
           Launch the Simulator
         </button>
 

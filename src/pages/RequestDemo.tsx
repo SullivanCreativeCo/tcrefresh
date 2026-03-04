@@ -55,7 +55,7 @@ const RequestDemo = () => {
   };
 
   const inputCls =
-    "w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors";
+    "w-full rounded-lg border border-border bg-muted/30 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-1 focus:ring-primary/30 transition-colors";
   const labelCls = "block text-xs font-medium text-muted-foreground mb-1.5";
 
   return (
@@ -70,112 +70,116 @@ const RequestDemo = () => {
       </Helmet>
       <TCNavbar />
 
-      <section className="pt-28 pb-24 sm:pt-36 sm:pb-32 relative">
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-3xl" />
-        </div>
+      <main>
+        <section className="pt-28 pb-24 sm:pt-36 sm:pb-32 relative">
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[600px] h-[600px] rounded-full bg-primary/[0.04] blur-3xl" />
+          </div>
 
-        <div className="relative max-w-lg mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-10"
-          >
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-              See ThreatCaptain <span className="text-gradient-cyan">in Action</span>
-            </h1>
-            <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
-              Book a 30-minute walkthrough and see how MSPs use financial risk data to close deals faster.
-            </p>
-          </motion.div>
-
-          {submitted ? (
+          <div className="relative max-w-lg mx-auto px-4 sm:px-6">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="text-center py-16"
-            >
-              <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
-              <h2 className="text-xl font-semibold mb-2">Thanks! We'll be in touch within 24 hours.</h2>
-              <p className="text-sm text-muted-foreground">Check your inbox for a confirmation.</p>
-            </motion.div>
-          ) : (
-            <motion.form
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              onSubmit={handleSubmit}
-              className="space-y-5 glass-strong rounded-2xl p-6 sm:p-8 border border-white/5"
+              transition={{ duration: 0.5 }}
+              className="text-center mb-10"
             >
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className={labelCls}>First Name *</label>
-                  <input name="first_name" value={form.first_name} onChange={handleChange} placeholder="Jane" className={inputCls} />
-                </div>
-                <div>
-                  <label className={labelCls}>Last Name *</label>
-                  <input name="last_name" value={form.last_name} onChange={handleChange} placeholder="Doe" className={inputCls} />
-                </div>
-              </div>
+              <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
+                See ThreatCaptain <span className="text-gradient-cyan">in Action</span>
+              </h1>
+              <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-md mx-auto">
+                Book a 30-minute walkthrough and see how MSPs use financial risk data to close deals faster.
+              </p>
+            </motion.div>
 
-              <div>
-                <label className={labelCls}>Email *</label>
-                <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane@company.com" className={inputCls} />
-              </div>
-
-              <div>
-                <label className={labelCls}>Company Name *</label>
-                <input name="company_name" value={form.company_name} onChange={handleChange} placeholder="Acme MSP" className={inputCls} />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className={labelCls}>Company Size</label>
-                  <select name="company_size" value={form.company_size} onChange={handleChange} className={inputCls}>
-                    <option value="">Select…</option>
-                    {companySizes.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className={labelCls}>Role</label>
-                  <select name="role" value={form.role} onChange={handleChange} className={inputCls}>
-                    <option value="">Select…</option>
-                    {roles.map((r) => (
-                      <option key={r} value={r}>{r}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className={labelCls}>What's your biggest sales challenge?</label>
-                <textarea
-                  name="sales_challenge"
-                  value={form.sales_challenge}
-                  onChange={handleChange}
-                  rows={3}
-                  placeholder="e.g. Prospects don't understand the ROI of cybersecurity…"
-                  className={inputCls + " resize-none"}
-                />
-              </div>
-
-              {error && <p className="text-sm text-red-400">{error}</p>}
-
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow disabled:opacity-60"
+            {submitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-16"
+                role="status"
               >
-                {submitting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                Request Your Demo
-              </button>
-            </motion.form>
-          )}
-        </div>
-      </section>
+                <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" aria-hidden="true" />
+                <h2 className="text-xl font-semibold mb-2">Thanks! We'll be in touch within 24 hours.</h2>
+                <p className="text-sm text-muted-foreground">Check your inbox for a confirmation.</p>
+              </motion.div>
+            ) : (
+              <motion.form
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 }}
+                onSubmit={handleSubmit}
+                className="space-y-5 glass-strong rounded-2xl p-6 sm:p-8 border border-border/50"
+              >
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="first_name" className={labelCls}>First Name *</label>
+                    <input id="first_name" name="first_name" value={form.first_name} onChange={handleChange} placeholder="Jane" className={inputCls} />
+                  </div>
+                  <div>
+                    <label htmlFor="last_name" className={labelCls}>Last Name *</label>
+                    <input id="last_name" name="last_name" value={form.last_name} onChange={handleChange} placeholder="Doe" className={inputCls} />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="email" className={labelCls}>Email *</label>
+                  <input id="email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="jane@company.com" className={inputCls} />
+                </div>
+
+                <div>
+                  <label htmlFor="company_name" className={labelCls}>Company Name *</label>
+                  <input id="company_name" name="company_name" value={form.company_name} onChange={handleChange} placeholder="Acme MSP" className={inputCls} />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="company_size" className={labelCls}>Company Size</label>
+                    <select id="company_size" name="company_size" value={form.company_size} onChange={handleChange} className={inputCls}>
+                      <option value="">Select…</option>
+                      {companySizes.map((s) => (
+                        <option key={s} value={s}>{s}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label htmlFor="role" className={labelCls}>Role</label>
+                    <select id="role" name="role" value={form.role} onChange={handleChange} className={inputCls}>
+                      <option value="">Select…</option>
+                      {roles.map((r) => (
+                        <option key={r} value={r}>{r}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="sales_challenge" className={labelCls}>What's your biggest sales challenge?</label>
+                  <textarea
+                    id="sales_challenge"
+                    name="sales_challenge"
+                    value={form.sales_challenge}
+                    onChange={handleChange}
+                    rows={3}
+                    placeholder="e.g. Prospects don't understand the ROI of cybersecurity…"
+                    className={inputCls + " resize-none"}
+                  />
+                </div>
+
+                {error && <p className="text-sm text-destructive" role="alert">{error}</p>}
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow disabled:opacity-60"
+                >
+                  {submitting ? <Loader2 className="w-4 h-4 animate-spin" aria-hidden="true" /> : null}
+                  Request Your Demo
+                </button>
+              </motion.form>
+            )}
+          </div>
+        </section>
+      </main>
 
       <TCFooter />
     </div>

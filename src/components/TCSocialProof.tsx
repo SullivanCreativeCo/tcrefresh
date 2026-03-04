@@ -54,7 +54,7 @@ const TCSocialProof = () => {
           transition={{ duration: 0.5 }}
           className="text-center mb-14"
         >
-          <span className="inline-block text-[10px] uppercase tracking-[0.25em] text-primary font-semibold mb-3">
+          <span className="inline-block text-xs uppercase tracking-[0.25em] text-primary font-semibold mb-3">
             From the Channel
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
@@ -106,7 +106,7 @@ const TCSocialProof = () => {
               className="glass rounded-xl p-6 sm:p-8 flex flex-col justify-between group hover:border-primary/20 transition-colors duration-300"
             >
               <div>
-                <Quote className="w-5 h-5 text-primary/40 mb-4" />
+                <Quote className="w-5 h-5 text-primary/40 mb-4" aria-hidden="true" />
                 <p className="text-sm leading-relaxed text-muted-foreground mb-6">
                   "{t.quote}"
                 </p>
@@ -147,7 +147,7 @@ const TCSocialProof = () => {
             className="inline-flex items-center gap-1.5 text-sm text-primary hover:text-primary/80 font-medium transition-colors"
           >
             See what others are saying
-            <ArrowRight className="w-3.5 h-3.5" />
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
           </Link>
         </motion.div>
       </div>

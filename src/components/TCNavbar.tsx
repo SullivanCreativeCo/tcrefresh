@@ -59,7 +59,7 @@ const TCNavbar = () => {
             <button
               key={l.hash}
               onClick={() => handleHashClick(l.hash)}
-              className="text-sm text-slate-400 hover:text-slate-200 hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
+              className="text-sm text-muted-foreground hover:text-foreground hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
             >
               {l.label}
             </button>
@@ -68,7 +68,7 @@ const TCNavbar = () => {
             <Link
               key={l.to}
               to={l.to}
-              className="text-sm text-slate-400 hover:text-slate-200 hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
+              className="text-sm text-muted-foreground hover:text-foreground hover:shadow-[0_0_12px_hsl(var(--primary)/0.4)] rounded-lg px-3 py-1.5 transition-all duration-300"
             >
               {l.label}
             </Link>
@@ -83,7 +83,7 @@ const TCNavbar = () => {
         </div>
 
         <button
-          className="md:hidden text-slate-300"
+          className="md:hidden text-muted-foreground"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
@@ -106,7 +106,7 @@ const TCNavbar = () => {
                 <button
                   key={l.hash}
                   onClick={() => handleHashClick(l.hash)}
-                  className="text-sm text-slate-400 hover:text-white transition-colors py-2 text-left"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2 text-left"
                 >
                   {l.label}
                 </button>
@@ -116,7 +116,7 @@ const TCNavbar = () => {
                   key={l.to}
                   to={l.to}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm text-slate-400 hover:text-white transition-colors py-2"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {l.label}
                 </Link>

@@ -58,7 +58,7 @@ const TCHero = () => {
           className="flex flex-col items-center gap-3 relative w-full max-w-md mx-auto md:max-w-none"
         >
           {/* Animated glow ring */}
-          <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-r from-primary/30 via-blue-500/20 to-primary/30 blur-2xl animate-pulse" />
+          <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-r from-primary/30 via-blue-500/20 to-primary/30 blur-2xl motion-safe:animate-pulse" />
           <div className="absolute -inset-2 -z-10 rounded-3xl border border-primary/10" />
           {/* Inner glow layers */}
           <div className="absolute inset-0 -z-10 blur-3xl rounded-3xl bg-primary/20 scale-110" />
@@ -66,7 +66,7 @@ const TCHero = () => {
           <BreachSimulator />
           <Link
             to="/estimator-for-msps"
-            className="text-[11px] text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
           >
             Get your own breach cost estimator for your homepage
           </Link>
