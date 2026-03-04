@@ -45,8 +45,8 @@ const Index = () => {
       <main id="main-content">
         <TCHero />
         <TCSimulatorCTA />
-        <TCSocialProof />
         <TCMethodology />
+        <TCSocialProof />
         <TCTrialBanner />
         <TCFeatures />
         <TCDashboard />
