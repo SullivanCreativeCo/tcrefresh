@@ -4,9 +4,9 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  ClipboardCheck,
-  Compass,
-  MessageSquare,
+  Monitor,
+  Stethoscope,
+  PenLine,
   Lock,
   TrendingUp,
   ArrowRight,
@@ -23,7 +23,7 @@ type ToolId = "marketing-audit" | "care-plan" | "sales-script";
 
 const tools: {
   id: ToolId;
-  icon: typeof ClipboardCheck;
+  icon: typeof Monitor;
   title: string;
   subtitle: string;
   description: string;
@@ -32,7 +32,7 @@ const tools: {
 }[] = [
   {
     id: "marketing-audit",
-    icon: ClipboardCheck,
+    icon: Monitor,
     title: "MSP Marketing Audit",
     subtitle: "10-question maturity assessment",
     description:
@@ -42,7 +42,7 @@ const tools: {
   },
   {
     id: "care-plan",
-    icon: Compass,
+    icon: Stethoscope,
     title: "Customized Care Plan",
     subtitle: "Strategic growth blueprint",
     description:
@@ -52,7 +52,7 @@ const tools: {
   },
   {
     id: "sales-script",
-    icon: MessageSquare,
+    icon: PenLine,
     title: "Sales Script Generator",
     subtitle: "Vertical-specific conversations",
     description:
