@@ -1,13 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowUp, Zap } from "lucide-react";
+import { ArrowRight, Zap } from "lucide-react";
 import { useInView } from "@/hooks/use-in-view";
+import { Link } from "react-router-dom";
 
 const TCSimulatorCTA = () => {
   const { ref, inView } = useInView(0.2);
-
-  const scrollToSimulator = () => {
-    document.getElementById("simulator")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section ref={ref} className="py-20 sm:py-28 relative overflow-hidden">
@@ -40,13 +37,13 @@ const TCSimulatorCTA = () => {
           Try Our Breach Impact Simulator
         </h3>
 
-        <button
-          onClick={scrollToSimulator}
+        <Link
+          to="/estimator-for-msps"
           className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg bg-gradient-to-r from-primary to-blue-500 text-white font-semibold text-sm shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:scale-[1.02] transition-all duration-200"
         >
-          <ArrowUp className="w-4 h-4" aria-hidden="true" />
           Launch the Simulator
-        </button>
+          <ArrowRight className="w-4 h-4" aria-hidden="true" />
+        </Link>
 
         <p className="text-xs text-muted-foreground mt-4">
           Free to use. No credit card required.
