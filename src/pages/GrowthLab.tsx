@@ -7,10 +7,7 @@ import {
   Compass,
   MessageSquare,
   Lock,
-  Sparkles,
-  Users,
   TrendingUp,
-  Star,
   ArrowRight,
 } from "lucide-react";
 import TCNavbar from "@/components/TCNavbar";
@@ -31,9 +28,6 @@ const tools: {
   description: string;
   category: (typeof categories)[number];
   cta: string;
-  uses: string;
-  rating: number;
-  featured?: boolean;
 }[] = [
   {
     id: "marketing-audit",
@@ -44,9 +38,6 @@ const tools: {
       "Score your marketing maturity across 10 dimensions and get a custom roadmap to generate more leads.",
     category: "Marketing",
     cta: "Start Audit",
-    uses: "2.4k",
-    rating: 4.9,
-    featured: true,
   },
   {
     id: "care-plan",
@@ -57,8 +48,6 @@ const tools: {
       "Answer a few questions about your MSP and get a tailored plan to grow your security practice.",
     category: "Strategy",
     cta: "Build Plan",
-    uses: "1.8k",
-    rating: 4.8,
   },
   {
     id: "sales-script",
@@ -69,8 +58,6 @@ const tools: {
       "Generate a full sales conversation flow customized to your vertical and prospect type.",
     category: "Sales",
     cta: "Generate Script",
-    uses: "1.2k",
-    rating: 4.7,
   },
 ];
 
@@ -101,14 +88,6 @@ const ToolCard = ({
     transition={{ duration: 0.4, delay: 0.08 * index }}
     className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:shadow-[0_0_32px_hsl(var(--primary)/0.12)]"
   >
-    {/* Featured ribbon */}
-    {tool.featured && (
-      <div className="absolute top-3 right-3 z-10 flex items-center gap-1 rounded-full bg-accent/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-accent-foreground">
-        <Sparkles className="w-3 h-3" />
-        Popular
-      </div>
-    )}
-
     {/* Hero area with large icon */}
     <div className="relative flex items-center justify-center py-8 sm:py-10 bg-gradient-to-b from-primary/8 to-transparent">
       <div className="w-16 h-16 rounded-2xl bg-primary/15 border border-primary/20 flex items-center justify-center text-primary group-hover:scale-110 group-hover:shadow-[0_0_24px_hsl(var(--primary)/0.25)] transition-all duration-300">
@@ -130,21 +109,6 @@ const ToolCard = ({
       <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">
         {tool.description}
       </p>
-
-      {/* Stats row */}
-      <div className="flex items-center gap-4 mb-4 text-xs text-muted-foreground/60">
-        <span className="flex items-center gap-1">
-          <Star className="w-3.5 h-3.5 text-accent fill-accent" />
-          <span className="text-foreground/80 font-medium">{tool.rating}</span>
-        </span>
-        <span className="flex items-center gap-1">
-          <Users className="w-3.5 h-3.5" />
-          {tool.uses} uses
-        </span>
-        <span className="ml-auto rounded-full border border-success/30 bg-success/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-success">
-          Free
-        </span>
-      </div>
 
       {/* CTA */}
       <button
